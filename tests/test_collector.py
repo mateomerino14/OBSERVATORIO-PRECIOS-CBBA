@@ -1,10 +1,11 @@
 from datetime import date
 from decimal import Decimal
 
+import httpx
 import psycopg
 import pytest
 
-from observatory.collector import MAX_CONSECUTIVE_FAILURES, collect
+from observatory.collector import MAX_CONSECUTIVE_FAILURES, collect, collect_exchange_rates
 from observatory.http_client import BotProtectionError
 from observatory.models import Branch, FetchedPage, PriceObservation
 
@@ -89,3 +90,40 @@ def test_collect_records_failure_when_source_breaks(db: psycopg.Connection) -> N
 
     assert summary.status == "fallida"
     assert "ConnectionError" in stored_run(db, summary.run_id)[4]
+
+
+class FakeBcbClient:
+    def __init__(self, files: dict[int, bytes]) -> None:
+        self.files = files
+
+    def get_bytes(self, url: str) -> bytes:
+        year = int(url.rsplit("=", 1)[1])
+        if year not in self.files:
+            request = httpx.Request("GET", url)
+            raise httpx.HTTPStatusError("404", request=request, response=httpx.Response(404))
+        return self.files[year]
+
+
+def test_collect_exchange_rates_saves_years_and_reports_missing(
+    db: psycopg.Connection, fixture_bytes
+) -> None:
+    client = FakeBcbClient({2026: fixture_bytes("bcb_tipo_cambio_2026.pdf")})
+
+    summary = collect_exchange_rates(client, db, [2026, 2027])
+
+    assert (summary.status, summary.pages_ok, summary.pages_failed) == ("con_errores", 1, 1)
+    row = db.execute(
+        "SELECT venta, compra FROM tipo_cambio "
+        "WHERE fecha = '2026-09-24' AND fuente = 'bcb_oficial'"
+    ).fetchone()
+    assert row == (Decimal("12.26"), None)
+    assert "2027" in stored_run(db, summary.run_id)[4]
+
+
+def test_collect_exchange_rates_is_idempotent(db: psycopg.Connection, fixture_bytes) -> None:
+    client = FakeBcbClient({2026: fixture_bytes("bcb_tipo_cambio_2026.pdf")})
+
+    collect_exchange_rates(client, db, [2026])
+    collect_exchange_rates(client, db, [2026])
+
+    assert db.execute("SELECT count(*) FROM tipo_cambio").fetchone()[0] == 250
