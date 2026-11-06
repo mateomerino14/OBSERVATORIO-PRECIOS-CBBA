@@ -40,6 +40,14 @@ pytest                                # pruebas (las de base necesitan TEST_DATA
 ruff check . && ruff format --check .
 ```
 
+## Recolección automática
+
+El flujo [`recolectar.yml`](.github/workflows/recolectar.yml) corre todos los días a las 07:17 (hora de Bolivia) desde `main`: aplica las migraciones pendientes y recolecta los precios. También se puede lanzar a mano desde *Actions → Recolección diaria → Run workflow*, con un límite de productos para probar.
+
+Necesita el secreto `DATABASE_URL` del repositorio (*Settings → Secrets and variables → Actions*), apuntando a una base PostgreSQL accesible desde internet (por ejemplo, Supabase o Neon).
+
+Cada corrida queda registrada en la tabla `ejecucion` con su estado (`completada`, `con_errores` o `fallida`) y la cantidad de páginas procesadas. Si fallan 20 páginas seguidas, la corrida se detiene: casi siempre significa que la tienda cambió su sitio.
+
 ## Documentación
 
 - [`reglas.md`](reglas.md): ramas, commits y estándares de código
