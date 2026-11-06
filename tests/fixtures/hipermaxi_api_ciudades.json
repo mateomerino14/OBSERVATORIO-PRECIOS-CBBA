@@ -1,0 +1,29 @@
+{
+ "Mensaje": null,
+ "Errores": [],
+ "ConError": false,
+ "Estado": 200,
+ "Dato": [
+  {
+   "Nombre": "Santa Cruz",
+   "Latitud": "-17.78328",
+   "Longitud": "-63.18210",
+   "IdRegion": 1
+  },
+  {
+   "Nombre": "La Paz",
+   "Latitud": "-16.49573",
+   "Longitud": "-68.13349",
+   "IdRegion": 2
+  },
+  {
+   "Nombre": "Cochabamba",
+   "Latitud": "-17.3938815",
+   "Longitud": "-66.156960",
+   "IdRegion": 3
+  }
+ ],
+ "MensajeTecnico": null,
+ "VersionAndroid": "2.1.10",
+ "VersionIOS": "2.1.10"
+}

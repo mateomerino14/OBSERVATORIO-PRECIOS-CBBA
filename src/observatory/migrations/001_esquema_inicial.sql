@@ -15,6 +15,8 @@ CREATE TABLE sucursal (
     codigo      TEXT NOT NULL,                 -- como aparece en la URL de la tienda
     nombre      TEXT NOT NULL,
     ciudad      TEXT NOT NULL,
+    id_externo  TEXT,                          -- id de la sucursal en el sistema de la cadena
+    direccion   TEXT,
     UNIQUE (cadena_id, codigo)
 );
 
@@ -30,11 +32,16 @@ CREATE TABLE producto (
     marca               TEXT,
     contenido_cantidad  NUMERIC(12, 3),        -- presentación normalizada: 5 kg -> 5000 g
     contenido_unidad    TEXT CHECK (contenido_unidad IN ('g', 'ml', 'u')),
+    vendido_por_peso    BOOLEAN NOT NULL DEFAULT false,  -- el precio es por kilo
+    categoria           TEXT,
+    subcategoria        TEXT,
     url                 TEXT NOT NULL,
     primera_vez         TIMESTAMPTZ NOT NULL DEFAULT now(),
     ultima_vez          TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (cadena_id, codigo_externo)
 );
+
+CREATE INDEX producto_categoria_idx ON producto (cadena_id, categoria, subcategoria);
 
 -- =====================================================================
 -- Precios: una observación por producto, sucursal y día
@@ -97,9 +104,11 @@ CREATE TABLE ejecucion (
     iniciada_en     TIMESTAMPTZ NOT NULL DEFAULT now(),
     terminada_en    TIMESTAMPTZ,
     estado          TEXT NOT NULL DEFAULT 'en_curso'
-                    CHECK (estado IN ('en_curso', 'completada', 'con_errores', 'fallida')),
+                    CHECK (estado IN ('en_curso', 'completada', 'con_errores', 'fallida',
+                                      'bloqueada')),
     paginas_ok      INTEGER NOT NULL DEFAULT 0,
     paginas_error   INTEGER NOT NULL DEFAULT 0,
+    observaciones   INTEGER NOT NULL DEFAULT 0,   -- precios guardados en la corrida
     detalle         TEXT
 );
 

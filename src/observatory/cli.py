@@ -26,8 +26,9 @@ def build_parser() -> argparse.ArgumentParser:
     collect_parser = commands.add_parser("recolectar", help="Recolecta los precios del día")
     collect_parser.add_argument("fuente", choices=["hipermaxi"])
     collect_parser.add_argument("--ciudad", default=DEFAULT_CITY)
-    collect_parser.add_argument("--limite", type=int, help="Máximo de productos (para pruebas)")
-    collect_parser.add_argument("--sitemap", help="URL de sitemap alternativa")
+    collect_parser.add_argument(
+        "--max-paginas", type=int, help="Máximo de páginas de 50 productos (para pruebas)"
+    )
     return parser
 
 
@@ -47,23 +48,22 @@ def run_collect(arguments: argparse.Namespace) -> int:
     """Recolecta una fuente y devuelve código de error si la corrida falló."""
     settings = load_settings()
     client = PoliteClient(delay_seconds=settings.delay_seconds)
-    sitemap = arguments.sitemap or hipermaxi.SITEMAP_URL
     try:
         with connect(settings.database_url) as connection:
-            urls = hipermaxi.discover_product_urls(client, arguments.ciudad, sitemap)
             summary = collect(
-                client,
                 connection,
                 source=hipermaxi.CHAIN_CODE,
-                urls=urls,
-                parse_page=hipermaxi.parse_product_page,
+                pages=hipermaxi.iter_pages(client, arguments.ciudad),
                 observed_on=today_in_bolivia(),
-                limit=arguments.limite,
+                max_pages=arguments.max_paginas,
             )
     finally:
         client.close()
-    print(f"{summary.status}: {summary.pages_ok} productos, {summary.pages_failed} con error")
-    if summary.status == "fallida":
+    print(
+        f"{summary.status}: {summary.observations} precios en {summary.pages_ok} páginas, "
+        f"{summary.pages_failed} con error"
+    )
+    if summary.status in ("fallida", "bloqueada"):
         return EXIT_FAILED
     return EXIT_OK
 

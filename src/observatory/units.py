@@ -22,6 +22,7 @@ UNIT_FACTORS: dict[str, tuple[str, Decimal]] = {
     "litros": ("ml", Decimal(1000)),
     "ml": ("ml", Decimal(1)),
     "cc": ("ml", Decimal(1)),
+    "cm3": ("ml", Decimal(1)),
     "u": ("u", Decimal(1)),
     "un": ("u", Decimal(1)),
     "und": ("u", Decimal(1)),

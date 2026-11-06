@@ -98,3 +98,36 @@ def test_finish_run_sets_status(
     assert finish_run(db, run_id, pages_ok, pages_failed) == expected
     stored = db.execute("SELECT estado FROM ejecucion WHERE id = %s", (run_id,)).fetchone()[0]
     assert stored == expected
+
+
+def test_weight_products_are_stored_per_kilo_with_category(db: psycopg.Connection) -> None:
+    weighed = make_observation(
+        external_code="414069",
+        name="Picaña Especial",
+        sold_by_weight=True,
+        category="Carnes",
+        subcategory="Carne de Res",
+    )
+
+    save_observation(db, weighed, TODAY)
+
+    row = db.execute(
+        "SELECT contenido_cantidad, contenido_unidad, vendido_por_peso, categoria, subcategoria "
+        "FROM producto"
+    ).fetchone()
+    assert row == (Decimal(1000), "g", True, "Carnes", "Carne de Res")
+
+
+def test_branch_keeps_external_id_and_address(db: psycopg.Connection) -> None:
+    branch = Branch(
+        code="hipermaxi-sacaba",
+        name="HIPERMAXI SACABA",
+        city="cochabamba",
+        external_id="48",
+        address="Av. Villazón",
+    )
+
+    save_observation(db, make_observation(branch=branch), TODAY)
+
+    row = db.execute("SELECT id_externo, direccion FROM sucursal").fetchone()
+    assert row == ("48", "Av. Villazón")

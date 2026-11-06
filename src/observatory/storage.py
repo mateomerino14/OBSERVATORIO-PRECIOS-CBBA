@@ -1,26 +1,35 @@
 """Guardado idempotente de observaciones de precio y registro de corridas."""
 
 from datetime import date
+from decimal import Decimal
 
 import psycopg
 
 from observatory.models import PriceObservation
-from observatory.units import parse_content
+from observatory.units import Content, parse_content
+
+PER_KILO = Content(quantity=Decimal(1000), unit="g")
 
 UPSERT_BRANCH = """
-INSERT INTO sucursal (cadena_id, codigo, nombre, ciudad)
-VALUES (%(chain_id)s, %(code)s, %(name)s, %(city)s)
-ON CONFLICT (cadena_id, codigo) DO UPDATE SET nombre = EXCLUDED.nombre
+INSERT INTO sucursal (cadena_id, codigo, nombre, ciudad, id_externo, direccion)
+VALUES (%(chain_id)s, %(code)s, %(name)s, %(city)s, %(external_id)s, %(address)s)
+ON CONFLICT (cadena_id, codigo) DO UPDATE SET
+    nombre = EXCLUDED.nombre,
+    id_externo = COALESCE(EXCLUDED.id_externo, sucursal.id_externo),
+    direccion = COALESCE(EXCLUDED.direccion, sucursal.direccion)
 RETURNING id
 """
 
 UPSERT_PRODUCT = """
-INSERT INTO producto (cadena_id, codigo_externo, nombre, marca,
-                      contenido_cantidad, contenido_unidad, url)
-VALUES (%(chain_id)s, %(external_code)s, %(name)s, %(brand)s,
-        %(quantity)s, %(unit)s, %(url)s)
+INSERT INTO producto (cadena_id, codigo_externo, nombre, marca, contenido_cantidad,
+                      contenido_unidad, vendido_por_peso, categoria, subcategoria, url)
+VALUES (%(chain_id)s, %(external_code)s, %(name)s, %(brand)s, %(quantity)s,
+        %(unit)s, %(sold_by_weight)s, %(category)s, %(subcategory)s, %(url)s)
 ON CONFLICT (cadena_id, codigo_externo) DO UPDATE SET
     nombre = EXCLUDED.nombre,
+    vendido_por_peso = EXCLUDED.vendido_por_peso,
+    categoria = COALESCE(EXCLUDED.categoria, producto.categoria),
+    subcategoria = COALESCE(EXCLUDED.subcategoria, producto.subcategoria),
     marca = COALESCE(EXCLUDED.marca, producto.marca),
     contenido_cantidad = COALESCE(EXCLUDED.contenido_cantidad, producto.contenido_cantidad),
     contenido_unidad = COALESCE(EXCLUDED.contenido_unidad, producto.contenido_unidad),
@@ -61,6 +70,8 @@ def save_observation(
 ) -> None:
     """Guarda sucursal, producto y precio del día en una sola transacción."""
     content = parse_content(observation.name)
+    if observation.sold_by_weight:
+        content = PER_KILO
     quantity = None
     unit = None
     if content is not None:
@@ -75,6 +86,8 @@ def save_observation(
                 "code": observation.branch.code,
                 "name": observation.branch.name,
                 "city": observation.branch.city,
+                "external_id": observation.branch.external_id,
+                "address": observation.branch.address,
             },
         ).fetchone()[0]
         product_id = connection.execute(
@@ -86,6 +99,9 @@ def save_observation(
                 "brand": observation.brand,
                 "quantity": quantity,
                 "unit": unit,
+                "sold_by_weight": observation.sold_by_weight,
+                "category": observation.category,
+                "subcategory": observation.subcategory,
                 "url": observation.url,
             },
         ).fetchone()[0]
@@ -117,11 +133,15 @@ def finish_run(
     run_id: int,
     pages_ok: int,
     pages_failed: int,
+    observations: int = 0,
     detail: str | None = None,
+    blocked: bool = False,
 ) -> str:
     """Cierra la corrida con su estado final según cuántas páginas fallaron."""
     status = "completada"
-    if pages_failed > 0 and pages_ok > 0:
+    if blocked:
+        status = "bloqueada"
+    elif pages_failed > 0 and pages_ok > 0:
         status = "con_errores"
     elif pages_failed > 0 or pages_ok == 0:
         status = "fallida"
@@ -130,9 +150,9 @@ def finish_run(
             """
             UPDATE ejecucion
             SET terminada_en = now(), estado = %s, paginas_ok = %s,
-                paginas_error = %s, detalle = %s
+                paginas_error = %s, observaciones = %s, detalle = %s
             WHERE id = %s
             """,
-            (status, pages_ok, pages_failed, detail, run_id),
+            (status, pages_ok, pages_failed, observations, detail, run_id),
         )
     return status

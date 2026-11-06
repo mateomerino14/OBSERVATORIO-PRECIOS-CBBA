@@ -1,207 +1,315 @@
-"""Fuente Hipermaxi: descubre productos por sitemap y lee el precio del JSON-LD de cada página."""
+"""Fuente Hipermaxi: sucursales y productos desde la API pública de su tienda en línea."""
 
 import json
 import logging
 import re
+import unicodedata
 from collections.abc import Iterator
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
-from xml.etree import ElementTree
 
-from selectolax.lexbor import LexborHTMLParser as HTMLParser
+import httpx
+from selectolax.lexbor import LexborHTMLParser
 
-from observatory.models import Branch, PriceObservation
+from observatory.models import Branch, FetchedPage, PriceObservation
 
 CHAIN_CODE = "hipermaxi"
-BASE_URL = "https://www.hipermaxi.com"
-SITEMAP_URL = f"{BASE_URL}/sitemap.xml"
-SITEMAP_NAMESPACE = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-MAX_SITEMAP_DEPTH = 3
-
-# Ruta de producto: /<ciudad>/<sucursal>/producto/<código>/<slug>
-PRODUCT_PATH = re.compile(
-    r"^/(?P<city>[a-z-]+)/(?P<branch>[a-z0-9-]+)/producto/(?P<code>[0-9A-Za-z]+)/[^/?#]+/?$"
-)
-BRANCH_NAME_PATTERN = re.compile(r"al mejor precio en Hipermaxi\s+(?P<name>[^.]+)\.")
-STOCK_PATTERN = re.compile(r"Disponibilidad\W*:?\W*\+?(?P<units>\d+)\s+unidad", re.IGNORECASE)
-OUT_OF_STOCK_MARKERS = ("outofstock", "soldout", "discontinued")
+SITE_BASE = "https://hipermaxi.com"
+WEB_BASE = "https://www.hipermaxi.com"
+API_BASE = f"{SITE_BASE}/tienda-api/api/v1/public"
+PAGE_SIZE = 50
+ALL_MARKETS = 0
+SUPERMARKET_SERVICE_TYPE = 1
+SUPERMARKET_PREFIX = "HIPERMAXI"
+WEIGHT_UNIT = "KGM"
+TREE_PAGE_CATEGORY = "abarrotes"
+# Rubros de la canasta: 1 abarrotes y bebidas, 2 frescos, 3 hogar y cuidado personal,
+# 6 frutas, verduras y granos. Se excluye el 4: bazar, juguetería y textiles.
+CANASTA_RUBROS = frozenset({1, 2, 3, 6})
+CATEGORY_TREE_START = '[{"idCategory"'
+CENT = Decimal("0.01")
 
 logger = logging.getLogger(__name__)
 
 
+class HipermaxiApiError(ValueError):
+    """La API respondió con error o con un formato inesperado."""
+
+
 @dataclass(frozen=True)
-class ProductLocation:
-    """Ciudad, sucursal y código del producto, leídos de la URL."""
+class HipermaxiBranch:
+    """Sucursal con los dos identificadores que pide la API."""
 
-    city: str
-    branch_code: str
-    external_code: str
-
-
-class PageParseError(ValueError):
-    """La página no trae los datos mínimos de un producto."""
+    market_id: int
+    branch_id: int
+    branch: Branch
 
 
-def parse_product_url(url: str) -> ProductLocation | None:
-    """Lee ciudad, sucursal y código de una URL de producto; None si no es de producto."""
-    path = re.sub(r"^https?://[^/]+", "", url)
-    match = PRODUCT_PATH.match(path)
-    if match is None:
-        return None
-    return ProductLocation(match["city"], match["branch"], match["code"])
+@dataclass(frozen=True)
+class Subcategory:
+    """Subcategoría del catálogo."""
+
+    subcategory_id: int
+    name: str
 
 
-def parse_sitemap(xml_text: str) -> tuple[list[str], list[str]]:
-    """Separa un sitemap en (sitemaps hijos, URLs de páginas)."""
-    root = ElementTree.fromstring(xml_text)
-    locations = [node.text.strip() for node in root.iter(f"{SITEMAP_NAMESPACE}loc") if node.text]
-    if root.tag == f"{SITEMAP_NAMESPACE}sitemapindex":
-        return locations, []
-    return [], locations
+@dataclass(frozen=True)
+class Category:
+    """Categoría del catálogo con su rubro y subcategorías."""
+
+    category_id: int
+    name: str
+    rubro: int
+    subcategories: tuple[Subcategory, ...]
 
 
-def discover_product_urls(client, city: str, sitemap_url: str = SITEMAP_URL) -> Iterator[str]:
-    """Recorre el sitemap y entrega las URLs de producto de una ciudad, sin repetir."""
-    pending = [(sitemap_url, 0)]
-    seen: set[str] = set()
-    while pending:
-        current, depth = pending.pop(0)
-        children, pages = parse_sitemap(client.get_text(current))
-        if depth < MAX_SITEMAP_DEPTH:
-            pending.extend((child, depth + 1) for child in children)
-        for page in pages:
-            location = parse_product_url(page)
-            if location is None or location.city != city or page in seen:
+def slugify(text: str) -> str:
+    """Convierte un texto al formato de URL que usa la tienda: 'Picaña 1 kg' -> 'picana-1-kg'."""
+    ascii_text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"[^a-z0-9]+", "-", ascii_text.lower()).strip("-")
+
+
+def unwrap(payload: object) -> list[dict]:
+    """Devuelve la lista Dato de una respuesta de la API o falla si trae error."""
+    if not isinstance(payload, dict):
+        raise HipermaxiApiError("Respuesta de la API sin formato de objeto")
+    if payload.get("ConError") or payload.get("Estado") != httpx.codes.OK:
+        raise HipermaxiApiError(f"La API respondió con error: {payload.get('Mensaje')}")
+    data = payload.get("Dato")
+    if data is None:
+        return []
+    if not isinstance(data, list):
+        raise HipermaxiApiError("El campo Dato no es una lista")
+    return data
+
+
+def find_region_id(client, city: str) -> int:
+    """Busca el id de región de una ciudad entre las que atiende Hipermaxi."""
+    for region in unwrap(client.get_json(f"{API_BASE}/markets/ciudades")):
+        if slugify(region["Nombre"]) == city:
+            return int(region["IdRegion"])
+    raise HipermaxiApiError(f"Hipermaxi no atiende la ciudad: {city}")
+
+
+def list_branches(client, city: str) -> list[HipermaxiBranch]:
+    """Lista los supermercados de una ciudad, sin farmacias."""
+    region_id = find_region_id(client, city)
+    params = {"IdMarket": ALL_MARKETS, "IdTipoServicio": SUPERMARKET_SERVICE_TYPE}
+    branches = []
+    for market in unwrap(client.get_json(f"{API_BASE}/markets/activos", params)):
+        if market.get("IdRegion") != region_id:
+            continue
+        for location in market.get("Locatarios", []):
+            name = str(location.get("Descripcion", "")).strip()
+            is_supermarket = location.get("IdTipoServicio") == SUPERMARKET_SERVICE_TYPE
+            if not is_supermarket or not name.upper().startswith(SUPERMARKET_PREFIX):
                 continue
-            seen.add(page)
-            yield page
+            branch = Branch(
+                code=slugify(name),
+                name=name,
+                city=city,
+                external_id=str(location["IdSucursal"]),
+                address=location.get("Direccion"),
+            )
+            branches.append(
+                HipermaxiBranch(int(market["IdMarket"]), int(location["IdSucursal"]), branch)
+            )
+    return branches
 
 
-def parse_product_page(html: str, url: str) -> PriceObservation:
-    """Arma la observación de precio a partir del HTML de una página de producto."""
-    location = parse_product_url(url)
-    if location is None:
-        raise PageParseError(f"No es una URL de producto: {url}")
-    tree = HTMLParser(html)
-    product = _find_product_json_ld(tree)
-    if product is None:
-        raise PageParseError(f"Sin JSON-LD de producto: {url}")
-    offer = _first_offer(product.get("offers"))
-    price = _to_decimal(offer.get("price") or offer.get("lowPrice"))
-    if price is None or price <= 0:
-        raise PageParseError(f"Sin precio válido: {url}")
-    name = str(product.get("name") or "").strip()
-    if not name:
-        raise PageParseError(f"Sin nombre: {url}")
+def parse_category_tree(html: str) -> list[Category]:
+    """Extrae el árbol de categorías que Next.js deja dentro del HTML de la página."""
+    tree = LexborHTMLParser(html)
+    for script in tree.css("script"):
+        text = script.text()
+        if "self.__next_f.push(" not in text or "idCategory" not in text:
+            continue
+        for chunk in _flight_chunks(text):
+            raw = _balanced_array(chunk, chunk.find(CATEGORY_TREE_START))
+            if raw is None:
+                continue
+            return [_to_category(item) for item in json.loads(raw)]
+    raise HipermaxiApiError("La página no trae el árbol de categorías")
 
-    page_text = tree.body.text(separator=" ") if tree.body else ""
-    stock = _parse_stock(page_text)
-    branch = Branch(
-        code=location.branch_code,
-        name=_parse_branch_name(tree, location.branch_code),
-        city=location.city,
-    )
+
+def fetch_category_tree(client, city: str, branch_code: str) -> list[Category]:
+    """Descarga una página de categoría de la sucursal y lee de ella el árbol completo."""
+    url = f"{WEB_BASE}/{city}/{branch_code}/categoria/{TREE_PAGE_CATEGORY}"
+    return parse_category_tree(client.get_text(url))
+
+
+def to_observation(
+    item: dict, city: str, branch: Branch, category: str | None, subcategory: str | None
+) -> PriceObservation:
+    """Convierte un producto de la API en una observación de precio."""
+    name = str(item.get("Descripcion") or "").strip()
+    code = str(item.get("IdProducto") or "").strip()
+    sale_price = _to_decimal(item.get("PrecioVenta"))
+    if not name or not code or sale_price is None or sale_price <= 0:
+        raise HipermaxiApiError(f"Producto incompleto: {item.get('IdProducto')}")
+
+    price = sale_price
+    regular_price = None
+    offer_price = _to_decimal(item.get("PrecioOferta"))
+    if item.get("ConOferta") and offer_price is not None and 0 < offer_price < sale_price:
+        price = offer_price
+        regular_price = sale_price
+    original = _to_decimal(item.get("PrecioOriginal"))
+    if regular_price is not None and original is not None and original > regular_price:
+        regular_price = original
+
+    stock_value = _to_decimal(item.get("Stock"))
+    stock = None
+    if item.get("VerStock") and stock_value is not None and stock_value >= 0:
+        stock = int(stock_value)
+    available = True
+    if item.get("ControlStock") and stock_value is not None and stock_value <= 0:
+        available = False
+
     return PriceObservation(
         chain_code=CHAIN_CODE,
         branch=branch,
-        external_code=location.external_code,
+        external_code=code,
         name=name,
-        brand=_parse_brand(product.get("brand")),
-        url=url,
+        brand=None,
+        url=f"{SITE_BASE}/{city}/{branch.code}/producto/{code}/{slugify(name)}",
         price=price,
-        regular_price=_regular_price(offer, price),
-        available=_is_available(offer, stock),
+        regular_price=regular_price,
+        available=available,
         stock=stock,
+        category=category,
+        subcategory=subcategory,
+        sold_by_weight=item.get("UnidadMedida") == WEIGHT_UNIT,
     )
 
 
-def _find_product_json_ld(tree: HTMLParser) -> dict | None:
-    """Busca entre los bloques JSON-LD el objeto que describe el producto con su oferta."""
-    for script in tree.css('script[type="application/ld+json"]'):
+def iter_pages(client, city: str, rubros: frozenset[int] = CANASTA_RUBROS) -> Iterator[FetchedPage]:
+    """Recorre todas las sucursales de la ciudad, subcategoría por subcategoría."""
+    branches = list_branches(client, city)
+    if not branches:
+        raise HipermaxiApiError(f"No hay supermercados Hipermaxi en {city}")
+    logger.info("Sucursales en %s: %s", city, ", ".join(item.branch.name for item in branches))
+    categories = _load_tree_or_none(client, city, branches[0].branch.code)
+
+    for target in branches:
+        base_params = {"IdMarket": target.market_id, "IdLocatario": target.branch_id}
+        if categories is None:
+            yield from _paginate(client, city, target.branch, base_params, None, None)
+            continue
+        for category in categories:
+            if category.rubro not in rubros:
+                continue
+            for subcategory in category.subcategories:
+                params = {
+                    **base_params,
+                    "IdCategoria": category.category_id,
+                    "IdsSubcategoria": subcategory.subcategory_id,
+                }
+                yield from _paginate(
+                    client, city, target.branch, params, category.name, subcategory.name
+                )
+
+
+def _load_tree_or_none(client, city: str, branch_code: str) -> list[Category] | None:
+    """Intenta leer el árbol de categorías; sin él se recorre el catálogo completo sin categoría."""
+    try:
+        categories = fetch_category_tree(client, city, branch_code)
+    except (httpx.HTTPError, HipermaxiApiError) as error:
+        logger.warning("Sin árbol de categorías (%s); se recorre el catálogo completo", error)
+        return None
+    logger.info("Árbol de categorías: %s categorías", len(categories))
+    return categories
+
+
+def _paginate(
+    client,
+    city: str,
+    branch: Branch,
+    params: dict[str, int],
+    category: str | None,
+    subcategory: str | None,
+) -> Iterator[FetchedPage]:
+    """Pide las páginas de un listado hasta que una venga incompleta."""
+    page = 1
+    while True:
+        label = f"{branch.name} / {subcategory or 'catálogo'} / página {page}"
+        query = {**params, "Pagina": page, "Cantidad": PAGE_SIZE}
         try:
-            data = json.loads(script.text())
+            items = unwrap(client.get_json(f"{API_BASE}/productos", query))
+        except (httpx.HTTPError, ValueError) as error:
+            yield FetchedPage(label=label, error=f"{type(error).__name__}: {error}")
+            return
+        observations = []
+        for item in items:
+            try:
+                observations.append(to_observation(item, city, branch, category, subcategory))
+            except HipermaxiApiError as error:
+                logger.warning("%s: %s", label, error)
+        yield FetchedPage(label=label, observations=observations)
+        if len(items) < PAGE_SIZE:
+            return
+        page += 1
+
+
+def _flight_chunks(script_text: str) -> Iterator[str]:
+    """Decodifica los textos de cada self.__next_f.push([...]) del script."""
+    for match in re.finditer(r"self\.__next_f\.push\((\[.*?\])\)", script_text, re.DOTALL):
+        try:
+            payload = json.loads(match.group(1))
         except json.JSONDecodeError:
             continue
-        for candidate in _walk_json_ld(data):
-            if "offers" in candidate and "name" in candidate:
-                return candidate
+        for part in payload:
+            if isinstance(part, str):
+                yield part
+
+
+def _balanced_array(text: str, start: int) -> str | None:
+    """Recorta el arreglo JSON que empieza en start, respetando corchetes y comillas."""
+    if start < 0:
+        return None
+    depth = 0
+    in_string = False
+    escaped = False
+    for index in range(start, len(text)):
+        char = text[index]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == "[":
+            depth += 1
+        elif char == "]":
+            depth -= 1
+            if depth == 0:
+                return text[start : index + 1]
     return None
 
 
-def _walk_json_ld(data: object) -> Iterator[dict]:
-    """Recorre listas y @graph del JSON-LD entregando cada objeto."""
-    if isinstance(data, list):
-        for item in data:
-            yield from _walk_json_ld(item)
-        return
-    if isinstance(data, dict):
-        yield data
-        yield from _walk_json_ld(data.get("@graph", []))
-
-
-def _first_offer(offers: object) -> dict:
-    """Normaliza offers, que puede venir como objeto o como lista."""
-    if isinstance(offers, list) and offers:
-        return offers[0]
-    if isinstance(offers, dict):
-        return offers
-    return {}
+def _to_category(item: dict) -> Category:
+    """Convierte una categoría del árbol de Next.js."""
+    subcategories = tuple(
+        Subcategory(int(sub["idSubcategory"]), str(sub["description"]).strip())
+        for sub in item.get("subcategories", [])
+    )
+    return Category(
+        category_id=int(item["idCategory"]),
+        name=str(item["description"]).strip(),
+        rubro=int(item.get("idRubro", 0)),
+        subcategories=subcategories,
+    )
 
 
 def _to_decimal(value: object) -> Decimal | None:
-    """Convierte un precio de JSON a Decimal con dos decimales."""
-    if value is None:
+    """Convierte un número de la API a Decimal con dos decimales."""
+    if value is None or isinstance(value, bool):
         return None
     try:
-        return Decimal(str(value).replace(",", ".")).quantize(Decimal("0.01"))
+        return Decimal(str(value)).quantize(CENT)
     except InvalidOperation:
         return None
-
-
-def _regular_price(offer: dict, price: Decimal) -> Decimal | None:
-    """Precio antes del descuento, solo si es mayor al precio actual."""
-    regular = _to_decimal(offer.get("highPrice"))
-    if regular is not None and regular > price:
-        return regular
-    return None
-
-
-def _parse_brand(brand: object) -> str | None:
-    """La marca puede venir como texto o como objeto con name."""
-    if isinstance(brand, dict):
-        brand = brand.get("name")
-    if isinstance(brand, str) and brand.strip():
-        return brand.strip()
-    return None
-
-
-def _parse_stock(page_text: str) -> int | None:
-    """Lee 'Disponibilidad: 29 unidades'; '+50' se guarda como 50."""
-    match = STOCK_PATTERN.search(page_text)
-    if match is None:
-        return None
-    return int(match["units"])
-
-
-def _is_available(offer: dict, stock: int | None) -> bool:
-    """Disponible según schema.org; si no lo indica, según las unidades visibles."""
-    availability = str(offer.get("availability", "")).lower()
-    if any(marker in availability for marker in OUT_OF_STOCK_MARKERS):
-        return False
-    if "instock" in availability:
-        return True
-    if stock is not None:
-        return stock > 0
-    return True
-
-
-def _parse_branch_name(tree: HTMLParser, branch_code: str) -> str:
-    """Toma el nombre de la sucursal de la descripción; si no está, lo arma desde la URL."""
-    meta = tree.css_first('meta[name="description"]')
-    description = ""
-    if meta is not None:
-        description = meta.attributes.get("content") or ""
-    match = BRANCH_NAME_PATTERN.search(description)
-    if match is not None:
-        return match["name"].strip()
-    return branch_code.replace("-", " ").upper()
