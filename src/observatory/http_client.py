@@ -60,6 +60,12 @@ class PoliteClient:
             raise DisallowedByRobotsError(f"robots.txt no permite: {url}")
         return self._fetch(url).text
 
+    def get_bytes(self, url: str) -> bytes:
+        """Descarga una URL permitida y devuelve el cuerpo tal cual, para archivos como PDF."""
+        if not self.is_allowed(url):
+            raise DisallowedByRobotsError(f"robots.txt no permite: {url}")
+        return self._fetch(url).content
+
     def get_json(self, url: str, params: dict[str, object] | None = None) -> object:
         """Descarga una URL permitida y devuelve el cuerpo interpretado como JSON."""
         full_url = str(httpx.URL(url, params=params))
@@ -98,18 +104,29 @@ class PoliteClient:
             wait = BACKOFF_BASE_SECONDS * attempt
             logger.warning("HTTP %s en %s; reintento en %.0f s", response.status_code, url, wait)
             self._sleep(wait)
-        if any(marker in response.text for marker in BOT_CHALLENGE_MARKERS):
+        is_html = "html" in response.headers.get("content-type", "")
+        if is_html and any(marker in response.text for marker in BOT_CHALLENGE_MARKERS):
             raise BotProtectionError(f"Verificación antibots en {url}")
         if raise_for_status:
             response.raise_for_status()
         return response
 
+    def delay_for(self, origin: str) -> float:
+        """Pausa para un sitio: la del proyecto o el Crawl-delay de su robots.txt, la mayor."""
+        delay = self.delay_seconds
+        robots = self._robots.get(origin)
+        if robots is not None:
+            crawl_delay = robots.crawl_delay(USER_AGENT)
+            if crawl_delay is not None:
+                delay = max(delay, float(crawl_delay))
+        return delay
+
     def _wait_turn(self, url: str) -> None:
-        """Espera lo necesario para no pedir al mismo sitio antes de la pausa configurada."""
+        """Espera lo necesario para no pedir al mismo sitio antes de la pausa que le corresponde."""
         origin = _origin(url)
         last = self._last_request_at.get(origin)
         if last is not None:
-            remaining = self.delay_seconds - (self._clock() - last)
+            remaining = self.delay_for(origin) - (self._clock() - last)
             if remaining > 0:
                 self._sleep(remaining)
         self._last_request_at[origin] = self._clock()

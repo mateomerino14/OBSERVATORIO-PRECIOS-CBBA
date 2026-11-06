@@ -156,3 +156,20 @@ def finish_run(
             (status, pages_ok, pages_failed, observations, detail, run_id),
         )
     return status
+
+
+UPSERT_EXCHANGE_RATE = """
+INSERT INTO tipo_cambio (fecha, fuente, compra, venta)
+VALUES (%(day)s, %(source)s, %(buy)s, %(sell)s)
+ON CONFLICT (fecha, fuente) DO UPDATE SET compra = EXCLUDED.compra, venta = EXCLUDED.venta
+"""
+
+
+def save_exchange_rates(connection: psycopg.Connection, source: str, rates: list) -> int:
+    """Guarda o actualiza cotizaciones diarias de una fuente y devuelve cuántas procesó."""
+    rows = [
+        {"day": rate.day, "source": source, "buy": rate.buy, "sell": rate.sell} for rate in rates
+    ]
+    with connection.transaction(), connection.cursor() as cursor:
+        cursor.executemany(UPSERT_EXCHANGE_RATE, rows)
+    return len(rows)
