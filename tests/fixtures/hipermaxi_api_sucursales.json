@@ -1,0 +1,109 @@
+{
+ "Mensaje": "Transacción exitosa.",
+ "Errores": [],
+ "ConError": false,
+ "Estado": 200,
+ "Dato": [
+  {
+   "IdMarket": 40,
+   "IdRegion": 3,
+   "Locatarios": [
+    {
+     "IdSucursal": 40,
+     "idRegion": 3,
+     "IdMarket": 40,
+     "Descripcion": "HIPERMAXI BLANCO GALINDO",
+     "Direccion": "A.BORDA #2029",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 47,
+   "IdRegion": 3,
+   "Locatarios": [
+    {
+     "IdSucursal": 47,
+     "idRegion": 3,
+     "IdMarket": 47,
+     "Descripcion": "HIPERMAXI JUAN DE LA ROSA",
+     "Direccion": "AV. JUAN DE LA ROSA ESQ. RENE MORENO #207030",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 48,
+   "IdRegion": 3,
+   "Locatarios": [
+    {
+     "IdSucursal": 48,
+     "idRegion": 3,
+     "IdMarket": 48,
+     "Descripcion": "HIPERMAXI SACABA",
+     "Direccion": "AV.",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 49,
+   "IdRegion": 3,
+   "Locatarios": [
+    {
+     "IdSucursal": 49,
+     "idRegion": 3,
+     "IdMarket": 49,
+     "Descripcion": "HIPERMAXI CIRCUNVALACION",
+     "Direccion": "AV.",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 654,
+   "IdRegion": 3,
+   "Locatarios": [
+    {
+     "IdSucursal": 43,
+     "idRegion": 3,
+     "IdMarket": 654,
+     "Descripcion": "HIPERMAXI PANAMERICANA",
+     "Direccion": "AV. PANAMERICANA",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 57,
+   "IdRegion": 1,
+   "Locatarios": [
+    {
+     "IdSucursal": 57,
+     "idRegion": 1,
+     "IdMarket": 57,
+     "Descripcion": "HIPERMAXI CAÑOTO",
+     "Direccion": "Av. Cañoto 27, Santa Cruz de la Sierra",
+     "IdTipoServicio": 1
+    }
+   ]
+  },
+  {
+   "IdMarket": 58,
+   "IdRegion": 1,
+   "Locatarios": [
+    {
+     "IdSucursal": 58,
+     "idRegion": 1,
+     "IdMarket": 58,
+     "Descripcion": "HIPERMAXI EQUIPETROL",
+     "Direccion": "Av. San Martin esq. 4to anillo",
+     "IdTipoServicio": 1
+    }
+   ]
+  }
+ ],
+ "MensajeTecnico": null,
+ "VersionAndroid": "2.1.10",
+ "VersionIOS": "2.1.10"
+}
