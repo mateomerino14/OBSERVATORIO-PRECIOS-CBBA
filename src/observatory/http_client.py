@@ -16,12 +16,19 @@ REQUEST_TIMEOUT_SECONDS = 30.0
 MAX_ATTEMPTS = 3
 BACKOFF_BASE_SECONDS = 5.0
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+# Señales de la página de verificación antibots (Radware) que sirve Hipermaxi; el script
+# de la verificación también está en las páginas normales, así que no sirve como señal.
+BOT_CHALLENGE_MARKERS = ("<center>rdwr</center>", "<title>302 Found</title>")
 
 logger = logging.getLogger(__name__)
 
 
 class DisallowedByRobotsError(PermissionError):
     """El robots.txt de la tienda no permite visitar esa URL."""
+
+
+class BotProtectionError(RuntimeError):
+    """La tienda respondió con su verificación antibots: hay que detener la corrida."""
 
 
 class PoliteClient:
@@ -52,6 +59,13 @@ class PoliteClient:
         if not self.is_allowed(url):
             raise DisallowedByRobotsError(f"robots.txt no permite: {url}")
         return self._fetch(url).text
+
+    def get_json(self, url: str, params: dict[str, object] | None = None) -> object:
+        """Descarga una URL permitida y devuelve el cuerpo interpretado como JSON."""
+        full_url = str(httpx.URL(url, params=params))
+        if not self.is_allowed(full_url):
+            raise DisallowedByRobotsError(f"robots.txt no permite: {full_url}")
+        return self._fetch(full_url).json()
 
     def is_allowed(self, url: str) -> bool:
         """Consulta el robots.txt del sitio, que se descarga una sola vez por sitio."""
@@ -84,6 +98,8 @@ class PoliteClient:
             wait = BACKOFF_BASE_SECONDS * attempt
             logger.warning("HTTP %s en %s; reintento en %.0f s", response.status_code, url, wait)
             self._sleep(wait)
+        if any(marker in response.text for marker in BOT_CHALLENGE_MARKERS):
+            raise BotProtectionError(f"Verificación antibots en {url}")
         if raise_for_status:
             response.raise_for_status()
         return response

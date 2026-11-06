@@ -5,6 +5,7 @@ from observatory.http_client import (
     BACKOFF_BASE_SECONDS,
     MIN_DELAY_SECONDS,
     USER_AGENT,
+    BotProtectionError,
     DisallowedByRobotsError,
     PoliteClient,
 )
@@ -113,3 +114,35 @@ def test_raises_on_client_errors_without_retrying() -> None:
     with pytest.raises(httpx.HTTPStatusError):
         make_client(handler, FakeClock()).get_text("https://tienda.test/no-existe")
     assert attempts["count"] == 1
+
+
+def test_get_json_sends_query_params() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        return httpx.Response(200, json={"pagina": request.url.params["Pagina"]})
+
+    client = make_client(handler, FakeClock())
+
+    assert client.get_json("https://tienda.test/api", {"Pagina": 2}) == {"pagina": "2"}
+
+
+def test_detects_bot_protection_page() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        return httpx.Response(
+            200, text="<title>302 Found</title><body><center>rdwr</center></body>"
+        )
+
+    with pytest.raises(BotProtectionError):
+        make_client(handler, FakeClock()).get_text("https://tienda.test/categoria")
+
+
+def test_normal_pages_with_bot_script_are_not_blocked() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        return httpx.Response(200, text='<script>var __uzdbm_1 = "x";</script><h1>Abarrotes</h1>')
+
+    assert "Abarrotes" in make_client(handler, FakeClock()).get_text("https://tienda.test/c")
