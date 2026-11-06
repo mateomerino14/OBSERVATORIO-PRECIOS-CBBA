@@ -131,3 +131,12 @@ def test_branch_keeps_external_id_and_address(db: psycopg.Connection) -> None:
 
     row = db.execute("SELECT id_externo, direccion FROM sucursal").fetchone()
     assert row == ("48", "Av. Villazón")
+
+
+def test_all_tables_have_row_level_security(db: psycopg.Connection) -> None:
+    rows = db.execute(
+        "SELECT relname FROM pg_class WHERE relkind = 'r' "
+        "AND relnamespace = 'public'::regnamespace AND NOT relrowsecurity"
+    ).fetchall()
+
+    assert rows == []
