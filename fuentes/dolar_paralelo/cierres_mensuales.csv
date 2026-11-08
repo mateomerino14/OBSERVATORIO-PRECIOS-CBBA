@@ -1,0 +1,18 @@
+mes,fecha_dato,venta,metodo,fuente_url,nota
+2024-08,2024-08-25,11.22,a_12_meses,https://cadecocruz.org.bo/descargas/ceed/ceed-41.pdf,"CEED 41: TOTAL 90.37% sobre 6,97 y variación a 12 meses 18.30%"
+2024-09,2024-09-30,10.47,a_12_meses,https://cadecocruz.org.bo/descargas/ceed/ceed-43.pdf,"CEED 43: TOTAL 81.03% sobre 6,97 y variación a 12 meses 20.46%"
+2024-10,2024-10-27,10.64,a_12_meses,https://cadecocruz.org.bo/descargas/ceed/ceed-47.pdf,"CEED 47: TOTAL 80.46% sobre 6,97 y variación a 12 meses 18.16%"
+2024-11,2024-12-02,10.74,a_12_meses,https://cadecocruz.org.bo/descargas/ceed/ceed-51.pdf,"CEED 51: TOTAL 45.55% sobre 6,97 y variación a 12 meses -5.50%"
+2024-12,2024-12-31,11.12,acumulada_anual,https://cadecocruz.org.bo/descargas/ceed/ceed-46.pdf,"CEED 46: TOTAL 83,91% y acumulada 2025 15,32% al 21-10-2025"
+2025-01,2025-01-31,11.25,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 1.17% sobre el cierre anterior
+2025-02,2025-02-28,11.38,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 1.16% sobre el cierre anterior
+2025-03,2025-03-31,12.42,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 9.15% sobre el cierre anterior
+2025-04,2025-04-30,15.25,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 22.82% sobre el cierre anterior
+2025-05,2025-05-31,16.39,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 7.49% sobre el cierre anterior
+2025-06,2025-06-30,14.96,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual -8.74% sobre el cierre anterior
+2025-07,2025-07-31,13.96,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual -6.69% sobre el cierre anterior
+2025-08,2025-08-31,12.29,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual -11.98% sobre el cierre anterior
+2025-09,2025-09-30,12.62,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual 2.69% sobre el cierre anterior
+2025-10,2025-10-31,11.47,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual -9.13% sobre el cierre anterior
+2025-11,2025-11-30,10.14,variacion_mensual,https://cadecocruz.org.bo/descargas/ceed/ceed-52.pdf,CEED 52: variación mensual -11.53% sobre el cierre anterior
+2025-12,2025-12-31,9.66,acumulada_anual,https://cadecocruz.org.bo/descargas/ceed/ceed-54.pdf,"CEED 54: acumulada 2025 −13,07% sobre el cierre de 2024"
