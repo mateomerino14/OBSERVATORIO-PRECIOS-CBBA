@@ -10,8 +10,8 @@ from observatory.collector import collect, collect_exchange_rates, today_in_boli
 from observatory.config import MissingSettingError, load_settings
 from observatory.db import connect, migrate
 from observatory.http_client import PoliteClient
-from observatory.sources import bcb, defensoria, hipermaxi
-from observatory.storage import save_market_prices
+from observatory.sources import bcb, defensoria, hipermaxi, paralelo
+from observatory.storage import save_exchange_rates, save_market_prices
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -40,10 +40,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     import_parser = commands.add_parser(
-        "importar", help="Carga precios de mercado de un CSV de la Defensoría"
+        "importar", help="Carga datos versionados en fuentes/ (Defensoría, dólar paralelo)"
     )
-    import_parser.add_argument("fuente", choices=["defensoria"])
-    import_parser.add_argument("archivo", type=Path, help="CSV de scripts/extraer_defensoria.py")
+    import_parser.add_argument("fuente", choices=["defensoria", "paralelo"])
+    import_parser.add_argument("archivo", type=Path, help="CSV de la carpeta fuentes/")
     import_parser.add_argument("--ciudad", default=DEFAULT_CITY)
 
     basket_parser = commands.add_parser("canasta", help="Carga o revisa una canasta")
@@ -102,8 +102,14 @@ def print_review(connection, basket_code: str) -> None:
 
 
 def run_import(arguments: argparse.Namespace) -> int:
-    """Carga en precio_mercado los precios del CSV de la Defensoría."""
+    """Carga un CSV de fuentes/: precios de mercado o cierres del dólar paralelo."""
     settings = load_settings()
+    if arguments.fuente == "paralelo":
+        rates = paralelo.read_csv(arguments.archivo)
+        with connect(settings.database_url) as connection:
+            saved = save_exchange_rates(connection, paralelo.SOURCE_CODE, rates)
+        print(f"{saved} cierres del dólar paralelo de {rates[0].day:%Y-%m} a {rates[-1].day:%Y-%m}")
+        return EXIT_OK
     rows = defensoria.read_csv(arguments.archivo, arguments.ciudad)
     with connect(settings.database_url) as connection:
         saved = save_market_prices(connection, rows)
@@ -185,6 +191,7 @@ def main(argv: list[str] | None = None) -> int:
         InvalidYearsError,
         BasketDefinitionError,
         defensoria.DefensoriaParseError,
+        paralelo.ParallelRateError,
     ) as error:
         print(error, file=sys.stderr)
         return EXIT_CONFIG
