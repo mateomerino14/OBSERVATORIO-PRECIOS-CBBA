@@ -1,9 +1,11 @@
-"""Línea de comandos: observatorio migrar | observatorio recolectar <fuente>."""
+"""Línea de comandos: observatorio migrar | recolectar <fuente> | canasta <acción> <archivo>."""
 
 import argparse
 import logging
 import sys
+from pathlib import Path
 
+from observatory.basket import BasketDefinitionError, load_basket, sync_basket
 from observatory.collector import collect, collect_exchange_rates, today_in_bolivia
 from observatory.config import MissingSettingError, load_settings
 from observatory.db import connect, migrate
@@ -35,7 +37,60 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="+",
         help="BCB: años a cargar (por defecto, el año en curso)",
     )
+
+    basket_parser = commands.add_parser("canasta", help="Carga o revisa una canasta")
+    basket_parser.add_argument("accion", choices=["cargar", "revisar"])
+    basket_parser.add_argument("archivo", type=Path, help="Archivo TOML de la canasta")
     return parser
+
+
+REVIEW_QUERY = """
+SELECT pc.codigo, s.nombre, p.nombre, o.precio, p.contenido_cantidad, p.contenido_unidad
+FROM canasta c
+JOIN canasta_item ci ON ci.canasta_id = c.id
+JOIN producto_canonico pc ON pc.id = ci.producto_canonico_id
+JOIN emparejamiento e ON e.producto_canonico_id = pc.id
+JOIN producto p ON p.id = e.producto_id
+JOIN observacion_precio o ON o.producto_id = p.id
+JOIN sucursal s ON s.id = o.sucursal_id
+WHERE c.codigo = %s
+  AND o.fecha = (SELECT max(fecha) FROM observacion_precio)
+  AND s.id = (SELECT min(id) FROM sucursal)
+ORDER BY pc.codigo, o.precio / p.contenido_cantidad
+"""
+
+
+def run_basket(arguments: argparse.Namespace) -> int:
+    """Carga la canasta y rehace sus emparejamientos; con 'revisar' además lista los productos."""
+    settings = load_settings()
+    basket = load_basket(arguments.archivo)
+    with connect(settings.database_url) as connection:
+        counts = sync_basket(connection, basket)
+        print(f"Canasta {basket.code}: {len(basket.items)} productos")
+        for item in basket.items:
+            print(f"  {item.code:<14} {counts[item.code]:>4} productos de tienda")
+        if arguments.accion == "revisar":
+            print_review(connection, basket.code)
+    missing = [code for code, count in counts.items() if count == 0]
+    if missing:
+        print(f"Sin productos de tienda: {', '.join(missing)}", file=sys.stderr)
+    # Que falten algunos ítems es esperable (frescos); que falten todos indica un error.
+    if len(missing) == len(counts):
+        return EXIT_FAILED
+    return EXIT_OK
+
+
+def print_review(connection, basket_code: str) -> None:
+    """Muestra, para la primera sucursal y el último día, qué producto quedó en cada ítem."""
+    current = None
+    for code, branch, name, price, quantity, unit in connection.execute(
+        REVIEW_QUERY, (basket_code,)
+    ):
+        if code != current:
+            print(f"\n[{code}] {branch}")
+            current = code
+        unit_price = price / quantity
+        print(f"  Bs {price:>7}  {unit_price:.4f} Bs/{unit}  {name}")
 
 
 def run_migrate() -> int:
@@ -101,8 +156,10 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if arguments.command == "migrar":
             return run_migrate()
+        if arguments.command == "canasta":
+            return run_basket(arguments)
         return run_collect(arguments)
-    except (MissingSettingError, InvalidYearsError) as error:
+    except (MissingSettingError, InvalidYearsError, BasketDefinitionError) as error:
         print(error, file=sys.stderr)
         return EXIT_CONFIG
 
