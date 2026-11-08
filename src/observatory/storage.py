@@ -214,3 +214,26 @@ def save_exchange_rates(connection: psycopg.Connection, source: str, rates: list
     with connection.transaction(), connection.cursor() as cursor:
         cursor.executemany(UPSERT_EXCHANGE_RATE, rows)
     return len(rows)
+
+
+UPSERT_MARKET_PRICE = """
+INSERT INTO precio_mercado (fuente, ciudad, producto, mes, precio, presentacion_cantidad,
+                            presentacion_unidad, descripcion, informe, verificado, fuente_url)
+VALUES (%(fuente)s, %(ciudad)s, %(producto)s, %(mes)s, %(precio)s, %(presentacion_cantidad)s,
+        %(presentacion_unidad)s, %(descripcion)s, %(informe)s, %(verificado)s, %(fuente_url)s)
+ON CONFLICT (fuente, ciudad, producto, mes) DO UPDATE SET
+    precio = EXCLUDED.precio,
+    presentacion_cantidad = EXCLUDED.presentacion_cantidad,
+    presentacion_unidad = EXCLUDED.presentacion_unidad,
+    descripcion = EXCLUDED.descripcion,
+    informe = EXCLUDED.informe,
+    verificado = EXCLUDED.verificado,
+    fuente_url = EXCLUDED.fuente_url
+"""
+
+
+def save_market_prices(connection: psycopg.Connection, rows: list[dict[str, object]]) -> int:
+    """Guarda o actualiza precios de mercado mensuales y devuelve cuántos procesó."""
+    with connection.transaction(), connection.cursor() as cursor:
+        cursor.executemany(UPSERT_MARKET_PRICE, rows)
+    return len(rows)
