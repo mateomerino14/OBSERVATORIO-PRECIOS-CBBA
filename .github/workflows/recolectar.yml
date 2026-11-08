@@ -1,0 +1,42 @@
+name: Recolección diaria
+
+on:
+  schedule:
+    # 07:17 en Bolivia (11:17 UTC), fuera de la hora punta de los cron de GitHub
+    - cron: "17 11 * * *"
+  workflow_dispatch:
+    inputs:
+      max_paginas:
+        description: "Máximo de páginas de 50 productos (vacío = todas)"
+        required: false
+
+concurrency:
+  group: recoleccion
+  cancel-in-progress: false
+
+jobs:
+  hipermaxi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      PAUSA_SEGUNDOS: "1.5"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -e .
+      - name: Aplicar migraciones
+        run: observatorio migrar
+      - name: Recolectar Hipermaxi Cochabamba
+        env:
+          MAX_PAGINAS: ${{ inputs.max_paginas }}
+        run: |
+          if [ -n "$MAX_PAGINAS" ]; then
+            observatorio recolectar hipermaxi --ciudad cochabamba --max-paginas "$MAX_PAGINAS"
+          else
+            observatorio recolectar hipermaxi --ciudad cochabamba
+          fi
