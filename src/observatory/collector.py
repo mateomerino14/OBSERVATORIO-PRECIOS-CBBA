@@ -13,7 +13,7 @@ import psycopg
 from observatory.http_client import BotProtectionError, PoliteClient
 from observatory.models import FetchedPage
 from observatory.sources import bcb
-from observatory.storage import finish_run, save_exchange_rates, save_observation, start_run
+from observatory.storage import finish_run, save_exchange_rates, save_observations, start_run
 
 BOLIVIA_TZ = ZoneInfo("America/La_Paz")
 # Si fallan tantas páginas seguidas, lo más probable es que la tienda cambió su sitio.
@@ -64,9 +64,7 @@ def collect(
                     logger.error(detail)
                     break
                 continue
-            for observation in page.observations:
-                save_observation(connection, observation, observed_on)
-            observations += len(page.observations)
+            observations += save_observations(connection, page.observations, observed_on)
             pages_ok += 1
             consecutive_failures = 0
     except BotProtectionError as error:

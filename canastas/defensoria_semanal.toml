@@ -1,0 +1,172 @@
+# Canasta básica de alimentos de la Defensoría del Pueblo de Bolivia.
+#
+# 13 productos, consumo semanal de una familia de cuatro personas. Se replica con
+# precios de supermercado para compararla con el sondeo mensual de la Defensoría,
+# que mide la misma canasta en mercados de las capitales.
+#
+# Unidades: todas las cantidades están en la unidad base del producto (g, ml o u).
+# Supuestos de conversión:
+#   - 1 libra = 460 g (libra usada en los mercados bolivianos).
+#   - Productos que la Defensoría cuenta por unidad y el supermercado vende por kilo:
+#     papaya mediana = 1.500 g; plátano mediano = 150 g.
+#
+# Cobertura: la tienda en línea de Hipermaxi casi no publica frutas y verduras frescas.
+# Sus reglas se limitan a las subcategorías de frescos para no tomar conservas ni
+# deshidratados; mientras no haya productos, esos ítems quedan sin precio y la vista
+# costo_canasta_diario lo informa en items_con_precio / items_total.
+#
+# Reglas de emparejamiento de cada producto (se comparan sin tildes y en minúsculas):
+#   incluir        al menos una expresión debe coincidir con el nombre
+#   excluir        ninguna puede coincidir
+#   subcategorias  subcategorías de la tienda donde se busca
+#   contenido_min / contenido_max  presentación aceptada, en la unidad base
+#                  (deja fuera bolsas al por mayor y envases de muestra)
+
+codigo = "defensoria_semanal"
+nombre = "Canasta básica de alimentos (Defensoría del Pueblo)"
+descripcion = "13 alimentos, consumo semanal de una familia de cuatro personas"
+referencia = "https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf"
+personas = 4
+periodo = "semanal"
+
+[[producto]]
+codigo = "papaya"
+nombre = "Papaya mediana"
+categoria = "frutas"
+unidad = "g"
+cantidad = 1500  # 1 unidad
+subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
+incluir = ['^papaya\b']
+excluir = ['deshidrat', 'mermelada', 'jugo', 'nectar', 'trozos', 'picada']
+
+[[producto]]
+codigo = "platano"
+nombre = "Plátano o banano mediano"
+categoria = "frutas"
+unidad = "g"
+cantidad = 1800  # 12 unidades
+subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
+incluir = ['^(platano|banano|banana)s?\b']
+excluir = ['postre', 'verde', 'cocinar', 'frit', 'chips?', 'harina', 'deshidrat', 'pure', 'colado', 'nectar', 'jugo']
+
+[[producto]]
+codigo = "cebolla"
+nombre = "Cebolla"
+categoria = "verduras"
+unidad = "g"
+cantidad = 920  # 2 libras
+subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
+incluir = ['^cebollas?\b']
+excluir = ['polvo', 'deshidrat', 'verde', 'perla', 'encurtid', 'frita', 'cebollin', 'picada']
+
+[[producto]]
+codigo = "tomate"
+nombre = "Tomate"
+categoria = "verduras"
+unidad = "g"
+cantidad = 920  # 2 libras
+subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
+incluir = ['^tomates?\b']
+excluir = ['cherry', 'deshidrat', 'seco', 'pure', 'salsa', 'pasta', 'lata', 'cubeteado', 'triturado', 'jugo', 'pelado', 'extracto']
+
+[[producto]]
+codigo = "zanahoria"
+nombre = "Zanahoria"
+categoria = "verduras"
+unidad = "g"
+cantidad = 920  # 2 libras
+subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
+incluir = ['^zanahorias?\b']
+excluir = ['baby', 'rallad', 'picad', 'jugo', 'pure']
+
+[[producto]]
+codigo = "azucar"
+nombre = "Azúcar granulada blanca"
+categoria = "azucar"
+unidad = "g"
+cantidad = 460  # 1 libra
+subcategorias = ["Básicos", "Repostería"]
+contenido_min = 400
+contenido_max = 5000
+incluir = ['^azucar\b']
+excluir = ['morena', 'rubia', 'impalpable', 'molida', 'glass', 'light', 'stevia', 'organic', 'mascabo', 'endulz', 'coco', 'sachet', 'sobres?']
+
+[[producto]]
+codigo = "arroz"
+nombre = "Arroz de primera"
+categoria = "arroz"
+unidad = "g"
+cantidad = 920  # 2 libras
+subcategorias = ["Básicos"]
+contenido_min = 400
+contenido_max = 5000
+incluir = ['^arroz\b']
+excluir = ['integral', 'jazmin', 'jasmin', 'basmati', 'parboil', 'parbol', 'preparad', 'risotto', 'arborio', 'yamani', 'salvaje', 'sushi', 'suchi', 'gohan', 'instant', '\bcon\b', 'tipo 3', 'economico', 'paella', 'valenciana', 'rebozado', 'perlado', 'cocinero']
+
+[[producto]]
+codigo = "harina_trigo"
+nombre = "Harina de trigo blanca"
+categoria = "harina"
+unidad = "g"
+cantidad = 920  # 2 libras
+subcategorias = ["Básicos", "Repostería"]
+contenido_min = 400
+contenido_max = 5000
+incluir = ['^harina\b.*\btrigo\b', '^harina famosa 000\b']
+excluir = ['integral', 'maiz', 'precocid', 'pizza', 'masas', 'leudante', 'sin gluten', 'avena', 'arroz', 'almendra', 'tempura', 'apanad']
+
+[[producto]]
+codigo = "fideo"
+nombre = "Fideo corto"
+categoria = "fideo"
+unidad = "g"
+cantidad = 460  # 1 libra
+subcategorias = ["Básicos"]
+contenido_min = 400
+contenido_max = 5000
+incluir = ['^fideos?\b']
+excluir = ['spag', 'tallar', '\blarg', 'lasagn', 'cabell', 'lingu', 'fettuc', 'tagliat', 'tangliat', 'huevo', 'integral', 'sin gluten', 'instant', 'ramen', 'arroz', 'canelon', 'nido', 'sopa']
+
+[[producto]]
+codigo = "pulpa_res"
+nombre = "Carne de res pulpa especial"
+categoria = "carne_res"
+unidad = "g"
+cantidad = 1000  # 1 kg
+subcategorias = ["Carne de Res"]
+# En Hipermaxi la pulpa se vende por corte sin hueso; se excluye la carne al vacío.
+incluir = ['^cuadrada especial\b', '^bollo (chico|grande) especial\b', '^peceto especial\b']
+excluir = ['vacio', 'a/v']
+
+[[producto]]
+codigo = "pollo_entero"
+nombre = "Carne de pollo entero"
+categoria = "pollo"
+unidad = "g"
+cantidad = 2000  # 2 kg
+subcategorias = ["Carne de Pollo"]
+incluir = ['\bpollo entero\b']
+excluir = ['trozado', '^medio', '^lpz\b']
+
+[[producto]]
+codigo = "leche_fluida"
+nombre = "Leche fluida entera natural"
+categoria = "leche"
+unidad = "ml"
+cantidad = 946  # 1 bolsa
+subcategorias = ["Leches"]
+contenido_min = 800
+contenido_max = 1000
+# Leche en bolsa: se excluyen cajas UHT, larga vida y leches con sabor o modificadas.
+incluir = ['^leche\b.*\b(natural|entera)\b']
+excluir = ['polvo', 'condens', 'evapor', 'choc', 'sabor', 'light', 'deslact', '\bsoy', 'almendra', 'avena', 'cafe', 'barista', 'caja', 'larga vida', 'uht', 'cremosa']
+
+[[producto]]
+codigo = "huevos"
+nombre = "Huevos de gallina medianos"
+categoria = "huevos"
+unidad = "u"
+cantidad = 10
+subcategorias = ["Huevos"]
+incluir = ['^huevos?\b', '\bhuevos?\b.*\bmaple\b', '^maple de 30 huevos\b']
+excluir = ['codorniz', 'clara', 'omega', 'liquid', 'pasteur', 'vitaminad', 'cristal', 'granel']

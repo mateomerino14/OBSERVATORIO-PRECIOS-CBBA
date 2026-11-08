@@ -40,6 +40,8 @@ jobs:
           else
             observatorio recolectar hipermaxi --ciudad cochabamba
           fi
+      - name: Emparejar productos con la canasta de la Defensoría
+        run: observatorio canasta cargar canastas/defensoria_semanal.toml
 
   tipo-cambio:
     runs-on: ubuntu-latest
