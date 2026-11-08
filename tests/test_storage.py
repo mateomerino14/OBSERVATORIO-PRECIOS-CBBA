@@ -7,9 +7,11 @@ import pytest
 from observatory.db import list_migrations, migrate
 from observatory.models import Branch, PriceObservation
 from observatory.storage import (
+    MixedPageError,
     UnknownChainError,
     finish_run,
     save_observation,
+    save_observations,
     start_run,
 )
 
@@ -140,3 +142,31 @@ def test_all_tables_have_row_level_security(db: psycopg.Connection) -> None:
     ).fetchall()
 
     assert rows == []
+
+
+def test_save_observations_stores_a_page_and_dedupes_products(db: psycopg.Connection) -> None:
+    page = [
+        make_observation(external_code="1", name="Arroz A 1 kg"),
+        make_observation(external_code="2", name="Arroz B 5 kg", price=Decimal("70.00")),
+        make_observation(external_code="1", name="Arroz A 1 kg", price=Decimal("16.90")),
+    ]
+
+    saved = save_observations(db, page, TODAY)
+
+    assert saved == 2
+    rows = db.execute(
+        "SELECT p.codigo_externo, p.contenido_cantidad, o.precio FROM producto p "
+        "JOIN observacion_precio o ON o.producto_id = p.id ORDER BY 1"
+    ).fetchall()
+    assert rows == [("1", Decimal(1000), Decimal("16.90")), ("2", Decimal(5000), Decimal("70.00"))]
+
+
+def test_save_observations_rejects_mixed_branches(db: psycopg.Connection) -> None:
+    other = Branch(code="hipermaxi-sacaba", name="HIPERMAXI SACABA", city="cochabamba")
+
+    with pytest.raises(MixedPageError):
+        save_observations(db, [make_observation(), make_observation(branch=other)], TODAY)
+
+
+def test_save_observations_with_empty_page_does_nothing(db: psycopg.Connection) -> None:
+    assert save_observations(db, [], TODAY) == 0
