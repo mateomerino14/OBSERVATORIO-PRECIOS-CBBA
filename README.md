@@ -71,7 +71,18 @@ Necesita el secreto `DATABASE_URL` del repositorio (*Settings → Secrets and va
 
 Cada corrida queda registrada en la tabla `ejecucion` con su estado (`completada`, `con_errores` o `fallida`) y la cantidad de páginas procesadas. Si fallan 20 páginas seguidas, la corrida se detiene: casi siempre significa que la tienda cambió su sitio.
 
+## Canasta
+
+El costo diario se mide sobre la canasta básica de alimentos de la Defensoría del Pueblo (13 productos, familia de cuatro, una semana), para compararla con el sondeo mensual que la Defensoría hace en mercados. Cada producto de la canasta se empareja con los productos de la tienda mediante reglas en [`canastas/defensoria_semanal.toml`](canastas/defensoria_semanal.toml), y las vistas `precio_canonico_diario` y `costo_canasta_diario` calculan el precio típico (mediana) y el económico (mínimo).
+
+```bash
+observatorio canasta revisar canastas/defensoria_semanal.toml   # qué producto quedó en cada ítem
+```
+
+Detalle, supuestos y limitaciones en [`docs/canasta.md`](docs/canasta.md).
+
 ## Documentación
 
 - [`reglas.md`](reglas.md): ramas, commits y estándares de código
 - [`docs/modelo-datos.md`](docs/modelo-datos.md): tablas y decisiones del modelo
+- [`docs/canasta.md`](docs/canasta.md): cómo se calcula el costo de la canasta
