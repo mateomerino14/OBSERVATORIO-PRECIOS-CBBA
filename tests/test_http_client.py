@@ -132,7 +132,9 @@ def test_detects_bot_protection_page() -> None:
         if request.url.path == "/robots.txt":
             return httpx.Response(404)
         return httpx.Response(
-            200, text="<title>302 Found</title><body><center>rdwr</center></body>"
+            200,
+            text="<title>302 Found</title><body><center>rdwr</center></body>",
+            headers={"content-type": "text/html"},
         )
 
     with pytest.raises(BotProtectionError):
@@ -143,6 +145,25 @@ def test_normal_pages_with_bot_script_are_not_blocked() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         if request.url.path == "/robots.txt":
             return httpx.Response(404)
-        return httpx.Response(200, text='<script>var __uzdbm_1 = "x";</script><h1>Abarrotes</h1>')
+        return httpx.Response(
+            200,
+            text='<script>var __uzdbm_1 = "x";</script><h1>Abarrotes</h1>',
+            headers={"content-type": "text/html"},
+        )
 
     assert "Abarrotes" in make_client(handler, FakeClock()).get_text("https://tienda.test/c")
+
+
+def test_honors_crawl_delay_from_robots() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/robots.txt":
+            return httpx.Response(200, text="User-agent: *\nCrawl-delay: 10\n")
+        return httpx.Response(200, content=b"%PDF-1.4")
+
+    clock = FakeClock()
+    client = make_client(handler, clock, delay=1.5)
+
+    assert client.get_bytes("https://banco.test/a.pdf") == b"%PDF-1.4"
+    client.get_bytes("https://banco.test/b.pdf")
+
+    assert clock.sleeps == [10.0, 10.0]

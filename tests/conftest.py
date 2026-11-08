@@ -23,6 +23,16 @@ def fixture_text() -> callable:
 
 
 @pytest.fixture
+def fixture_bytes() -> callable:
+    """Devuelve una función que lee un archivo binario de tests/fixtures."""
+
+    def read(name: str) -> bytes:
+        return (FIXTURES_DIR / name).read_bytes()
+
+    return read
+
+
+@pytest.fixture
 def db() -> Iterator[psycopg.Connection]:
     """Conexión a una base vacía y migrada; se salta si no hay TEST_DATABASE_URL."""
     database_url = os.environ.get("TEST_DATABASE_URL")
