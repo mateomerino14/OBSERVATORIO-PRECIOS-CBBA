@@ -1,0 +1,42 @@
+# Canasta
+
+El observatorio mide el costo diario de la **canasta básica de alimentos de la Defensoría del Pueblo**: 13 productos, consumo semanal de una familia de cuatro personas. La Defensoría la mide cada mes en los mercados de las capitales; aquí se mide cada día en las sucursales de Hipermaxi de Cochabamba, para poder comparar supermercado y mercado.
+
+La definición está en [`canastas/defensoria_semanal.toml`](../canastas/defensoria_semanal.toml).
+
+## Cómo se calcula
+
+1. **Emparejamiento.** Cada producto de la canasta (producto canónico) tiene reglas: expresiones que el nombre debe contener o no, subcategorías de la tienda y límites de presentación. `observatorio canasta cargar` aplica las reglas a todos los productos de tienda y guarda el resultado en `emparejamiento`. Los emparejamientos hechos a mano (`metodo = 'manual'`) se respetan.
+2. **Precio por unidad base.** Para cada producto canónico, sucursal y día, la vista `precio_canonico_diario` calcula el precio por gramo, mililitro o unidad de todos los productos emparejados y disponibles: la **mediana** (precio típico) y el **mínimo** (lo más barato).
+3. **Costo de la canasta.** La vista `costo_canasta_diario` multiplica cada cantidad por ese precio y suma:
+   - `costo_tipico`: con la mediana de cada producto.
+   - `costo_economico`: comprando siempre lo más barato.
+   - `items_con_precio / items_total`: cuántos productos de la canasta tuvieron precio ese día.
+
+## Cantidades
+
+| Producto | Defensoría | Cantidad usada |
+|---|---|---|
+| Papaya mediana | 1 unidad | 1.500 g |
+| Plátano mediano | 12 unidades | 1.800 g |
+| Cebolla | 2 libras | 920 g |
+| Tomate | 2 libras | 920 g |
+| Zanahoria | 2 libras | 920 g |
+| Azúcar blanca | 1 libra | 460 g |
+| Arroz de primera | 2 libras | 920 g |
+| Harina de trigo | 2 libras | 920 g |
+| Fideo | 1 libra | 460 g |
+| Pulpa de res | 1 kg | 1.000 g |
+| Pollo entero | 2 kg | 2.000 g |
+| Leche fluida | 1 bolsa | 946 ml |
+| Huevos medianos | 10 unidades | 10 u |
+
+**Supuestos:** 1 libra = 460 g (la de los mercados bolivianos); papaya mediana = 1,5 kg; plátano mediano = 150 g.
+
+## Decisiones y limitaciones
+
+- **Frutas y verduras.** La tienda en línea de Hipermaxi casi no publica frescos: en noviembre de 2026 no había papaya, plátano, cebolla, tomate ni zanahoria. Esos 5 productos quedan sin precio y la cobertura de la canasta es **8 de 13**. Las comparaciones con la Defensoría deben hacerse sobre los mismos 8 productos.
+- **Pulpa de res.** Hipermaxi no usa ese nombre; se toman los cortes sin hueso equivalentes (cuadrada, bollo chico y grande, peceto especial), sin la carne al vacío, que es otro segmento de precio.
+- **Leche fluida.** Solo leche entera o natural en bolsa (800–1.000 ml); se excluyen cajas UHT, larga vida y leches con sabor.
+- **Bolsas al por mayor.** Se excluyen presentaciones mayores a 5 kg (harina y fideo de 11,34 kg), que bajarían artificialmente el precio por kilo.
+- **Productos agotados.** No cuentan para el precio del día.
