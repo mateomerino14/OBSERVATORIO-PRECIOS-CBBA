@@ -1,0 +1,335 @@
+mes,producto,precio,presentacion_cantidad,presentacion_unidad,descripcion,informe,variacion_verificada,fuente_url
+2024-08,arroz,5.61,460,g,Arroz de primera 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,azucar,3.32,460,g,Azucar granulada blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,cebolla,8.85,2760,g,Cebolla mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,fideo,4.52,460,g,Fideo corto 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,harina_trigo,4.27,460,g,Harina de trigo blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,huevos,0.97,1,u,Huevos de gallina 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,leche_fluida,6.16,946,ml,Leche pasteurizada,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,leche_polvo,42.66,760,g,Leche en polvo 760 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,manzana,2.24,1,u,Manzana roja mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,margarina,12.49,410,g,Margarina Mantequilla 410 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,naranja,18.17,25,u,Naranja criolla mediana 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,papaya,6.16,1,u,Papaya Salvietti mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,platano,12.76,25,u,Platano guineo o banano mediano 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,platano_cocinar,2.00,1,u,Platano postre mediano para cocinar 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,pollo_entero,15.12,1000,g,MILILITROS Carne de pollo entero 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,pulpa_res,41.27,1000,g,Carne de res pulpa especial 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,res_molida,29.15,1000,g,Carne molida corriente 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,tomate,3.28,460,g,Tomate mediano 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-08,zanahoria,9.63,2760,g,Agosto Octubre Noviembre en % Zanahoria mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,aceite,12.16,1000,ml,Aceite Comestible 1 LITRO -,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,arroz,8.19,460,g,Arroz de primera 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,avena,10.00,350,g,Avena a granel 350 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,azucar,8.16,460,g,Azucar granulada blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,cebolla,23.24,2760,g,Cebolla mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,fideo,7.56,460,g,Fideo corto 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,harina_trigo,7.11,460,g,Harina de trigo blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,huevos,1.00,1,u,Huevos de gallina 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,leche_fluida,6.00,946,ml,Leche pasteurizada,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,leche_polvo,39.74,760,g,Leche en polvo 760 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,manzana,3.16,1,u,Manzana roja mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,margarina,18.00,410,g,Margarina Mantequilla 410 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,naranja,22.56,25,u,Naranja criolla mediana 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,papaya,10.63,1,u,Papaya Salvietti mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,platano,8.96,25,u,Platano guineo o banano mediano 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,platano_cocinar,1.07,1,u,Platano postre mediano para cocinar 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,pollo_entero,19.66,1000,g,MILILITROS Carne de pollo entero 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,pulpa_res,46.40,1000,g,Carne de res pulpa especial 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,res_molida,39.46,1000,g,Carne molida corriente 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,tomate,5.39,460,g,Tomate mediano 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-10,zanahoria,26.71,2760,g,Agosto Octubre Noviembre en % Zanahoria mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,aceite,13.44,1000,ml,Aceite Comestible 1 LITRO -,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,arroz,6.85,460,g,Arroz de primera 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,avena,8.43,350,g,Avena a granel 350 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,azucar,5.23,460,g,Azucar granulada blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,cebolla,16.00,2760,g,Cebolla mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,fideo,5.00,460,g,Fideo corto 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,harina_trigo,4.39,460,g,Harina de trigo blanca 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,huevos,1.29,1,u,Huevos de gallina 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,leche_fluida,6.55,946,ml,Leche pasteurizada,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,leche_polvo,51.88,760,g,Leche en polvo 760 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,manzana,2.13,1,u,Manzana roja mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,margarina,20.44,410,g,Margarina Mantequilla 410 GRAMOS,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,naranja,22.36,25,u,Naranja criolla mediana 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,papaya,8.13,1,u,Papaya Salvietti mediana 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,platano,8.96,25,u,Platano guineo o banano mediano 25 UNIDADES,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,platano_cocinar,2.02,1,u,Platano postre mediano para cocinar 1 UNIDAD,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,pollo_entero,16.00,1000,g,MILILITROS Carne de pollo entero 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,pulpa_res,48.55,1000,g,Carne de res pulpa especial 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,res_molida,40.14,1000,g,Carne molida corriente 1 KILO,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,tomate,3.27,460,g,Tomate mediano 1 LIBRA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-11,zanahoria,17.89,2760,g,Agosto Octubre Noviembre en % Zanahoria mediana 1 CUARTILLA,2024-11,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-noviembre-2024.pdf
+2024-12,aceite,16.14,1000,ml,Aceite comestible a granel 1 Litro -,2024-12,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,arroz,6.64,460,g,Arroz de primera/grano de 1 Libra,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,avena,7.75,350,g,Avena a granel 350 gramos,2024-12,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,azucar,3.64,460,g,oro Azúcar granulada blanca 1 Libra,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,cebolla,12.00,2760,g,Cebolla mediana 1 Cuartilla,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,fideo,4.64,460,g,granel Fideo corto a granel 1 Libra,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,harina_trigo,4.64,460,g,Harina de trigo blanca a 1 Libra,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,huevos,0.86,1,u,Huevos de gallina medianos 1 Unidad,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,leche_fluida,6.24,946,ml,Leche fluida entera natural Bolsa de 946 ml,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,leche_polvo,56.16,760,g,"Leche entera en polvo Sachet de 760 42,66",2024-12,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,manzana,1.83,1,u,Manzana roja mediana 1 Unidad,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,margarina,17.31,410,g,Salvietti mediana Envase de 410 Margarina/Mantequilla,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,naranja,23.21,25,u,instantánea gramos Naranja criolla mediana 25 Unidades,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,papaya,8.60,1,u,Fruta papaya 1 Unidad,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,platano,10.75,25,u,Plátano o banano mediano 25 Unidades,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,platano_cocinar,0.73,1,u,Plátano/postre mediano para 1 Unidad,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,pollo_entero,22.47,1000,g,en % AGOSTO OCTUBRE NOVIEMBRE DICIEMBRE Carne de pollo entero 1 Kg,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,pulpa_res,50.99,1000,g,Carne de res pulpa especial 1 Kg,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,res_molida,40.00,1000,g,gramos Carne de res molida corriente 1 Kg,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,tomate,2.24,460,g,Tomate mediano 1 Libra,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2024-12,zanahoria,12.93,2760,g,Zanahoria mediana 1 Cuartilla,2024-12,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-diciembre-2024.pdf
+2025-01,aceite,15.66,1000,ml,especial Aceite Comestible a 1 Litro -,2025-01,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,arroz,6.34,460,g,Arroz de primera/ 1 Libra,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,avena,7.07,350,g,mediano para cocinar Avena a granel 350 Gramos,2025-01,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,azucar,4.12,460,g,Azúcar granulada 1 Libra,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,cebolla,11.14,2760,g,granel Cebolla mediana 1 Cuartilla,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,fideo,4.67,460,g,banano mediano Fideo corto 1 Libra,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,harina_trigo,3.70,460,g,Harina de trigo blanca 1 Libra,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,huevos,0.97,1,u,Huevos de gallina 1 Unidad,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,leche_fluida,7.14,946,ml,mediana Leche pasteurizada 946 Mililitros,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,leche_polvo,56.97,760,g,corriente Leche en polvo 760 Gramos,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,manzana,2.62,1,u,Manzana roja 1 Unidad,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,margarina,35.22,410,g,AGOSTO OCTUBRE NOVIEMBRE DICIEMBRE ENERO 2025 en % Margarina/ 410 Gramos,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,naranja,20.00,25,u,grano de oro Naranja criolla 25 Unidades,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,papaya,9.57,1,u,"Papaya ""Salvietti"" 1 Unidad",2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,platano,13.65,25,u,Plátano o banano mediano 25 Unidades,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-01,platano_cocinar,1.48,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-01,pollo_entero,18.33,1000,g,blanca Carne de pollo entero 1 Kilo,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,pulpa_res,53.99,1000,g,Carne de res pulpa 1 Kilo,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,res_molida,41.32,1000,g,Carne molida 1 Kilo,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,tomate,5.06,460,g,mediana Tomate mediano 1 Libra,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-01,zanahoria,15.83,2760,g,Mantequilla Zanahoria mediana 1 Cuartilla,2025-01,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-enero-2025.pdf
+2025-02,aceite,15.99,1000,ml,Aceite comestible a granel 1 Litro,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,arroz,6.28,460,g,Arroz de primera/grano de oro 1 Libra,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,avena,10.00,350,g,Avena a granel 350 gramos,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,azucar,4.11,460,g,gramos Azúcar granulada blanca 1 Libra,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,cebolla,12.00,2760,g,Cebolla mediana 1 Cuartilla,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,fideo,6.16,460,g,Fideo corto a granel 1 Libra,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,harina_trigo,4.19,460,g,Harina de trigo blanca a granel 1 Libra,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,huevos,0.98,1,u,Huevos de gallina medianos 1 Unidad,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,leche_fluida,6.75,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,leche_polvo,57.17,760,g,Sachet de 760 Leche entera en polvo instantánea,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,manzana,2.00,1,u,Manzana roja mediana 1 Unidad,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,margarina,24.41,410,g,Envase de 410 Margarina/Mantequilla,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,naranja,20.76,25,u,Naranja criolla mediana 25 Unidades,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,papaya,6.54,1,u,gramos Fruta papaya Salvietti mediana 1 Unidad,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,platano,8.13,25,u,Plátano o banano mediano 25 Unidades,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,platano_cocinar,1.58,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,pollo_entero,20.15,1000,g,Carne de pollo entero 1 Kg,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,pulpa_res,54.80,1000,g,Carne de res pulpa especial 1 Kg,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,res_molida,30.16,1000,g,Carne de res molida corriente 1 Kg,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,tomate,3.97,460,g,Tomate mediano 1 Libra,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-02,zanahoria,14.41,2760,g,Zanahoria mediana 1 Cuartilla,2025-02,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-febrero-2025.pdf
+2025-03,aceite,16.73,1000,ml,Aceite comestible a granel 1 Litro,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,arroz,6.34,460,g,Arroz de primera/grano de oro 1 Libra,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,avena,6.72,350,g,Avena a granel 350 gramos,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,azucar,9.12,460,g,Azúcar granulada blanca 1 Libra,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,cebolla,16.29,2760,g,Cebolla mediana 1 Cuartilla,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,fideo,6.02,460,g,Fideo corto a granel 1 Libra,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,harina_trigo,7.11,460,g,Harina de trigo blanca a granel 1 Libra,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,huevos,0.95,1,u,Huevos de gallina medianos 1 Unidad,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,leche_fluida,7.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,leche_polvo,57.49,760,g,Leche entera en polvo instantánea Sachet de 760 gramos,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,manzana,2.00,1,u,Manzana roja mediana 1 Unidad,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,margarina,26.44,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,naranja,25.00,25,u,Naranja criolla mediana 25 Unidades,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,papaya,11.84,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,platano,12.36,25,u,Plátano o banano mediano 25 Unidades,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,platano_cocinar,1.32,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,pollo_entero,20.77,1000,g,Carne de pollo entero 1 Kg,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,pulpa_res,56.49,1000,g,Carne de res pulpa especial 1 Kg,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,res_molida,44.60,1000,g,Carne de res molida corriente 1 Kg,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,tomate,5.08,460,g,Tomate mediano 1 Libra,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-03,zanahoria,15.08,2760,g,Zanahoria mediana 1 Cuartilla,2025-03,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmarzo-2025.pdf
+2025-04,aceite,16.49,1000,ml,Aceite comestible a granel 1 Litro,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,arroz,8.00,460,g,Arroz de primera/grano de oro 1 Libra,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,avena,8.00,350,g,Avena a granel 350 gramos,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,azucar,9.66,460,g,Azúcar granulada blanca 1 Libra,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,cebolla,37.95,2760,g,Cebolla mediana 1 Cuartilla,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,fideo,6.32,460,g,Fideo corto a granel 1 Libra,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,harina_trigo,8.06,460,g,Harina de trigo blanca a granel 1 Libra,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,huevos,1.10,1,u,Huevos de gallina medianos 1 Unidad,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,leche_fluida,7.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,leche_polvo,58.00,760,g,Leche entera en polvo instantánea Sachet de 760 gramos,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,manzana,3.63,1,u,Manzana roja mediana 1 Unidad,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,margarina,26.83,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,naranja,19.31,25,u,Naranja criolla mediana 25 Unidades,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,papaya,8.62,1,u,Papaya Salvietti mediana 1 Unidad,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,platano,15.00,25,u,Plátano o banano mediano 25 Unidades,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,platano_cocinar,1.22,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,pollo_entero,19.57,1000,g,Carne de pollo entero 1 Kg,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,pulpa_res,58.00,1000,g,Carne de res pulpa especial 1 Kg,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,res_molida,45.96,1000,g,Carne de res molida corriente 1 Kg,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,tomate,8.00,460,g,Tomate mediano 1 Libra,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-04,zanahoria,32.44,2760,g,Zanahoria mediana 1 Cuartilla,2025-04,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-abril-2025.pdf
+2025-05,aceite,24.50,1000,ml,Aceite comestible a granel 1 Litro,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,arroz,8.00,460,g,Arroz de primera/grano de oro 1 Libra,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,avena,10.30,350,g,cocinar Avena a granel 350 gramos,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,azucar,3.80,460,g,Azúcar granulada blanca 1 Libra,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,cebolla,30.00,2760,g,Cebolla mediana 1 Cuartilla,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,fideo,7.00,460,g,instantánea Fideo corto a granel 1 Libra,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,harina_trigo,8.20,460,g,Harina de trigo blanca a granel 1 Libra,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,huevos,1.00,1,u,Huevos de gallina medianos 1 Unidad,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,leche_fluida,7.30,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,leche_polvo,69.70,760,g,Leche entera en polvo Sachet de 760 gramos,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,manzana,2.80,1,u,Manzana roja mediana 1 Unidad,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,margarina,25.00,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,naranja,21.00,25,u,Naranja criolla mediana 25 Unidades,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,papaya,8.90,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,platano,11.00,25,u,Plátano o banano mediano 25 Unidades,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,platano_cocinar,1.70,1,u,Plátano/postre mediano para 1 Unidad,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,pollo_entero,20.30,1000,g,Carne de pollo entero 1 Kg,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,pulpa_res,60.30,1000,g,Carne de res pulpa especial 1 Kg,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,res_molida,46.60,1000,g,Carne de res molida corriente 1 Kg,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,tomate,5.00,460,g,Tomate mediano 1 Libra,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-05,zanahoria,30.00,2760,g,Zanahoria mediana 1 Cuartilla,2025-05,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-generalmayo-2025.pdf
+2025-06,aceite,25.00,1000,ml,Aceite comestible a granel 1 Litro,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,arroz,8.20,460,g,Arroz de primera/grano de oro 1 Libra,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,avena,10.70,350,g,Avena a granel 350 gramos,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,azucar,4.90,460,g,Azúcar granulada blanca 1 Libra,2025-06,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,cebolla,30.00,2760,g,Cebolla mediana 1 Cuartilla,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,fideo,7.00,460,g,Fideo corto a granel 1 Libra,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,harina_trigo,8.20,460,g,Harina de trigo blanca a granel 1 Libra,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,huevos,1.20,1,u,Huevos de gallina medianos 1 Unidad,2025-06,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,leche_fluida,8.20,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,leche_polvo,74.80,760,g,Leche entera en polvo instantánea Sachet de 760 gramos,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,manzana,2.50,1,u,Manzana roja mediana 1 Unidad,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,margarina,34.50,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,naranja,21.50,25,u,Naranja criolla mediana 25 Unidades,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,papaya,8.00,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,platano,17.00,25,u,Plátano o banano mediano 25 Unidades,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,platano_cocinar,1.90,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-06,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,pollo_entero,25.10,1000,g,Carne de pollo entero 1 Kg,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,pulpa_res,67.30,1000,g,Carne de res pulpa especial 1 Kg,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,res_molida,54.60,1000,g,Carne de res molida corriente 1 Kg,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,tomate,2.20,460,g,Tomate mediano 1 Libra,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-06,zanahoria,11.00,2760,g,Zanahoria mediana 1 Cuartilla,2025-06,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-junio-2025.pdf
+2025-07,aceite,20.00,1000,ml,Aceite comestible a granel 1 Litro,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,arroz,7.50,460,g,Arroz de primera/grano de oro 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,avena,12.40,350,g,Avena a granel 350 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,azucar,6.00,460,g,Azúcar granulada blanca 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,cebolla,24.10,2760,g,Cebolla mediana 1 Cuartilla,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,fideo,7.10,460,g,Fideo corto a granel 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,harina_trigo,7.90,460,g,Harina de trigo blanca a granel 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,huevos,1.15,1,u,Huevos de gallina medianos 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,leche_fluida,8.90,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,leche_polvo,75.00,760,g,Leche entera en polvo instantánea Sachet de 760 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,manzana,3.60,1,u,Manzana roja mediana 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,margarina,27.00,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,naranja,16.10,25,u,Naranja criolla mediana 25 Unidades,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,papaya,11.00,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,platano,21.90,25,u,Plátano o banano mediano 25 Unidades,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,platano_cocinar,1.40,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-08,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,pollo_entero,21.80,1000,g,Carne de pollo entero 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,pulpa_res,65.80,1000,g,Carne de res pulpa especial 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,res_molida,52.30,1000,g,Carne de res molida corriente 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,tomate,4.50,460,g,Tomate mediano 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-07,zanahoria,17.90,2760,g,Zanahoria mediana 1 Cuartilla,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,aceite,18.00,1000,ml,Aceite comestible a granel 1 Litro,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,arroz,7.00,460,g,Arroz de primera/grano de oro 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,avena,14.00,350,g,Avena a granel 350 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,azucar,12.60,460,g,Azúcar granulada blanca 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,cebolla,21.20,2760,g,Cebolla mediana 1 Cuartilla,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,fideo,8.00,460,g,Fideo corto a granel 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,harina_trigo,7.00,460,g,Harina de trigo blanca a granel 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,huevos,1.13,1,u,Huevos de gallina medianos 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,leche_fluida,9.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,leche_polvo,75.00,760,g,Leche entera en polvo instantánea Sachet de 760 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,manzana,3.50,1,u,Manzana roja mediana 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,margarina,36.00,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,naranja,25.00,25,u,Naranja criolla mediana 25 Unidades,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,papaya,10.00,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,platano,30.00,25,u,Plátano o banano mediano 25 Unidades,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,platano_cocinar,2.60,1,u,Plátano/postre mediano para cocinar 1 Unidad,2025-08,false,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,pollo_entero,23.20,1000,g,Carne de pollo entero 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,pulpa_res,68.00,1000,g,Carne de res pulpa especial 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,res_molida,54.00,1000,g,Carne de res molida corriente 1 Kg,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,tomate,5.20,460,g,Tomate mediano 1 Libra,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-08,zanahoria,21.50,2760,g,Zanahoria mediana 1 Cuartilla,2025-08,true,https://www.defensoria.gob.bo/uploads/files/sondeo-de-precios-de-productos-de-consumo-general-agosto.pdf
+2025-09,aceite,21.32,1000,ml,Aceite comestible a granel 1 Litro,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,arroz,6.83,460,g,instantánea Arroz de primera/grano de oro 1 Libra,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,avena,6.91,350,g,Avena a granel 350 gramos,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,azucar,4.00,460,g,Azúcar granulada blanca 1 Libra,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,cebolla,30.00,2760,g,Cebolla mediana 1 Cuartilla,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,fideo,5.48,460,g,Fideo corto a granel 1 Libra,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,harina_trigo,7.00,460,g,Harina de trigo blanca a granel 1 Libra,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,huevos,1.39,1,u,Huevos de gallina medianos 1 Unidad,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,leche_fluida,8.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,leche_polvo,74.49,760,g,Leche entera en polvo Sachet de 760 gramos,2025-09,false,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,manzana,3.40,1,u,Manzana roja mediana 1 Unidad,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,margarina,34.83,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,naranja,23.21,25,u,Naranja criolla mediana 25 Unidades,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,papaya,8.94,1,u,cocinar Fruta papaya Salvietti mediana 1 Unidad,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,platano,25.23,25,u,Plátano o banano mediano 25 Unidades,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,platano_cocinar,2.32,1,u,Plátano/postre mediano para 1 Unidad,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,pollo_entero,22.00,1000,g,Carne de pollo entero 1 Kg,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,pulpa_res,68.83,1000,g,Carne de res pulpa especial 1 Kg,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,res_molida,52.00,1000,g,Carne de res molida corriente 1 Kg,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,tomate,5.00,460,g,Tomate mediano 1 Libra,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-09,zanahoria,30.00,2760,g,Zanahoria mediana 1 Cuartilla,2025-09,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generalseptiembre-2025.pdf
+2025-10,aceite,21.49,1000,ml,Aceite comestible a granel 1 Litro,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,arroz,6.48,460,g,Arroz de primera/grano de oro 1 Libra,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,avena,13.92,350,g,Avena a granel 350 gramos,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,azucar,4.89,460,g,Azúcar granulada blanca 1 Libra,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,cebolla,25.46,2760,g,Cebolla mediana 1 Cuartilla,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,fideo,6.73,460,g,Fideo corto a granel 1 Libra,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,harina_trigo,6.00,460,g,Harina de trigo blanca a granel 1 Libra,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,huevos,1.24,1,u,cocinar Huevos de gallina medianos 1 Unidad,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,leche_fluida,9.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,leche_polvo,77.68,760,g,Leche entera en polvo Sachet de 760 gramos,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,manzana,3.40,1,u,Manzana roja mediana 1 Unidad,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,margarina,22.66,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,naranja,15.00,25,u,Naranja criolla mediana 25 Unidades,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,papaya,11.72,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,platano,20.32,25,u,Plátano o banano mediano 25 Unidades,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,platano_cocinar,2.08,1,u,Plátano/postre mediano para 1 Unidad,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,pollo_entero,22.33,1000,g,instantánea Carne de pollo entero 1 Kg,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,pulpa_res,69.66,1000,g,Carne de res pulpa especial 1 Kg,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,res_molida,57.66,1000,g,Carne de res molida corriente 1 Kg,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,tomate,6.09,460,g,Tomate mediano 1 Libra,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-10,zanahoria,30.00,2760,g,Zanahoria mediana 1 Cuartilla,2025-10,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaloctubre-2025.pdf
+2025-11,aceite,20.00,1000,ml,Aceite comestible a granel 1 Litro,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,arroz,7.22,460,g,Arroz de primera/grano de oro 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,avena,10.13,350,g,cocinar Avena a granel 350 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,azucar,4.10,460,g,Azúcar granulada blanca 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,cebolla,24.58,2760,g,Cebolla mediana 1 Cuartilla,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,fideo,6.57,460,g,instantánea Fideo corto a granel 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,harina_trigo,6.15,460,g,Harina de trigo blanca a granel 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,huevos,1.03,1,u,Huevos de gallina medianos 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,leche_fluida,8.00,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,leche_polvo,75.17,760,g,Leche entera en polvo Sachet de 760 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,manzana,2.74,1,u,Manzana roja mediana 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,margarina,22.99,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,naranja,21.25,25,u,Naranja criolla mediana 25 Unidades,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,papaya,16.91,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,platano,20.58,25,u,Plátano o banano mediano 25 Unidades,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,platano_cocinar,1.68,1,u,Plátano/postre mediano para 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,pollo_entero,26.48,1000,g,Carne de pollo entero 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,pulpa_res,73.57,1000,g,Carne de res pulpa especial 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,res_molida,55.23,1000,g,Carne de res molida corriente 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,tomate,6.82,460,g,Tomate mediano 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-11,zanahoria,22.28,2760,g,Zanahoria mediana 1 Cuartilla,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,aceite,20.15,1000,ml,Aceite comestible a granel 1 Litro,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,arroz,7.00,460,g,Arroz de primera/grano de oro 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,avena,12.00,350,g,cocinar Avena a granel 350 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,azucar,12.48,460,g,Azúcar granulada blanca 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,cebolla,58.96,2760,g,Cebolla mediana 1 Cuartilla,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,fideo,6.46,460,g,instantánea Fideo corto a granel 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,harina_trigo,5.12,460,g,Harina de trigo blanca a granel 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,huevos,1.00,1,u,Huevos de gallina medianos 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,leche_fluida,9.08,946,ml,Leche fluida entera natural Bolsa de 946 ml,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,leche_polvo,75.00,760,g,Leche entera en polvo Sachet de 760 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,manzana,3.96,1,u,Manzana roja mediana 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,margarina,24.14,410,g,Margarina/Mantequilla Envase de 410 gramos,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,naranja,20.00,25,u,Naranja criolla mediana 25 Unidades,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,papaya,15.49,1,u,Fruta papaya Salvietti mediana 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,platano,13.42,25,u,Plátano o banano mediano 25 Unidades,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,platano_cocinar,2.00,1,u,Plátano/postre mediano para 1 Unidad,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,pollo_entero,18.83,1000,g,Carne de pollo entero 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,pulpa_res,74.83,1000,g,Carne de res pulpa especial 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,res_molida,63.22,1000,g,Carne de res molida corriente 1 Kg,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,tomate,10.31,460,g,Tomate mediano 1 Libra,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf
+2025-12,zanahoria,32.86,2760,g,Zanahoria mediana 1 Cuartilla,2025-12,true,https://www.defensoria.gob.bo/uploads/files/derecho-a-la-alimentacion-en-boliviareporte-del-sondeo-de-precios-de-productos-de-consumo-generaldiciembre-2025.pdf

@@ -23,6 +23,8 @@ ejecucion                            (registro de cada corrida)
 | Vista `precio_canonico_diario` | Precio por unidad base (mediana y mínimo) por producto canónico, sucursal y día |
 | Vista `costo_canasta_diario` | Costo típico y económico de cada canasta por sucursal y día, con su cobertura |
 | `tipo_cambio` | Tipo de cambio diario: oficial del BCB y paralelo |
+| `precio_mercado` | Precios mensuales de mercado publicados por terceros (Defensoría), con su informe de origen |
+| Vista `precio_mercado_unitario` | Precio de mercado por unidad base, para comparar con el supermercado |
 | `ejecucion` | Inicio, fin, estado y conteos de cada recolección |
 
 ## Decisiones

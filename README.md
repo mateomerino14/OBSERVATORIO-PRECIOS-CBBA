@@ -16,6 +16,7 @@ Seguimiento diario de los precios de la canasta familiar en supermercados de Coc
 |---|---|---|
 | Hipermaxi (5 sucursales de Cochabamba) | Nombre, categoría, presentación, precio, oferta y stock | Funcionando |
 | Banco Central de Bolivia | Tipo de cambio oficial diario (desde 2008) | Funcionando |
+| Defensoría del Pueblo | Precios de mercado mensuales de 21 alimentos en Cochabamba (ago 2024 – dic 2025) | Cargado ([detalle](fuentes/defensoria/README.md)) |
 | IC Norte | — | Descartada: su sitio actual solo muestra promociones y toma pedidos por WhatsApp |
 | Fidalga | — | Descartada para Cochabamba: su tienda en línea es solo de Santa Cruz |
 
@@ -39,6 +40,7 @@ observatorio recolectar hipermaxi     # recolecta los precios del día
 observatorio recolectar hipermaxi --max-paginas 5   # prueba corta
 observatorio recolectar bcb                   # tipo de cambio del año en curso
 observatorio recolectar bcb --anios 2025 2026 # carga histórica
+observatorio importar defensoria fuentes/defensoria/cochabamba.csv  # precios de mercado
 pytest                                # pruebas (las de base necesitan TEST_DATABASE_URL)
 ruff check . && ruff format --check .
 ```
