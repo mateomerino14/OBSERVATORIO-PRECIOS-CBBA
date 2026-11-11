@@ -176,4 +176,6 @@ cantidad = 10
 subcategorias = ["Huevos"]
 # Los packs ("Pack Huevo de Oro 12 un") los encontró el modelo de sugerencias.
 incluir = ['^huevos?\b', '\bhuevos?\b.*\bmaple\b', '^maple de 30 huevos\b', '^pack\b.*\bhuevos?\b']
-excluir = ['codorniz', 'clara', 'omega', 'liquid', 'pasteur', 'vitaminad', 'cristal', 'granel']
+# La canasta es de huevo mediano: si el nombre dice otro tamaño, queda fuera. Los que no
+# dicen tamaño son el huevo común y se mantienen.
+excluir = ['codorniz', 'clara', 'omega', 'liquid', 'pasteur', 'vitaminad', 'cristal', 'granel', 'peque', '\bchic[oa]s?\b', 'grande', 'jumbo']
