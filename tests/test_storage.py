@@ -10,7 +10,6 @@ from observatory.storage import (
     MixedPageError,
     UnknownChainError,
     finish_run,
-    save_observation,
     save_observations,
     start_run,
 )
@@ -47,7 +46,7 @@ def test_migrate_is_idempotent(db: psycopg.Connection) -> None:
 
 
 def test_save_observation_stores_product_with_normalized_content(db: psycopg.Connection) -> None:
-    save_observation(db, make_observation(), TODAY)
+    save_observations(db, [make_observation()], TODAY)
 
     product = db.execute(
         "SELECT nombre, marca, contenido_cantidad, contenido_unidad FROM producto"
@@ -60,16 +59,16 @@ def test_save_observation_stores_product_with_normalized_content(db: psycopg.Con
 
 
 def test_same_day_keeps_one_row_with_latest_price(db: psycopg.Connection) -> None:
-    save_observation(db, make_observation(), TODAY)
-    save_observation(db, make_observation(price=Decimal("17.90")), TODAY)
+    save_observations(db, [make_observation()], TODAY)
+    save_observations(db, [make_observation(price=Decimal("17.90"))], TODAY)
 
     rows = db.execute("SELECT precio FROM observacion_precio").fetchall()
     assert rows == [(Decimal("17.90"),)]
 
 
 def test_new_day_adds_history(db: psycopg.Connection) -> None:
-    save_observation(db, make_observation(), TODAY)
-    save_observation(db, make_observation(price=Decimal("17.90")), date(2026, 11, 7))
+    save_observations(db, [make_observation()], TODAY)
+    save_observations(db, [make_observation(price=Decimal("17.90"))], date(2026, 11, 7))
 
     count = db.execute("SELECT count(*) FROM observacion_precio").fetchone()[0]
     products = db.execute("SELECT count(*) FROM producto").fetchone()[0]
@@ -78,14 +77,14 @@ def test_new_day_adds_history(db: psycopg.Connection) -> None:
 
 def test_unknown_chain_saves_nothing(db: psycopg.Connection) -> None:
     with pytest.raises(UnknownChainError):
-        save_observation(db, make_observation(chain_code="ketal"), TODAY)
+        save_observations(db, [make_observation(chain_code="ketal")], TODAY)
 
     assert db.execute("SELECT count(*) FROM producto").fetchone()[0] == 0
 
 
 def test_rejects_non_positive_price(db: psycopg.Connection) -> None:
     with pytest.raises(psycopg.errors.CheckViolation):
-        save_observation(db, make_observation(price=Decimal(0)), TODAY)
+        save_observations(db, [make_observation(price=Decimal(0))], TODAY)
 
 
 @pytest.mark.parametrize(
@@ -111,7 +110,7 @@ def test_weight_products_are_stored_per_kilo_with_category(db: psycopg.Connectio
         subcategory="Carne de Res",
     )
 
-    save_observation(db, weighed, TODAY)
+    save_observations(db, [weighed], TODAY)
 
     row = db.execute(
         "SELECT contenido_cantidad, contenido_unidad, vendido_por_peso, categoria, subcategoria "
@@ -129,7 +128,7 @@ def test_branch_keeps_external_id_and_address(db: psycopg.Connection) -> None:
         address="Av. Villazón",
     )
 
-    save_observation(db, make_observation(branch=branch), TODAY)
+    save_observations(db, [make_observation(branch=branch)], TODAY)
 
     row = db.execute("SELECT id_externo, direccion FROM sucursal").fetchone()
     assert row == ("48", "Av. Villazón")

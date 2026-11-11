@@ -15,6 +15,7 @@ MIN_DELAY_SECONDS = 1.0
 REQUEST_TIMEOUT_SECONDS = 30.0
 MAX_ATTEMPTS = 3
 BACKOFF_BASE_SECONDS = 5.0
+HTTP_CLIENT_ERROR = 400
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 # Señales de la página de verificación antibots (Radware) que sirve Hipermaxi; el script
 # de la verificación también está en las páginas normales, así que no sirve como señal.
@@ -88,7 +89,7 @@ class PoliteClient:
         """Descarga y lee el robots.txt; si no existe, se entiende que todo está permitido."""
         parser = robotparser.RobotFileParser()
         response = self._fetch(f"{origin}/robots.txt", raise_for_status=False)
-        if response.status_code >= 400:
+        if response.status_code >= HTTP_CLIENT_ERROR:
             parser.parse([])
             return parser
         parser.parse(response.text.splitlines())

@@ -1,7 +1,8 @@
 // Carga los datos y muestra la pantalla que indica el hash de la URL.
 
 import { useEffect, useState } from 'react';
-import { Header, type Route } from './components/Layout';
+import { Header } from './components/Layout';
+import { routeFromHash, screenLabel, type Route } from './routes';
 import { Fuentes } from './pages/Fuentes';
 import { Modelos } from './pages/Modelos';
 import { Productos } from './pages/Productos';
@@ -10,24 +11,8 @@ import { SuperVsMercado } from './pages/SuperVsMercado';
 import type { DashboardData } from './types';
 
 const DATA_URL = `${import.meta.env.BASE_URL}data/dashboard.json`;
-const ROUTES: Route[] = ['resumen', 'super-vs-mercado', 'productos', 'modelos', 'fuentes'];
-const TITLES: Record<Route, string> = {
-  resumen: 'Resumen',
-  'super-vs-mercado': 'Súper vs. mercado',
-  productos: 'Productos',
-  modelos: 'Modelos',
-  fuentes: 'Fuentes y método',
-};
 
-/** Pantalla según el hash ("#/productos"); la de inicio si no coincide. */
-export function routeFromHash(hash: string): Route {
-  const candidate = hash.replace(/^#\/?/, '') as Route;
-  if (ROUTES.includes(candidate)) {
-    return candidate;
-  }
-  return 'resumen';
-}
-
+/** Carga los datos una vez y muestra la pantalla de la ruta actual. */
 export function App() {
   const [route, setRoute] = useState<Route>(routeFromHash(window.location.hash));
   const [data, setData] = useState<DashboardData | null>(null);
@@ -43,7 +28,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    document.title = `${TITLES[route]} — Observatorio de Precios CBBA`;
+    document.title = `${screenLabel(route)} — Observatorio de Precios CBBA`;
   }, [route]);
 
   useEffect(() => {

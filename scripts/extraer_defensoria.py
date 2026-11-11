@@ -27,6 +27,7 @@ from observatory.sources.defensoria import (
 BASE_URL = "https://www.defensoria.gob.bo/uploads/files/"
 # Informes publicados sin año en el nombre del archivo.
 DEFAULT_YEAR = 2025
+MONTH_FORMAT = "%Y-%m"
 COLUMNS = [
     "mes",
     "producto",
@@ -112,13 +113,13 @@ def main(source_dir: Path, output: Path) -> int:
             quantity, unit = presentation(product)
             writer.writerow(
                 [
-                    month.isoformat()[:7],
+                    month.strftime(MONTH_FORMAT),
                     product,
                     price.price,
                     quantity,
                     unit,
                     price.description,
-                    price.report.isoformat()[:7],
+                    price.report.strftime(MONTH_FORMAT),
                     str(price.verified).lower(),
                     urls[price.report],
                 ]

@@ -13,7 +13,7 @@ Con datos al 11 de noviembre de 2026:
 - **Cuando el dólar bajó, los precios no.** De diciembre de 2024 a mayo de 2025 el dólar paralelo subió 47 % y la canasta de mercado 22 %. De mayo a diciembre de 2025 el dólar bajó 41 %, pero la canasta siguió subiendo: 21 %.
 - **La canasta en mercados subió 36 % en un año**, sobre todo por los frescos: tomate y cebolla, +113 %.
 - **El súper suele ser más caro, pero no en todo.** 6 de 12 productos cuestan más en Hipermaxi que en los mercados; la papaya, 42 % más. El azúcar, 46 % menos.
-- **Las 5 sucursales cobran casi lo mismo**: 0,7 % de diferencia sobre los productos que tienen todas. Lo que cambia es qué productos publican en línea.
+- **Las 5 sucursales cobran casi lo mismo**: 0,8 % de diferencia sobre los productos que tienen todas. Lo que cambia es qué productos publican en línea.
 
 Las cifras del sitio se recalculan cada día desde los datos; estas son una foto.
 
@@ -124,11 +124,11 @@ El flujo [`recolectar.yml`](.github/workflows/recolectar.yml) corre todos los d�
 
 Necesita el secreto `DATABASE_URL` del repositorio (*Settings → Secrets and variables → Actions*), apuntando a una base PostgreSQL accesible desde internet (por ejemplo, Supabase o Neon).
 
-Cada corrida queda registrada en la tabla `ejecucion` con su estado (`completada`, `con_errores` o `fallida`) y la cantidad de páginas procesadas. Si fallan 20 páginas seguidas, la corrida se detiene: casi siempre significa que la tienda cambió su sitio.
+Cada corrida queda registrada en la tabla `ejecucion` con su estado (`completada`, `con_errores`, `fallida` o `bloqueada`) y la cantidad de páginas procesadas. Si fallan 10 páginas seguidas, la corrida se detiene: casi siempre significa que la tienda cambió su sitio.
 
 ## Canasta
 
-El costo diario se mide sobre la canasta básica de alimentos de la Defensoría del Pueblo (13 productos, familia de cuatro, una semana), para compararla con el sondeo mensual que la Defensoría hace en mercados. Cada producto de la canasta se empareja con los productos de la tienda mediante reglas en [`canastas/defensoria_semanal.toml`](canastas/defensoria_semanal.toml), y las vistas `precio_canonico_diario` y `costo_canasta_diario` calculan el precio típico (mediana) y el económico (mínimo).
+El costo diario se mide sobre la canasta básica de alimentos de la Defensoría del Pueblo (13 productos, familia de cuatro, una semana), para compararla con el sondeo mensual que la Defensoría hace en mercados. Cada producto de la canasta se empareja con los productos de la tienda mediante reglas en [`canastas/defensoria_semanal.toml`](canastas/defensoria_semanal.toml). La vista `precio_canonico_diario` da el precio por unidad de cada producto, sucursal y día, y la exportación arma con eso el costo típico (mediana) y el económico (mínimo): el de la ciudad junta todas las sucursales y el de cada sucursal se compara solo sobre los productos que tienen todas.
 
 ```bash
 observatorio canasta revisar canastas/defensoria_semanal.toml   # qué producto quedó en cada ítem
@@ -145,6 +145,7 @@ Sitio estático en [`web/`](web) (Vite, React y TypeScript) con cinco pantallas:
 observatorio exportar --canasta canastas/defensoria_semanal.toml --salida web/public/data/dashboard.json
 cd web && npm install && npm run dev   # http://localhost:5173
 npm test                               # pruebas del sitio
+npm run lint                           # lint del sitio (en CI, sin avisos)
 ```
 
 ## Carga histórica
@@ -156,4 +157,4 @@ Los datos que no se recolectan a diario (tipo de cambio de años anteriores, pre
 - [`reglas.md`](reglas.md): ramas, commits y estándares de código
 - [`docs/modelo-datos.md`](docs/modelo-datos.md): tablas y decisiones del modelo
 - [`docs/canasta.md`](docs/canasta.md): cómo se calcula el costo de la canasta
-- [`docs/modelos.md`](docs/modelos.md): sugerencias de emparejamiento y precios anómalos
+- [`docs/modelos.md`](docs/modelos.md): sugerencias de emparejamiento, grupos de k-means y precios anómalos

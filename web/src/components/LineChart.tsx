@@ -1,9 +1,10 @@
 // Gráfico de líneas en SVG con huecos, zonas sombreadas y marcadores.
 // El lienzo toma el ancho real del contenedor, así el texto mide lo mismo en cualquier tarjeta.
 
-import { useEffect, useRef, useState } from 'react';
+import { BOTTOM, fitTicks, LEFT, RIGHT, segments, TOP, xPosition, yPosition } from './lineGeometry';
+import { useContainerWidth } from './useContainerWidth';
 
-export interface Series {
+interface Series {
   id: string;
   color: string;
   dashed?: boolean;
@@ -34,87 +35,24 @@ interface Props {
   height?: number;
 }
 
-const DEFAULT_WIDTH = 760;
-// Separación mínima entre etiquetas del eje X, en píxeles.
-const MIN_TICK_GAP = 64;
-const MIN_WIDTH = 280;
-const LEFT = 48;
-const RIGHT = 16;
-const TOP = 16;
-const BOTTOM = 28;
+// Separaciones de texto en píxeles: del eje Y al número y de la base al centro de la letra.
+const TICK_GAP = 8;
+const TEXT_BASELINE = 3;
+const LABEL_BASELINE = 4;
+const X_TICK_FROM_BOTTOM = 6;
+const VLINE_LABEL_GAP = 6;
+const VLINE_LABEL_TOP = 14;
+const POINT_RADIUS = 3.5;
+const MARKER_RADIUS = 6;
+const MARKER_LABEL_GAP = 10;
+const MARKER_LABEL_GAP_LEFT = 12;
+// Pasado este tramo del ancho, la etiqueta de un marcador va a la izquierda.
+const MARKER_FLIP_SHARE = 0.7;
+const LINE_WIDTH = 2.5;
+const DASH = '6 4';
+const HOLLOW_FILL = '#FFFFFF';
 
-/** Posición horizontal de una categoría. */
-export function xPosition(index: number, count: number, width = DEFAULT_WIDTH): number {
-  if (count <= 1) {
-    return LEFT;
-  }
-  return LEFT + ((width - LEFT - RIGHT) * index) / (count - 1);
-}
-
-/** Etiquetas del eje X que caben sin encimarse; la última siempre se conserva. */
-export function fitTicks<T extends { index: number }>(ticks: T[], position: (index: number) => number): T[] {
-  const kept: T[] = [];
-  const last = ticks[ticks.length - 1];
-  ticks.forEach((tick) => {
-    const previous = kept[kept.length - 1];
-    if (previous && position(tick.index) - position(previous.index) < MIN_TICK_GAP) {
-      if (tick === last) {
-        kept.pop();
-        kept.push(tick);
-      }
-      return;
-    }
-    kept.push(tick);
-  });
-  return kept;
-}
-
-/** Ancho en píxeles del contenedor, actualizado cuando cambia de tamaño. */
-export function useContainerWidth(): [React.RefObject<HTMLDivElement | null>, number] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(DEFAULT_WIDTH);
-  useEffect(() => {
-    const element = ref.current;
-    if (!element || typeof ResizeObserver === 'undefined') {
-      return undefined;
-    }
-    const observer = new ResizeObserver((entries) => {
-      const measured = Math.round(entries[0].contentRect.width);
-      if (measured > 0) {
-        setWidth(Math.max(measured, MIN_WIDTH));
-      }
-    });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-  return [ref, width];
-}
-
-/** Posición vertical de un valor dentro del rango del eje. */
-export function yPosition(value: number, min: number, max: number, height: number): number {
-  return TOP + (height - TOP - BOTTOM) * (1 - (value - min) / (max - min));
-}
-
-/** Tramos continuos de una serie: cada hueco (null) corta la línea. */
-export function segments(values: (number | null)[]): { index: number; value: number }[][] {
-  const result: { index: number; value: number }[][] = [];
-  let current: { index: number; value: number }[] = [];
-  values.forEach((value, index) => {
-    if (value === null) {
-      if (current.length > 0) {
-        result.push(current);
-      }
-      current = [];
-      return;
-    }
-    current.push({ index, value });
-  });
-  if (current.length > 0) {
-    result.push(current);
-  }
-  return result;
-}
-
+/** Gráfico de líneas en SVG que se ajusta al ancho de su contenedor. */
 export function LineChart(props: Props) {
   const [container, width] = useContainerWidth();
   const height = props.height ?? 240;
@@ -133,7 +71,7 @@ export function LineChart(props: Props) {
       </g>
       <g className="chart-axis">
         {props.yTicks.map((tick) => (
-          <text key={tick} x={LEFT - 8} y={y(tick) + 3} textAnchor="end">
+          <text key={tick} x={LEFT - TICK_GAP} y={y(tick) + TEXT_BASELINE} textAnchor="end">
             {format(tick)}
           </text>
         ))}
@@ -145,7 +83,7 @@ export function LineChart(props: Props) {
             anchor = 'end';
           }
           return (
-            <text key={tick.index} x={x(tick.index)} y={height - 6} textAnchor={anchor}>
+            <text key={tick.index} x={x(tick.index)} y={height - X_TICK_FROM_BOTTOM} textAnchor={anchor}>
               {tick.label}
             </text>
           );
@@ -162,7 +100,7 @@ export function LineChart(props: Props) {
       {(props.verticalLines ?? []).map((line) => (
         <g key={line.index} className="chart-vline">
           <line x1={x(line.index)} x2={x(line.index)} y1={TOP} y2={height - BOTTOM} />
-          <text x={x(line.index) - 6} y={TOP + 14} textAnchor="end">
+          <text x={x(line.index) - VLINE_LABEL_GAP} y={TOP + VLINE_LABEL_TOP} textAnchor="end">
             {line.label}
           </text>
         </g>
@@ -172,13 +110,13 @@ export function LineChart(props: Props) {
           if (segment.length === 1) {
             const point = segment[0];
             return (
-              <circle key={`${serie.id}-${point.index}`} cx={x(point.index)} cy={y(point.value)} r={3.5} fill={serie.color} />
+              <circle key={`${serie.id}-${point.index}`} cx={x(point.index)} cy={y(point.value)} r={POINT_RADIUS} fill={serie.color} />
             );
           }
           const points = segment.map((point) => `${x(point.index).toFixed(1)},${y(point.value).toFixed(1)}`).join(' ');
           let dash: string | undefined;
           if (serie.dashed) {
-            dash = '6 4';
+            dash = DASH;
           }
           return (
             <polyline
@@ -186,7 +124,7 @@ export function LineChart(props: Props) {
               points={points}
               fill="none"
               stroke={serie.color}
-              strokeWidth={serie.width ?? 2.5}
+              strokeWidth={serie.width ?? LINE_WIDTH}
               strokeDasharray={dash}
               strokeLinejoin="round"
             />
@@ -198,19 +136,19 @@ export function LineChart(props: Props) {
         const cy = y(marker.value);
         let fill = marker.color;
         if (marker.hollow) {
-          fill = '#FFFFFF';
+          fill = HOLLOW_FILL;
         }
-        let labelX = cx + 10;
+        let labelX = cx + MARKER_LABEL_GAP;
         let anchor: 'start' | 'end' = 'start';
-        if (cx > width * 0.7) {
-          labelX = cx - 12;
+        if (cx > width * MARKER_FLIP_SHARE) {
+          labelX = cx - MARKER_LABEL_GAP_LEFT;
           anchor = 'end';
         }
         return (
           <g key={`${marker.index}-${marker.value}`}>
-            <circle cx={cx} cy={cy} r={6} fill={fill} stroke={marker.color} strokeWidth={2.5} />
+            <circle cx={cx} cy={cy} r={MARKER_RADIUS} fill={fill} stroke={marker.color} strokeWidth={LINE_WIDTH} />
             {marker.label && (
-              <text x={labelX} y={cy + 4} textAnchor={anchor} className="chart-label" fill={marker.color}>
+              <text x={labelX} y={cy + LABEL_BASELINE} textAnchor={anchor} className="chart-label" fill={marker.color}>
                 {marker.label}
               </text>
             )}

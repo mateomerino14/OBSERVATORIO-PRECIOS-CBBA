@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { niceTicks, placeLabels, tickEvery } from '../components/ScatterChart';
+import { placeLabels, tickEvery } from '../components/scatterLayout';
+import { niceTicks } from '../components/ticks';
 
 const AREA = { left: 0, right: 400, top: 0, bottom: 300 };
 

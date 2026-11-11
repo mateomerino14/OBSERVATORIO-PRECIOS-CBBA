@@ -12,7 +12,7 @@ const STATUS: Record<LastRun['estado'], { label: string; color: string }> = {
 };
 
 /** Hora local de Bolivia de una marca de tiempo ISO. */
-export function boliviaTime(iso: string): string {
+function boliviaTime(iso: string): string {
   return new Date(iso).toLocaleString('es-BO', {
     timeZone: 'America/La_Paz',
     day: 'numeric',
@@ -23,6 +23,7 @@ export function boliviaTime(iso: string): string {
   });
 }
 
+/** Pantalla de fuentes, cobertura, método y límites. */
 export function Fuentes({ data }: { data: DashboardData }) {
   const run = data.ultima_corrida;
   const coverage = data.cobertura;

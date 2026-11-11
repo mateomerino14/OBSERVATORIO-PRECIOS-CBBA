@@ -1,26 +1,17 @@
 // Pantalla 2: súper frente a mercado, producto por producto, y precios frente al dólar.
 
+import { niceTicks } from '../components/ticks';
+import { INK, PRICE } from '../colors';
 import { DivergingBar, EmptyState, Figure, LegendItem } from '../components/Layout';
 import { LineChart } from '../components/LineChart';
 import { money, monthOf, number, percent, shortMonth } from '../format';
+import { INDEX_BASE, toIndex } from '../series';
 import type { DashboardData } from '../types';
 
-const INK = '#1B1F24';
-const PRICE = '#B4500B';
 const DIFF_LIMIT = 50;
-const INDEX_BASE = 100;
+const INDEX_TICK_STEP = 20;
 
-/** Índice base 100 en un mes dado; null donde falte el dato. */
-export function toIndex(values: (number | null)[], baseIndex: number): (number | null)[] {
-  const base = values[baseIndex];
-  return values.map((value) => {
-    if (value === null || base === null || base === undefined) {
-      return null;
-    }
-    return (value / base) * INDEX_BASE;
-  });
-}
-
+/** Pantalla que compara el súper con los mercados, producto por producto. */
 export function SuperVsMercado({ data }: { data: DashboardData }) {
   const rows = data.super_vs_mercado.productos;
   const period = data.super_vs_mercado.periodo_mercado;
@@ -33,12 +24,9 @@ export function SuperVsMercado({ data }: { data: DashboardData }) {
   const basket = toIndex(months.map((month) => data.canasta_mercado.por_mes.find((row) => row.mes === month)?.total ?? null), baseIndex);
   const dollar = toIndex(months.map((month) => parallel.get(month) ?? null), baseIndex);
   const values = [...basket, ...dollar].filter((value): value is number => value !== null);
-  const yMin = Math.floor(Math.min(...values, INDEX_BASE) / 20) * 20;
-  const yMax = Math.ceil(Math.max(...values, INDEX_BASE) / 20) * 20;
-  const ticks = [];
-  for (let tick = yMin; tick <= yMax; tick += 20) {
-    ticks.push(tick);
-  }
+  const ticks = niceTicks(Math.min(...values, INDEX_BASE), Math.max(...values, INDEX_BASE), INDEX_TICK_STEP);
+  const yMin = ticks[0];
+  const yMax = ticks[ticks.length - 1];
   const peak = dollar.reduce<number>((best, value, index) => {
     if (value !== null && (dollar[best] ?? -Infinity) < value) {
       return index;
