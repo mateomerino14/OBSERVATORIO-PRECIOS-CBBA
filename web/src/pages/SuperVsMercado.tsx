@@ -72,7 +72,7 @@ export function SuperVsMercado({ data }: { data: DashboardData }) {
       <Figure
         title="Diferencia del precio típico del súper contra el mercado"
         subtitle={subtitle}
-        source="Naranja: el súper cuesta más. Azul: cuesta menos. Los frescos no aparecen porque Hipermaxi casi no los vende en línea."
+        source="Naranja: el súper cuesta más. Azul: cuesta menos. Solo aparecen productos con precio en el súper y presentación comparable con la Defensoría."
       >
         {rows.length === 0 && <EmptyState title="Todavía no hay productos comparables" />}
         {rows.length > 0 && (

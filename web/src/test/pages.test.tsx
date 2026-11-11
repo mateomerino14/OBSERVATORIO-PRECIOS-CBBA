@@ -13,10 +13,17 @@ const data = fixture as unknown as DashboardData;
 describe('pantallas con datos reales', () => {
   it('resumen muestra la canasta del día y el dólar', () => {
     render(<Resumen data={data} />);
-    expect(screen.getByText('Bs 193,44')).toBeInTheDocument();
+    expect(screen.getByText('Bs 193,34')).toBeInTheDocument();
     expect(screen.getByText('Bs 11,71')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /Costo semanal de la canasta/ })).toBeInTheDocument();
     expect(screen.getByText('Tomate')).toBeInTheDocument();
+  });
+
+  it('resumen compara sucursales solo sobre los productos comunes', () => {
+    render(<Resumen data={data} />);
+    expect(screen.getByText('La canasta en cada sucursal')).toBeInTheDocument();
+    expect(screen.getByText(/sobre los 8 productos que tienen todas/)).toBeInTheDocument();
+    expect(screen.getAllByText(/8 de 13 productos en línea/)).toHaveLength(2);
   });
 
   it('súper vs. mercado lista productos de mayor a menor diferencia', () => {

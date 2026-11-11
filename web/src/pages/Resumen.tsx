@@ -3,6 +3,7 @@
 import { Bar, Figure, KpiCard, LegendItem } from '../components/Layout';
 import { LineChart, type Marker } from '../components/LineChart';
 import { longDate, money, monthOf, monthRange, number, percent, shortMonth } from '../format';
+import { branchLabel } from './Productos';
 import type { DashboardData } from '../types';
 
 const INK = '#1B1F24';
@@ -110,6 +111,12 @@ export function Resumen({ data }: { data: DashboardData }) {
     marketChange = (average(yearly.hasta) / average(yearly.desde) - 1) * 100;
   }
 
+  const latestBranches = data.canasta.por_sucursal
+    .filter((row) => row.fecha === data.ultimo_dia)
+    .sort((left, right) => left.tipico - right.tipico);
+  const maxBranch = Math.max(...latestBranches.map((row) => row.tipico), 1);
+  const commonItems = latestBranches[0]?.items ?? 0;
+
   let marketChangeText = '—';
   if (marketChange !== null) {
     marketChangeText = percent(marketChange);
@@ -185,6 +192,27 @@ export function Resumen({ data }: { data: DashboardData }) {
           </ol>
         </Figure>
       </section>
+
+      {latestBranches.length > 1 && (
+        <Figure
+          title="La canasta en cada sucursal"
+          subtitle={`Bs por semana, precio típico, sobre los ${commonItems} productos que tienen todas las sucursales`}
+          source="Comparar solo productos comunes evita que una sucursal parezca más cara por vender más cosas."
+        >
+          <ol className="rank branches">
+            {latestBranches.map((row) => (
+              <li key={row.sucursal}>
+                <span>{branchLabel(row.sucursal)}</span>
+                <Bar value={row.tipico} max={maxBranch} color={PRICE} track="#F1E3D6" />
+                <span className="mono">{money(row.tipico)}</span>
+                <span className="muted small">
+                  {row.items_sucursal} de {data.canasta.items_total} productos en línea
+                </span>
+              </li>
+            ))}
+          </ol>
+        </Figure>
+      )}
 
       <Figure
         title="Dos dólares: el oficial y el paralelo"
