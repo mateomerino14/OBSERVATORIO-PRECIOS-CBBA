@@ -13,6 +13,7 @@ from observatory.export import build_dashboard, write_dashboard
 from observatory.http_client import PoliteClient
 from observatory.sources import bcb, defensoria, hipermaxi, paralelo
 from observatory.storage import save_exchange_rates, save_market_prices
+from observatory.suggest import load_catalog, suggest
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -52,8 +53,10 @@ def build_parser() -> argparse.ArgumentParser:
     export_parser.add_argument("--salida", type=Path, required=True, help="Archivo JSON a escribir")
     export_parser.add_argument("--ciudad", default=DEFAULT_CITY)
 
-    basket_parser = commands.add_parser("canasta", help="Carga o revisa una canasta")
-    basket_parser.add_argument("accion", choices=["cargar", "revisar"])
+    basket_parser = commands.add_parser(
+        "canasta", help="Carga o revisa una canasta, o pide sugerencias al modelo"
+    )
+    basket_parser.add_argument("accion", choices=["cargar", "revisar", "sugerir"])
     basket_parser.add_argument("archivo", type=Path, help="Archivo TOML de la canasta")
     return parser
 
@@ -78,6 +81,14 @@ def run_basket(arguments: argparse.Namespace) -> int:
     """Carga la canasta y rehace sus emparejamientos; con 'revisar' además lista los productos."""
     settings = load_settings()
     basket = load_basket(arguments.archivo)
+    if arguments.accion == "sugerir":
+        with connect(settings.database_url) as connection:
+            catalog = load_catalog(connection)
+        if not catalog:
+            print("No hay productos con precio: primero hay que recolectar", file=sys.stderr)
+            return EXIT_FAILED
+        print_suggestions(suggest(basket, catalog))
+        return EXIT_OK
     with connect(settings.database_url) as connection:
         counts = sync_basket(connection, basket)
         print(f"Canasta {basket.code}: {len(basket.items)} productos")
@@ -92,6 +103,24 @@ def run_basket(arguments: argparse.Namespace) -> int:
     if len(missing) == len(counts):
         return EXIT_FAILED
     return EXIT_OK
+
+
+def print_suggestions(report) -> None:
+    """Candidatos que las reglas no aceptan y aceptados que se parecen poco al resto."""
+    evaluation = report.evaluation
+    print(f"Catálogo: {report.catalog_size} productos con precio el último día")
+    if evaluation.cases:
+        print(
+            f"Evaluación: {evaluation.found_in_top} de {evaluation.cases} productos aceptados "
+            f"quedan entre los {evaluation.top} primeros sin su regla "
+            f"(puesto mediano {evaluation.median_rank})"
+        )
+    for item in report.items:
+        print(f"\n[{item.code}] {item.matched} aceptados · umbral {item.threshold:.2f}")
+        for candidate in item.candidates:
+            print(f"  + {candidate.score:.2f}  {candidate.product.name}  ({candidate.reason})")
+        for doubt in item.doubtful:
+            print(f"  ? {doubt.score:.2f}  {doubt.product.name}  (aceptado, poco parecido)")
 
 
 def print_review(connection, basket_code: str) -> None:

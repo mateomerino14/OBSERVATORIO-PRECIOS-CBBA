@@ -155,6 +155,9 @@ def test_build_dashboard_with_all_sources(db: psycopg.Connection, basket, tmp_pa
     assert rice["hoy"] == {"tipico": 17.0, "minimo": 16.0, "productos": 2}
     assert rice["tienda"][0]["sucursales"] == 2
     assert len(rice["diario"]) == 2
+    suggestions = document["sugerencias"]
+    assert suggestions["productos_catalogo"] == 1
+    assert {item["codigo"] for item in suggestions["items"]} == {"arroz", "papaya"}
 
     path = write_dashboard(document, tmp_path / "datos" / "dashboard.json")
     assert json.loads(path.read_text())["version"] == 1
@@ -168,6 +171,7 @@ def test_build_dashboard_on_empty_database(db: psycopg.Connection, basket) -> No
     assert document["canasta"]["hoy"] is None
     assert document["super_vs_mercado"]["productos"] == []
     assert document["subidas_mercado"]["productos"] == []
+    assert document["sugerencias"] is None
 
 
 @pytest.mark.db

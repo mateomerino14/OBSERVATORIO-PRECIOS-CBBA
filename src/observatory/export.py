@@ -11,6 +11,7 @@ import psycopg
 
 from observatory.basket import Basket, BasketItem
 from observatory.sources.defensoria import PRODUCT_NAMES
+from observatory.suggest import Suggestion, load_catalog, suggest
 
 SCHEMA_VERSION = 1
 CHAIN = "hipermaxi"
@@ -59,6 +60,50 @@ def build_dashboard(connection: psycopg.Connection, basket: Basket, city: str) -
         "super_vs_mercado": _super_vs_market(connection, basket, market, today_prices, city),
         "subidas_mercado": _market_risers(connection, city),
         "productos": _products(connection, basket, market, today_prices, latest_day),
+        "sugerencias": _suggestions(connection, basket),
+    }
+
+
+def _suggestion_row(suggestion: Suggestion) -> dict:
+    product = suggestion.product
+    return {
+        "nombre": product.name,
+        "subcategoria": product.subcategory,
+        "similitud": round(suggestion.score, 2),
+        "motivo": suggestion.reason,
+        "url": product.url,
+    }
+
+
+def _suggestions(connection: psycopg.Connection, basket: Basket) -> dict | None:
+    """Sugerencias del modelo de similitud para revisar las reglas de la canasta."""
+    catalog = load_catalog(connection)
+    if not catalog:
+        return None
+    report = suggest(basket, catalog)
+    evaluation = report.evaluation
+    median_rank = None
+    if evaluation.median_rank is not None:
+        median_rank = float(evaluation.median_rank)
+    return {
+        "productos_catalogo": report.catalog_size,
+        "evaluacion": {
+            "casos": evaluation.cases,
+            "encontrados": evaluation.found_in_top,
+            "top": evaluation.top,
+            "puesto_mediano": median_rank,
+        },
+        "items": [
+            {
+                "codigo": item.code,
+                "nombre": item.name,
+                "aceptados": item.matched,
+                "umbral": round(item.threshold, 2),
+                "candidatos": [_suggestion_row(candidate) for candidate in item.candidates],
+                "dudosos": [_suggestion_row(doubt) for doubt in item.doubtful],
+            }
+            for item in report.items
+        ],
     }
 
 
