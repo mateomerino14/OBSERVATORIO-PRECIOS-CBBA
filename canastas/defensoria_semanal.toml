@@ -131,7 +131,7 @@ contenido_max = 5000
 incluir = ['^fideos?\b']
 # Pastas especiales (sin gluten, de legumbres o quinua) no son el fideo de la canasta;
 # las detectó `observatorio canasta sugerir` como aceptadas pero poco parecidas al resto.
-excluir = ['spag', 'tallar', '\blarg', 'lasagn', 'cabell', 'lingu', 'fettuc', 'tagliat', 'tangliat', 'huevo', 'integral', 'gluten', 'garbanzo', 'lenteja', 'quinua', 'instant', 'ramen', 'arroz', 'canelon', 'nido', 'sopa']
+excluir = ['spag', 'tallar', '\blarg', 'lasagn', 'cabell', 'lingu', 'fett?uc', 'tagliat', 'tangliat', 'huevo', 'integral', 'gluten', 'garbanzo', 'lenteja', 'quinua', 'instant', 'ramen', 'yakis', 'arroz', 'canelon', 'nido', 'sopa']
 
 [[producto]]
 codigo = "pulpa_res"
