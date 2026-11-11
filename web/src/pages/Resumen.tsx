@@ -178,7 +178,7 @@ export function Resumen({ data }: { data: DashboardData }) {
           className="grow"
           title="La misma canasta, en el mercado y en el súper"
           subtitle={`Bs por semana, los ${data.canasta_mercado.productos_comparables.length} productos que vende Hipermaxi`}
-          source="Mercado: Defensoría del Pueblo, mensual. Súper: Hipermaxi, diario (promedio de sucursales)."
+          source="Mercado: Defensoría del Pueblo, mensual. Súper: Hipermaxi, diario, con los productos de todas las sucursales."
         >
           <LineChart
             categories={months}
