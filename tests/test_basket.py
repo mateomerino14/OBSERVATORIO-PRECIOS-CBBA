@@ -102,6 +102,37 @@ def test_matches_applies_all_rules(minimal_basket, product: StoreProduct, expect
     assert matches(minimal_basket.items[0], product) is expected
 
 
+@pytest.mark.parametrize(
+    ("code", "product", "expected"),
+    [
+        (
+            "huevos",
+            store_product(
+                "Pack Huevo de Oro 12 un", subcategory="Huevos", content=Decimal(12), unit="u"
+            ),
+            True,
+        ),
+        (
+            "huevos",
+            store_product(
+                "Huevos de Codorniz 24 un", subcategory="Huevos", content=Decimal(24), unit="u"
+            ),
+            False,
+        ),
+        ("fideo", store_product("Fideo Don Vittorio Corto 400 gr", content=Decimal(400)), True),
+        ("fideo", store_product("Fideos Bisfru de Garbanzo 400 gr", content=Decimal(400)), False),
+        (
+            "fideo",
+            store_product("Fideo Matarazzo Penne Rig Libre Gluten 500 gr", content=Decimal(500)),
+            False,
+        ),
+    ],
+)
+def test_project_rules_found_by_the_model(code: str, product: StoreProduct, expected: bool) -> None:
+    item = next(item for item in load_basket(BASKET_FILE).items if item.code == code)
+    assert matches(item, product) is expected
+
+
 def test_assign_gives_product_to_first_item_in_file(minimal_basket) -> None:
     products = [
         store_product("Arroz Caisy 1 kg", product_id=1),

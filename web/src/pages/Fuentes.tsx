@@ -26,6 +26,10 @@ export function boliviaTime(iso: string): string {
 export function Fuentes({ data }: { data: DashboardData }) {
   const run = data.ultima_corrida;
   const coverage = data.cobertura;
+  let dayWord = 'días';
+  if (coverage.dias === 1) {
+    dayWord = 'día';
+  }
   const basketToday = data.canasta.hoy;
 
   return (
@@ -62,7 +66,7 @@ export function Fuentes({ data }: { data: DashboardData }) {
         </div>
         <div className="card kpi">
           <span className="kpi-label">Días de historial en el súper</span>
-          <span className="kpi-text">{coverage.dias} días</span>
+          <span className="kpi-text">{coverage.dias} {dayWord}</span>
           {coverage.primer_dia && <span className="kpi-note">desde el {shortDate(coverage.primer_dia)}</span>}
         </div>
       </section>
@@ -70,7 +74,7 @@ export function Fuentes({ data }: { data: DashboardData }) {
       <section className="card figure">
         <h2>Fuentes</h2>
         <div className="table-scroll">
-          <table className="table">
+          <table className="table stack">
             <thead>
               <tr>
                 <th scope="col">Fuente</th>
@@ -82,27 +86,27 @@ export function Fuentes({ data }: { data: DashboardData }) {
             <tbody>
               <tr>
                 <th scope="row">Hipermaxi</th>
-                <td>Precio, oferta y stock de las sucursales de Cochabamba</td>
-                <td>Diaria</td>
-                <td>API pública de la tienda en línea</td>
+                <td data-label="Qué se toma">Precio, oferta y stock de las sucursales de Cochabamba</td>
+                <td data-label="Frecuencia">Diaria</td>
+                <td data-label="Cómo">API pública de la tienda en línea</td>
               </tr>
               <tr>
                 <th scope="row">Banco Central de Bolivia</th>
-                <td>Tipo de cambio oficial</td>
-                <td>Diaria</td>
-                <td>PDF anual de cotizaciones</td>
+                <td data-label="Qué se toma">Tipo de cambio oficial</td>
+                <td data-label="Frecuencia">Diaria</td>
+                <td data-label="Cómo">PDF anual de cotizaciones</td>
               </tr>
               <tr>
                 <th scope="row">Defensoría del Pueblo</th>
-                <td>Precios de mercado de 21 alimentos</td>
-                <td>Mensual (2024–2025)</td>
-                <td>Tablas de sus informes en PDF</td>
+                <td data-label="Qué se toma">Precios de mercado de 21 alimentos</td>
+                <td data-label="Frecuencia">Mensual (2024–2025)</td>
+                <td data-label="Cómo">Tablas de sus informes en PDF</td>
               </tr>
               <tr>
                 <th scope="row">CEED de CADECOCRUZ</th>
-                <td>Dólar paralelo (aproximado)</td>
-                <td>Mensual (2024–2025)</td>
-                <td>Variaciones de sus boletines semanales</td>
+                <td data-label="Qué se toma">Dólar paralelo (aproximado)</td>
+                <td data-label="Frecuencia">Mensual (2024–2025)</td>
+                <td data-label="Cómo">Variaciones de sus boletines semanales</td>
               </tr>
             </tbody>
           </table>

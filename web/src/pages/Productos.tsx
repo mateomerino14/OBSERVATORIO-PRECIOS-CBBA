@@ -12,11 +12,23 @@ const ALL_BRANCHES = 'Todas';
 const MIN_DAYS_FOR_LINE = 2;
 
 /** Nombre corto de una sucursal: "HIPERMAXI JUAN DE LA ROSA" -> "Juan De La Rosa". */
+const SMALL_WORDS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y']);
+const ACCENTS: Record<string, string> = { circunvalacion: 'circunvalación' };
+
+/** "HIPERMAXI JUAN DE LA ROSA" -> "Juan de la Rosa". */
 export function branchLabel(name: string): string {
   return name
     .replace(/^HIPERMAXI\s+/i, '')
     .toLowerCase()
-    .replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+    .split(/\s+/)
+    .map((word, index) => {
+      const fixed = ACCENTS[word] ?? word;
+      if (index > 0 && SMALL_WORDS.has(fixed)) {
+        return fixed;
+      }
+      return fixed.charAt(0).toUpperCase() + fixed.slice(1);
+    })
+    .join(' ');
 }
 
 /** Precio típico diario de un producto: de una sucursal o el promedio de todas. */
@@ -171,7 +183,7 @@ export function Productos({ data }: { data: DashboardData }) {
         {product.tienda.length === 0 && <EmptyState title="Hipermaxi no publica este producto en línea" />}
         {product.tienda.length > 0 && (
           <div className="table-scroll">
-            <table className="table">
+            <table className="table stack">
               <thead>
                 <tr>
                   <th scope="col">Producto</th>
@@ -191,10 +203,10 @@ export function Productos({ data }: { data: DashboardData }) {
                         {item.nombre}
                       </a>
                     </th>
-                    <td className="num mono">{money(item.precio)}</td>
-                    <td className="num mono">{number(item.precio_unidad)}</td>
-                    <td className="num mono">{item.sucursales}</td>
-                    <td>
+                    <td className="num mono" data-label="Precio">{money(item.precio)}</td>
+                    <td className="num mono" data-label={`Bs por ${unit}`}>{number(item.precio_unidad)}</td>
+                    <td className="num mono" data-label="Sucursales">{item.sucursales}</td>
+                    <td className="stack-hide">
                       <Bar value={item.precio_unidad} max={maxUnit} color={PRICE} />
                     </td>
                   </tr>

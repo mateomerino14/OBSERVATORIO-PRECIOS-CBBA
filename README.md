@@ -1,21 +1,69 @@
 # Observatorio de Precios CBBA
 
-Seguimiento diario de los precios de la canasta familiar en supermercados de Cochabamba, y de cómo se relacionan con el tipo de cambio desde la liberación del dólar en junio de 2026.
+¿Cuánto cuesta comer en Cochabamba, y qué tiene que ver el dólar? Este proyecto recolecta todos los días los precios de las 5 sucursales de Hipermaxi, los compara con los precios de mercado de la Defensoría del Pueblo y con el dólar oficial y paralelo, y lo publica en un sitio que se actualiza solo.
 
-> Estado: en construcción. Primera fuente: Hipermaxi Cochabamba.
+**Sitio en vivo: [mateomerino14.github.io/OBSERVATORIO-PRECIOS-CBBA](https://mateomerino14.github.io/OBSERVATORIO-PRECIOS-CBBA/)**
 
-## Preguntas que busca responder
+![Pantalla de resumen del observatorio](docs/img/resumen.png)
 
-- ¿Cuánto subió la canasta familiar en supermercados desde el cambio de régimen cambiario?
-- ¿Qué productos trasladan antes la devaluación: los importados o los nacionales?
-- ¿Qué cadena y qué sucursal son más caras para la misma canasta?
+## Lo que muestran los datos
+
+Con datos al 11 de noviembre de 2026:
+
+- **Cuando el dólar bajó, los precios no.** De diciembre de 2024 a mayo de 2025 el dólar paralelo subió 47 % y la canasta de mercado 22 %. De mayo a diciembre de 2025 el dólar bajó 41 %, pero la canasta siguió subiendo: 21 %.
+- **La canasta en mercados subió 36 % en un año**, sobre todo por los frescos: tomate y cebolla, +113 %.
+- **El súper suele ser más caro, pero no en todo.** 6 de 12 productos cuestan más en Hipermaxi que en los mercados; la papaya, 42 % más. El azúcar, 46 % menos.
+- **Las 5 sucursales cobran casi lo mismo**: 0,7 % de diferencia sobre los productos que tienen todas. Lo que cambia es qué productos publican en línea.
+
+Las cifras del sitio se recalculan cada día desde los datos; estas son una foto.
+
+## Cómo funciona
+
+```mermaid
+flowchart LR
+    H[API pública de Hipermaxi] --> R[Recolector en Python]
+    B[PDF del BCB] --> R
+    D[Informes de la Defensoría] --> C[CSV versionados con su fuente]
+    P[Boletines del CEED] --> C
+    R --> DB[(PostgreSQL en Supabase)]
+    C --> DB
+    DB --> X[Exportación y modelos]
+    X --> J[dashboard.json]
+    J --> S[Sitio React en GitHub Pages]
+    GA[GitHub Actions, 07:17 cada día] -.-> R
+    GA -.-> X
+```
+
+1. **Recolección diaria.** GitHub Actions recolecta unos 58.000 precios por día con pausas entre pedidos, respetando el `robots.txt`, y actualiza el tipo de cambio del BCB.
+2. **Canasta.** Reglas versionadas en TOML emparejan los productos de la tienda con los 13 productos de la canasta de la Defensoría; el precio típico es la mediana y el económico, el mínimo.
+3. **Historia.** Los precios de mercado y el dólar paralelo de 2024-2025 se extrajeron de informes en PDF y boletines, se validaron contra los totales publicados y quedaron en CSV con la fuente de cada fila.
+4. **Publicación.** `observatorio exportar` arma un JSON con todo lo que muestra el sitio, y el sitio estático se publica en GitHub Pages después de cada recolección.
+
+## Modelos
+
+Dos modelos señalan qué revisar, sin cambiar nada por su cuenta ([detalle](docs/modelos.md)):
+
+- **Sugerencias de emparejamiento (TF-IDF de n-gramas de caracteres).** Busca productos parecidos a los que la canasta ya acepta y explica qué regla los deja fuera. Encontró packs de huevos que faltaban y pastas sin gluten que no debían contar como fideo.
+- **Precios anómalos (z-score modificado).** Marca los meses en que un producto se movió muy distinto al resto de la canasta, descontando la inflación y el dólar que mueven a todos. Separa saltos reales (cebolla +140 % en un mes) de probables errores del sondeo.
+
+<img src="docs/img/movil.png" alt="Pantalla súper vs. mercado en el celular" width="300" align="right">
+
+## Pantallas
+
+| Pantalla | Pregunta |
+|---|---|
+| Resumen | ¿Cuánto cuesta la canasta hoy y qué pasó con el dólar? |
+| Súper vs. mercado | ¿Es más caro el supermercado, producto por producto? |
+| Productos | ¿Qué productos de la tienda cuentan para cada ítem y a cuánto? |
+| Modelos | ¿Qué se les escapa a las reglas y qué precios saltaron? |
+| Fuentes y método | ¿De dónde sale cada número y con qué supuestos? |
 
 ## Fuentes
 
 | Fuente | Qué se toma | Estado |
 |---|---|---|
-| Hipermaxi (5 sucursales de Cochabamba) | Nombre, categoría, presentación, precio, oferta y stock | Funcionando |
-| Banco Central de Bolivia | Tipo de cambio oficial diario (desde 2008) | Funcionando |
+| Hipermaxi (5 sucursales de Cochabamba) | Nombre, categoría, presentación, precio, oferta y stock | Diario desde nov 2026 |
+| Banco Central de Bolivia | Tipo de cambio oficial diario (desde 2008) | Diario |
 | Dólar paralelo (CEED de CADECOCRUZ) | Cierre mensual aproximado (ago 2024 – dic 2025) | Cargado ([detalle](fuentes/dolar_paralelo/README.md)) |
 | Defensoría del Pueblo | Precios de mercado mensuales de 21 alimentos en Cochabamba (ago 2024 – dic 2025) | Cargado ([detalle](fuentes/defensoria/README.md)) |
 | IC Norte | — | Descartada: su sitio actual solo muestra promociones y toma pedidos por WhatsApp |
@@ -25,10 +73,11 @@ Seguimiento diario de los precios de la canasta familiar en supermercados de Coc
 
 | Capa | Tecnología |
 |---|---|
-| Recolección | Python 3.12, httpx, selectolax (lexbor) |
-| Datos | PostgreSQL con migraciones versionadas |
+| Recolección | Python 3.12, httpx, selectolax (lexbor), pdfplumber |
+| Datos | PostgreSQL (Supabase) con migraciones versionadas y RLS |
+| Modelos | scikit-learn (TF-IDF), NumPy |
 | Programación | GitHub Actions con cron diario |
-| Dashboard | Vite, React, TypeScript, gráficos SVG propios; GitHub Pages |
+| Sitio | Vite, React, TypeScript, gráficos SVG propios; GitHub Pages |
 | Calidad | pytest (con PostgreSQL real), Ruff, Vitest y Testing Library |
 
 ## Desarrollo
@@ -82,13 +131,14 @@ El costo diario se mide sobre la canasta básica de alimentos de la Defensoría 
 
 ```bash
 observatorio canasta revisar canastas/defensoria_semanal.toml   # qué producto quedó en cada ítem
+observatorio canasta sugerir canastas/defensoria_semanal.toml   # qué se les escapa a las reglas
 ```
 
 Detalle, supuestos y limitaciones en [`docs/canasta.md`](docs/canasta.md).
 
 ## Dashboard
 
-Sitio estático en [`web/`](web) (Vite, React y TypeScript) con cuatro pantallas: resumen, súper vs. mercado, productos y fuentes. No consulta la base: `observatorio exportar` genera un JSON con todo lo que muestra, y el flujo [`sitio.yml`](.github/workflows/sitio.yml) lo construye y publica en GitHub Pages después de cada recolección diaria.
+Sitio estático en [`web/`](web) (Vite, React y TypeScript) con cinco pantallas: resumen, súper vs. mercado, productos, modelos y fuentes. No consulta la base: `observatorio exportar` genera un JSON con todo lo que muestra, y el flujo [`sitio.yml`](.github/workflows/sitio.yml) lo construye y publica en GitHub Pages después de cada recolección diaria.
 
 ```bash
 observatorio exportar --canasta canastas/defensoria_semanal.toml --salida web/public/data/dashboard.json
@@ -105,3 +155,4 @@ Los datos que no se recolectan a diario (tipo de cambio de años anteriores, pre
 - [`reglas.md`](reglas.md): ramas, commits y estándares de código
 - [`docs/modelo-datos.md`](docs/modelo-datos.md): tablas y decisiones del modelo
 - [`docs/canasta.md`](docs/canasta.md): cómo se calcula el costo de la canasta
+- [`docs/modelos.md`](docs/modelos.md): sugerencias de emparejamiento y precios anómalos

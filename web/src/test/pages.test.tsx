@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Fuentes } from '../pages/Fuentes';
+import { Modelos } from '../pages/Modelos';
 import { Productos } from '../pages/Productos';
 import { Resumen } from '../pages/Resumen';
 import { SuperVsMercado } from '../pages/SuperVsMercado';
@@ -59,5 +60,45 @@ describe('pantallas con datos reales', () => {
     render(<Fuentes data={data} />);
     expect(screen.getByText(/2 sucursales/)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Cómo se calcula la canasta' })).toBeInTheDocument();
+  });
+
+  it('modelos muestra la evaluación, sugerencias con su motivo y saltos de mercado', () => {
+    render(<Modelos data={data} />);
+    expect(screen.getByText('81 %')).toBeInTheDocument();
+    expect(screen.getByText(/99 de 122/)).toBeInTheDocument();
+    const fideo = screen.getByRole('heading', { name: /Fideo corto/ }).closest('section')!;
+    expect(within(fideo).getAllByText('presentación fuera de rango').length).toBeGreaterThan(0);
+    expect(within(fideo).getAllByText('aceptado, poco parecido al resto').length).toBeGreaterThan(0);
+    const rows = screen.getAllByRole('row').slice(1);
+    expect(within(rows[0]).getByRole('rowheader')).toHaveTextContent('Pulpa de res');
+    expect(screen.getByText('Se activa con 8 días de precios')).toBeInTheDocument();
+  });
+
+  it('modelos lista saltos del súper cuando hay historial', () => {
+    const withHistory: DashboardData = {
+      ...data,
+      anomalias: {
+        ...data.anomalias,
+        super: {
+          ...data.anomalias.super,
+          dias: 10,
+          items: [
+            {
+              nombre: 'Aceite Fino 900 ml',
+              sucursal: 'HIPERMAXI SACABA',
+              precio: 12,
+              mediana_previa: 20,
+              dias_previos: 9,
+              cambio_pct: -40,
+              oferta: true,
+            },
+          ],
+        },
+      },
+    };
+    render(<Modelos data={withHistory} />);
+    expect(screen.getByText('Aceite Fino 900 ml')).toBeInTheDocument();
+    expect(screen.getByText('en oferta')).toBeInTheDocument();
+    expect(screen.getByText('−40 %')).toBeInTheDocument();
   });
 });

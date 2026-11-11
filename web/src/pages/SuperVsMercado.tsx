@@ -77,7 +77,7 @@ export function SuperVsMercado({ data }: { data: DashboardData }) {
         {rows.length === 0 && <EmptyState title="Todavía no hay productos comparables" />}
         {rows.length > 0 && (
           <div className="table-scroll">
-            <table className="table">
+            <table className="table stack">
               <thead>
                 <tr>
                   <th scope="col">Producto</th>
@@ -92,11 +92,11 @@ export function SuperVsMercado({ data }: { data: DashboardData }) {
                 {rows.map((row) => (
                   <tr key={row.codigo}>
                     <th scope="row">{row.nombre}</th>
-                    <td className="muted">{row.presentacion}</td>
-                    <td className="num mono">{money(row.mercado)}</td>
-                    <td className="num mono tone-price">{money(row.super_tipico)}</td>
-                    <td className="num mono">{money(row.super_minimo)}</td>
-                    <td>
+                    <td className="muted" data-label="Presentación">{row.presentacion}</td>
+                    <td className="num mono" data-label="Mercado">{money(row.mercado)}</td>
+                    <td className="num mono tone-price" data-label="Súper típico">{money(row.super_tipico)}</td>
+                    <td className="num mono" data-label="Súper mínimo">{money(row.super_minimo)}</td>
+                    <td data-label="Súper vs. mercado">
                       <span className="diff-cell">
                         <DivergingBar value={row.diferencia_pct} limit={DIFF_LIMIT} />
                         <span className="mono">{percent(row.diferencia_pct)}</span>

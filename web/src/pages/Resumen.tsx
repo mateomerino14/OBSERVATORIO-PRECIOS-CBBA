@@ -4,6 +4,7 @@ import { Bar, Figure, KpiCard, LegendItem } from '../components/Layout';
 import { LineChart, type Marker } from '../components/LineChart';
 import { longDate, money, monthOf, monthRange, number, percent, shortMonth } from '../format';
 import { branchLabel } from './Productos';
+import { buildFindings } from '../findings';
 import type { DashboardData } from '../types';
 
 const INK = '#1B1F24';
@@ -117,6 +118,8 @@ export function Resumen({ data }: { data: DashboardData }) {
   const maxBranch = Math.max(...latestBranches.map((row) => row.tipico), 1);
   const commonItems = latestBranches[0]?.items ?? 0;
 
+  const findings = buildFindings(data);
+
   let marketChangeText = '—';
   if (marketChange !== null) {
     marketChangeText = percent(marketChange);
@@ -155,12 +158,27 @@ export function Resumen({ data }: { data: DashboardData }) {
         />
       </section>
 
+      {findings.length > 0 && (
+        <section aria-labelledby="hallazgos" className="findings">
+          <h2 id="hallazgos" className="section-title">Lo que muestran los datos</h2>
+          <ol>
+            {findings.map((finding) => (
+              <li key={finding.id} className="card finding">
+                <span className="finding-value mono">{finding.value}</span>
+                <h3>{finding.title}</h3>
+                <p>{finding.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       <section className="row">
         <Figure
           className="grow"
           title="La misma canasta, en el mercado y en el súper"
           subtitle={`Bs por semana, los ${data.canasta_mercado.productos_comparables.length} productos que vende Hipermaxi`}
-          source="Mercado: Defensoría del Pueblo, mensual. Súper: Hipermaxi, diario (promedio de sucursales)."
+          source="Mercado: Defensoría del Pueblo, mensual. Súper: Hipermaxi, diario, con los productos de todas las sucursales."
         >
           <LineChart
             categories={months}

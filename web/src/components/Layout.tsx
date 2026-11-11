@@ -1,13 +1,14 @@
 // Piezas de diseño compartidas: encabezado, tarjetas de indicador, figuras y barras.
 
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
-export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'fuentes';
+export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'modelos' | 'fuentes';
 
 const LINKS: { route: Route; label: string }[] = [
   { route: 'resumen', label: 'Resumen' },
   { route: 'super-vs-mercado', label: 'Súper vs. mercado' },
   { route: 'productos', label: 'Productos' },
+  { route: 'modelos', label: 'Modelos' },
   { route: 'fuentes', label: 'Fuentes y método' },
 ];
 
@@ -21,6 +22,25 @@ function currentFlag(route: Route, current: Route): 'page' | undefined {
 
 /** Encabezado con el nombre del proyecto y la navegación entre pantallas. */
 export function Header({ current }: { current: Route }) {
+  const navRef = useRef<HTMLElement>(null);
+
+  // En móvil la navegación se desliza: deja visible la pantalla actual.
+  useEffect(() => {
+    const center = () => {
+      const nav = navRef.current;
+      const active = nav?.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!nav || !active) {
+        return;
+      }
+      const navBox = nav.getBoundingClientRect();
+      const activeBox = active.getBoundingClientRect();
+      nav.scrollLeft += activeBox.left - navBox.left - (navBox.width - activeBox.width) / 2;
+    };
+    center();
+    // Con la fuente web cargada los enlaces son más anchos: se vuelve a centrar.
+    document.fonts?.ready.then(center);
+  }, [current]);
+
   return (
     <header className="site-header">
       <div className="site-header-inner">
@@ -28,7 +48,7 @@ export function Header({ current }: { current: Route }) {
           <span className="brand-name">Observatorio de Precios</span>
           <span className="brand-city">COCHABAMBA</span>
         </a>
-        <nav aria-label="Secciones" className="nav">
+        <nav aria-label="Secciones" className="nav" ref={navRef}>
           {LINKS.map((link) => (
             <a
               key={link.route}
