@@ -1,16 +1,8 @@
 // Piezas de diseño compartidas: encabezado, tarjetas de indicador, figuras y barras.
 
 import { useEffect, useRef, type ReactNode } from 'react';
+import { SCREENS, type Route } from '../routes';
 
-export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'modelos' | 'fuentes';
-
-const LINKS: { route: Route; label: string }[] = [
-  { route: 'resumen', label: 'Resumen' },
-  { route: 'super-vs-mercado', label: 'Súper vs. mercado' },
-  { route: 'productos', label: 'Productos' },
-  { route: 'modelos', label: 'Modelos' },
-  { route: 'fuentes', label: 'Fuentes y método' },
-];
 
 /** Valor de aria-current para un enlace: "page" solo en la pantalla actual. */
 function currentFlag(route: Route, current: Route): 'page' | undefined {
@@ -49,7 +41,7 @@ export function Header({ current }: { current: Route }) {
           <span className="brand-city">COCHABAMBA</span>
         </a>
         <nav aria-label="Secciones" className="nav" ref={navRef}>
-          {LINKS.map((link) => (
+          {SCREENS.map((link) => (
             <a
               key={link.route}
               href={`#/${link.route}`}
@@ -68,10 +60,14 @@ export function Header({ current }: { current: Route }) {
 /** Tarjeta con un número destacado. */
 export function KpiCard(props: { label: string; value: string; unit?: string; note?: ReactNode; tone?: 'price' | 'dollar' | 'muted' }) {
   const showUnit = Boolean(props.unit) && props.value !== '—';
+  let valueClass = 'kpi-value';
+  if (props.tone) {
+    valueClass = `kpi-value tone-${props.tone}`;
+  }
   return (
     <div className="card kpi">
       <span className="kpi-label">{props.label}</span>
-      <span className={`kpi-value tone-${props.tone ?? 'ink'}`}>
+      <span className={valueClass}>
         {props.value}
         {showUnit && <span className="kpi-unit"> /{props.unit}</span>}
       </span>

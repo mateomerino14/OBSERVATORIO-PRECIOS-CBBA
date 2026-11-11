@@ -1,23 +1,23 @@
 // Pantalla 4: modelos sobre los datos (emparejamiento, grupos de k-means y precios anómalos).
 
 import { EmptyState, Figure, KpiCard } from '../components/Layout';
-import { niceTicks, ScatterChart } from '../components/ScatterChart';
-import { money, number, percent, shortMonth } from '../format';
+import { ScatterChart } from '../components/ScatterChart';
+import { niceTicks } from '../components/ticks';
+import { GROUP_COLORS } from '../colors';
+import { branchLabel, money, number, percent, shortMonth } from '../format';
 import type { DashboardData, MarketGroups, RejectionReason, SuggestionRow } from '../types';
-import { branchLabel } from './Productos';
 
-export const REASONS: Record<RejectionReason, string> = {
+const REASONS: Record<RejectionReason, string> = {
   nombre: 'el nombre no coincide',
   subcategoria: 'otra subcategoría',
   presentacion: 'presentación fuera de rango',
   aceptado: 'aceptado, poco parecido al resto',
 };
 
-export const GROUP_COLORS = ['#5B6470', '#B4500B', '#1F7A5C', '#7A4FB0', '#1F5FAD', '#8A6D1F'];
 const TICK_STEP = 25;
 
 /** "k = 3, la silueta más alta (0,39; con 2: 0,35; con 4: 0,34)". */
-export function silhouetteNote(groups: MarketGroups): string {
+function silhouetteNote(groups: MarketGroups): string {
   const chosen = groups.siluetas.find((row) => row.k === groups.k);
   const others = groups.siluetas
     .filter((row) => row.k !== groups.k)
@@ -26,6 +26,7 @@ export function silhouetteNote(groups: MarketGroups): string {
   return `k = ${groups.k}, la silueta más alta (${number(chosen?.silueta ?? 0)}; ${others})`;
 }
 
+/** Dispersión de los alimentos de mercado y la lista de sus grupos de k-means. */
 function GroupsFigure({ groups }: { groups: MarketGroups }) {
   const xs = groups.productos.map((row) => row.subida_pct);
   const ys = groups.productos.map((row) => row.bajada_pct);
@@ -73,6 +74,7 @@ function GroupsFigure({ groups }: { groups: MarketGroups }) {
   );
 }
 
+/** Una sugerencia del modelo con su motivo y su similitud. */
 function SuggestionLine({ row, doubtful }: { row: SuggestionRow; doubtful?: boolean }) {
   let className = 'reason';
   if (doubtful) {
@@ -89,6 +91,7 @@ function SuggestionLine({ row, doubtful }: { row: SuggestionRow; doubtful?: bool
   );
 }
 
+/** Pantalla de modelos: sugerencias, grupos y precios anómalos. */
 export function Modelos({ data }: { data: DashboardData }) {
   const suggestions = data.sugerencias;
   const market = data.anomalias.mercado;

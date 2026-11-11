@@ -3,7 +3,10 @@
 import { percent, shortMonth } from './format';
 import type { DashboardData } from './types';
 
-export interface Finding {
+/** Meses mínimos con dólar y canasta para hablar de subida y bajada. */
+const MIN_CYCLE_MONTHS = 3;
+
+interface Finding {
   id: string;
   /** Cifra destacada, por ejemplo "+21 %". */
   value: string;
@@ -11,15 +14,12 @@ export interface Finding {
   text: string;
 }
 
+/** Cambio porcentual entre dos valores. */
 function change(from: number, to: number): number {
   return (to / from - 1) * 100;
 }
 
-/**
- * Subida y bajada del dólar paralelo frente a la canasta de mercado, con los mismos tramos
- * que el gráfico de "Súper vs. mercado": desde el primer diciembre con ambos datos (o el
- * primer mes) hasta el pico del paralelo, y del pico al último mes con ambos datos.
- */
+/** Subida (primer diciembre → pico) y bajada (pico → último mes) del paralelo frente a la canasta. */
 export function dollarCycle(data: DashboardData) {
   const basket = new Map(
     data.canasta_mercado.por_mes
@@ -27,7 +27,7 @@ export function dollarCycle(data: DashboardData) {
       .map((row) => [row.mes, row.total as number]),
   );
   const months = data.dolar.paralelo_mensual.filter((row) => basket.has(row.mes));
-  if (months.length < 3) {
+  if (months.length < MIN_CYCLE_MONTHS) {
     return null;
   }
   let peak = 0;
@@ -54,6 +54,7 @@ export function dollarCycle(data: DashboardData) {
   };
 }
 
+/** Hallazgos del Resumen; omite los que no tienen datos suficientes. */
 export function buildFindings(data: DashboardData): Finding[] {
   const findings: Finding[] = [];
 

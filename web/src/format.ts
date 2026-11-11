@@ -24,6 +24,9 @@ export function money(value: number | null | undefined, decimals = 2): string {
 
 /** Espacio que no se corta al final de una línea: "+22 %" nunca queda en dos renglones. */
 const NBSP = '\u00a0';
+// Palabras que van en minúscula dentro de un nombre de sucursal, y tildes que la tienda omite.
+const SMALL_WORDS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y']);
+const ACCENTS: Record<string, string> = { circunvalacion: 'circunvalación' };
 
 /** Porcentaje con signo y signo menos tipográfico: "+22 %", "−45 %". */
 export function percent(value: number, decimals = 0): string {
@@ -65,7 +68,7 @@ export function monthRange(from: string, to: string): string[] {
   while (year < endYear || (year === endYear && month <= endMonth)) {
     months.push(`${year}-${String(month).padStart(2, '0')}-01`);
     month += 1;
-    if (month > 12) {
+    if (month > MONTHS.length) {
       month = 1;
       year += 1;
     }
@@ -76,4 +79,20 @@ export function monthRange(from: string, to: string): string[] {
 /** Primer día del mes de una fecha ISO. */
 export function monthOf(iso: string): string {
   return `${iso.slice(0, 7)}-01`;
+}
+
+/** "HIPERMAXI JUAN DE LA ROSA" -> "Juan de la Rosa". */
+export function branchLabel(name: string): string {
+  return name
+    .replace(/^HIPERMAXI\s+/i, '')
+    .toLowerCase()
+    .split(/\s+/)
+    .map((word, index) => {
+      const fixed = ACCENTS[word] ?? word;
+      if (index > 0 && SMALL_WORDS.has(fixed)) {
+        return fixed;
+      }
+      return fixed.charAt(0).toUpperCase() + fixed.slice(1);
+    })
+    .join(' ');
 }
