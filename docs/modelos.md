@@ -1,6 +1,6 @@
 # Modelos
 
-Dos modelos ayudan a revisar los datos. Ninguno cambia un precio ni una regla por su cuenta: señalan qué mirar y una persona decide. Sus resultados se ven en la pantalla **Modelos** del sitio.
+Tres modelos ayudan a leer los datos. Ninguno cambia un precio ni una regla por su cuenta: señalan qué mirar o describen patrones, y una persona decide. Sus resultados se ven en la pantalla **Modelos** del sitio.
 
 ## 1. Sugerencias de emparejamiento
 
@@ -45,8 +45,31 @@ Entre agosto de 2024 y diciembre de 2025 marca 11 de 294 cambios mensuales. Por 
 
 **Supermercado, diario.** Para los productos de la canasta, se compara el precio del último día con la **mediana de los días anteriores** del mismo producto en la misma sucursal, en una ventana de 14 días. Se marca un cambio de 20 % o más con al menos 7 días previos, e indica si el producto está en oferta, porque una oferta explica una bajada. Se activa solo cuando la recolección diaria junta 8 días.
 
+## 3. Grupos de alimentos frente al dólar (k-means)
+
+**Pregunta.** ¿Todos los alimentos se movieron igual con el dólar paralelo, o hay patrones distintos?
+
+**Método** ([`src/observatory/clusters.py`](../src/observatory/clusters.py)):
+
+1. Las etapas salen del paralelo, igual que los hallazgos del Resumen: la subida va del primer diciembre con datos al mes del pico (dic 2024 → may 2025) y la bajada, del pico al último mes (may → dic 2025).
+2. Cada alimento de la Defensoría se describe con tres números: su cambio de precio en la subida, su cambio en la bajada y su **volatilidad** (MAD de los cambios mensuales). Cada punto de las etapas es un promedio de tres meses, para que un sondeo ruidoso pese menos.
+3. Los tres números se estandarizan y se agrupan con **k-means**. Se prueba k de 2 a 6 y se elige el de mayor **índice de silueta**, descartando los k que dejan un grupo de un solo producto.
+
+**Resultado.** k = 3, con silueta 0,39 (con 2: 0,35; con 4: 0,34). Es una estructura moderada: los grupos son razonables, pero no tajantes.
+
+| Grupo | Subida | Bajada | Productos |
+|---|---|---|---|
+| Estables | +20 % | +2 % | aceite, arroz, fideo, huevos, leches, margarina, naranja, pollo y carnes |
+| Saltaron con la subida del dólar | +121 % | −9 % | cebolla, harina de trigo |
+| Variables, siguieron subiendo | +30 % | +30 % | tomate, zanahoria, frutas, azúcar, avena |
+
+**Lectura.** Matiza el hallazgo "cuando el dólar bajó, los precios no". Varios básicos industriales sí devolvieron parte de la subida: arroz −14 %, margarina −19 %, aceite −7 %. Los que siguieron subiendo son sobre todo frescos, que dependen también de cosechas y clima.
+
+Los nombres de los grupos salen de sus centros: el de menor volatilidad es "Estables" y, de los otros, el de mayor subida es "Saltaron con la subida del dólar". Con otro k los grupos se numeran.
+
 ## Límites
 
 - La similitud de texto no entiende de productos: "Picaña Especial" se parece a "Peceto Especial". Por eso sugiere y no decide.
 - El modelo solo ve el nombre y la subcategoría; no ve la foto ni la descripción de la tienda.
 - El sondeo de la Defensoría tiene pocos meses (16) y es ruidoso: una anomalía de mercado es una pista para revisar, no una conclusión.
+- Los grupos de k-means se arman con 21 productos: describen la historia, no predicen. Con un par de meses de precios diarios del súper se puede repetir el análisis con cientos de productos.

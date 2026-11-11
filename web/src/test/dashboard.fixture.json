@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado_en": "2026-11-11T16:48:44+00:00",
+ "generado_en": "2026-11-11T17:20:48+00:00",
  "ciudad": "cochabamba",
  "ultimo_dia": "2026-11-08",
  "ultima_corrida": null,
@@ -19,14 +19,14 @@
   "hoy": {
    "fecha": "2026-11-08",
    "tipico": 193.34,
-   "economico": 172.96,
+   "economico": 173.33,
    "items": 8
   },
   "ciudad_por_dia": [
    {
     "fecha": "2026-11-08",
     "tipico": 193.34,
-    "economico": 172.96,
+    "economico": 173.33,
     "items": 8
    }
   ],
@@ -42,8 +42,8 @@
    {
     "fecha": "2026-11-08",
     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
-    "tipico": 193.2,
-    "economico": 173.04,
+    "tipico": 193.26,
+    "economico": 173.4,
     "items": 8,
     "items_sucursal": 8
    }
@@ -386,7 +386,7 @@
     "presentacion": "1 unidad",
     "mercado": 1.09,
     "super_tipico": 1.33,
-    "super_minimo": 1.06,
+    "super_minimo": 1.1,
     "diferencia_pct": 22.0
    },
    {
@@ -2263,8 +2263,8 @@
    "unidad_visible": "unidad",
    "hoy": {
     "tipico": 1.33,
-    "minimo": 1.06,
-    "productos": 51
+    "minimo": 1.1,
+    "productos": 47
    },
    "mercado_mensual": [
     {
@@ -2343,30 +2343,16 @@
      "fecha": "2026-11-08",
      "sucursal": "HIPERMAXI JUAN DE LA ROSA",
      "tipico": 1.33,
-     "minimo": 1.06
+     "minimo": 1.1
     }
    ],
    "tienda": [
-    {
-     "nombre": "Huevo Nido de Oro Pequeño Maple de 30 un",
-     "precio": 31.8,
-     "precio_unidad": 1.06,
-     "sucursales": 1,
-     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673807/huevo-nido-de-oro-pequeno-maple-de-30-un"
-    },
     {
      "nombre": "Huevo Nido de Oro Mediano Maple 30 un",
      "precio": 32.9,
      "precio_unidad": 1.1,
      "sucursales": 1,
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673806/huevo-nido-de-oro-mediano-maple-30-un"
-    },
-    {
-     "nombre": "Huevo Nido de Oro Grande Maple 30 un",
-     "precio": 34.7,
-     "precio_unidad": 1.16,
-     "sucursales": 1,
-     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673805/huevo-nido-de-oro-grande-maple-30-un"
     },
     {
      "nombre": "Pack Huevo de Oro 12 un",
@@ -2388,13 +2374,6 @@
      "precio_unidad": 1.18,
      "sucursales": 1,
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/671544/maple-de-30-huevos-la-granja-30uni"
-    },
-    {
-     "nombre": "Huevo Sofia Maple Grande 30 un",
-     "precio": 37.0,
-     "precio_unidad": 1.23,
-     "sucursales": 2,
-     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552257/huevo-sofia-maple-grande-30-un"
     },
     {
      "nombre": "PACK 6 UNIDADES HUEVOS NIDO DE ORO",
@@ -2570,7 +2549,7 @@
  "sugerencias": {
   "productos_catalogo": 13007,
   "evaluacion": {
-   "casos": 122,
+   "casos": 119,
    "encontrados": 99,
    "top": 10,
    "puesto_mediano": 2.0
@@ -2891,30 +2870,30 @@
    {
     "codigo": "huevos",
     "nombre": "Huevos de gallina medianos",
-    "aceptados": 31,
-    "umbral": 0.57,
+    "aceptados": 28,
+    "umbral": 0.58,
     "candidatos": [],
     "dudosos": [
      {
-      "nombre": "Huevo Nido de Oro Pequeño Maple de 30 un",
+      "nombre": "Huevo Sofia Maple Mediano 30 un",
       "subcategoria": "Huevos",
-      "similitud": 0.55,
+      "similitud": 0.52,
       "motivo": "aceptado",
-      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673807/huevo-nido-de-oro-pequeno-maple-de-30-un"
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/552256/huevo-sofia-maple-mediano-30-un"
+     },
+     {
+      "nombre": "Huevo Nido de Oro Mediano Maple 30 un",
+      "subcategoria": "Huevos",
+      "similitud": 0.53,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673806/huevo-nido-de-oro-mediano-maple-30-un"
      },
      {
       "nombre": "Huevo Sofia Mediano 12 un",
       "subcategoria": "Huevos",
-      "similitud": 0.55,
+      "similitud": 0.53,
       "motivo": "aceptado",
       "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552258/huevo-sofia-mediano-12-un"
-     },
-     {
-      "nombre": "Huevo Sofia Maple Grande 30 un",
-      "subcategoria": "Huevos",
-      "similitud": 0.56,
-      "motivo": "aceptado",
-      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552257/huevo-sofia-maple-grande-30-un"
      }
     ]
    }
@@ -3021,5 +3000,255 @@
    "cambio_minimo_pct": 20.0,
    "items": []
   }
+ },
+ "grupos_mercado": {
+  "etapas": {
+   "inicio": "2024-12-01",
+   "pico": "2025-05-01",
+   "fin": "2025-12-01"
+  },
+  "k": 3,
+  "siluetas": [
+   {
+    "k": 2,
+    "silueta": 0.351
+   },
+   {
+    "k": 3,
+    "silueta": 0.389
+   },
+   {
+    "k": 4,
+    "silueta": 0.339
+   },
+   {
+    "k": 5,
+    "silueta": 0.297
+   },
+   {
+    "k": 6,
+    "silueta": 0.298
+   }
+  ],
+  "grupos": [
+   {
+    "numero": 0,
+    "nombre": "Estables",
+    "volatilidad": 0.112,
+    "subida_pct": 20.0,
+    "bajada_pct": 1.5,
+    "productos": [
+     "aceite",
+     "arroz",
+     "fideo",
+     "huevos",
+     "leche_fluida",
+     "leche_polvo",
+     "margarina",
+     "naranja",
+     "pollo_entero",
+     "pulpa_res",
+     "res_molida"
+    ]
+   },
+   {
+    "numero": 1,
+    "nombre": "Saltaron con la subida del dólar",
+    "volatilidad": 0.219,
+    "subida_pct": 121.2,
+    "bajada_pct": -9.1,
+    "productos": [
+     "cebolla",
+     "harina_trigo"
+    ]
+   },
+   {
+    "numero": 2,
+    "nombre": "Variables, siguieron subiendo",
+    "volatilidad": 0.376,
+    "subida_pct": 30.4,
+    "bajada_pct": 30.2,
+    "productos": [
+     "avena",
+     "azucar",
+     "manzana",
+     "papaya",
+     "platano",
+     "platano_cocinar",
+     "tomate",
+     "zanahoria"
+    ]
+   }
+  ],
+  "productos": [
+   {
+    "codigo": "aceite",
+    "nombre": "Aceite",
+    "grupo": 0,
+    "volatilidad": 0.097,
+    "subida_pct": 45.9,
+    "bajada_pct": -6.6
+   },
+   {
+    "codigo": "arroz",
+    "nombre": "Arroz",
+    "grupo": 0,
+    "volatilidad": 0.048,
+    "subida_pct": 22.0,
+    "bajada_pct": -14.5
+   },
+   {
+    "codigo": "avena",
+    "nombre": "Avena",
+    "grupo": 2,
+    "volatilidad": 0.255,
+    "subida_pct": 24.7,
+    "bajada_pct": 24.3
+   },
+   {
+    "codigo": "azucar",
+    "nombre": "Azúcar",
+    "grupo": 2,
+    "volatilidad": 0.534,
+    "subida_pct": 41.3,
+    "bajada_pct": 16.9
+   },
+   {
+    "codigo": "cebolla",
+    "nombre": "Cebolla",
+    "grupo": 1,
+    "volatilidad": 0.255,
+    "subida_pct": 150.3,
+    "bajada_pct": 11.3
+   },
+   {
+    "codigo": "fideo",
+    "nombre": "Fideo",
+    "grupo": 0,
+    "volatilidad": 0.091,
+    "subida_pct": 42.0,
+    "bajada_pct": -2.8
+   },
+   {
+    "codigo": "harina_trigo",
+    "nombre": "Harina de trigo",
+    "grupo": 1,
+    "volatilidad": 0.182,
+    "subida_pct": 92.1,
+    "bajada_pct": -29.4
+   },
+   {
+    "codigo": "huevos",
+    "nombre": "Huevos",
+    "grupo": 0,
+    "volatilidad": 0.174,
+    "subida_pct": 5.8,
+    "bajada_pct": -0.9
+   },
+   {
+    "codigo": "leche_fluida",
+    "nombre": "Leche fluida",
+    "grupo": 0,
+    "volatilidad": 0.115,
+    "subida_pct": 12.9,
+    "bajada_pct": 15.9
+   },
+   {
+    "codigo": "leche_polvo",
+    "nombre": "Leche en polvo",
+    "grupo": 0,
+    "volatilidad": 0.017,
+    "subida_pct": 22.7,
+    "bajada_pct": 12.5
+   },
+   {
+    "codigo": "manzana",
+    "nombre": "Manzana",
+    "grupo": 2,
+    "volatilidad": 0.31,
+    "subida_pct": 35.7,
+    "bajada_pct": 13.1
+   },
+   {
+    "codigo": "margarina",
+    "nombre": "Margarina",
+    "grupo": 0,
+    "volatilidad": 0.217,
+    "subida_pct": 18.3,
+    "bajada_pct": -19.2
+   },
+   {
+    "codigo": "naranja",
+    "nombre": "Naranja",
+    "grupo": 0,
+    "volatilidad": 0.176,
+    "subida_pct": -5.7,
+    "bajada_pct": -9.0
+   },
+   {
+    "codigo": "papaya",
+    "nombre": "Papaya",
+    "grupo": 2,
+    "volatilidad": 0.278,
+    "subida_pct": -3.0,
+    "bajada_pct": 72.9
+   },
+   {
+    "codigo": "platano",
+    "nombre": "Plátano",
+    "grupo": 2,
+    "volatilidad": 0.362,
+    "subida_pct": 28.9,
+    "bajada_pct": 26.3
+   },
+   {
+    "codigo": "platano_cocinar",
+    "nombre": "Plátano para cocinar",
+    "grupo": 2,
+    "volatilidad": 0.288,
+    "subida_pct": 13.9,
+    "bajada_pct": 19.5
+   },
+   {
+    "codigo": "pollo_entero",
+    "nombre": "Pollo entero",
+    "grupo": 0,
+    "volatilidad": 0.17,
+    "subida_pct": 14.4,
+    "bajada_pct": 4.1
+   },
+   {
+    "codigo": "pulpa_res",
+    "nombre": "Pulpa de res",
+    "grupo": 0,
+    "volatilidad": 0.025,
+    "subida_pct": 20.9,
+    "bajada_pct": 17.5
+   },
+   {
+    "codigo": "res_molida",
+    "nombre": "Carne molida",
+    "grupo": 0,
+    "volatilidad": 0.095,
+    "subida_pct": 21.2,
+    "bajada_pct": 19.7
+   },
+   {
+    "codigo": "tomate",
+    "nombre": "Tomate",
+    "grupo": 2,
+    "volatilidad": 0.516,
+    "subida_pct": 43.8,
+    "bajada_pct": 52.8
+   },
+   {
+    "codigo": "zanahoria",
+    "nombre": "Zanahoria",
+    "grupo": 2,
+    "volatilidad": 0.468,
+    "subida_pct": 57.4,
+    "bajada_pct": 15.9
+   }
+  ]
  }
 }

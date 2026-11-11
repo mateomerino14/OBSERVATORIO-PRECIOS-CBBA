@@ -1,8 +1,9 @@
-// Pantalla 4: modelos que señalan qué revisar (emparejamiento y precios anómalos).
+// Pantalla 4: modelos sobre los datos (emparejamiento, grupos de k-means y precios anómalos).
 
 import { EmptyState, Figure, KpiCard } from '../components/Layout';
+import { niceTicks, ScatterChart } from '../components/ScatterChart';
 import { money, number, percent, shortMonth } from '../format';
-import type { DashboardData, RejectionReason, SuggestionRow } from '../types';
+import type { DashboardData, MarketGroups, RejectionReason, SuggestionRow } from '../types';
 import { branchLabel } from './Productos';
 
 export const REASONS: Record<RejectionReason, string> = {
@@ -11,6 +12,66 @@ export const REASONS: Record<RejectionReason, string> = {
   presentacion: 'presentación fuera de rango',
   aceptado: 'aceptado, poco parecido al resto',
 };
+
+export const GROUP_COLORS = ['#5B6470', '#B4500B', '#1F7A5C', '#7A4FB0', '#1F5FAD', '#8A6D1F'];
+const TICK_STEP = 25;
+
+/** "k = 3, la silueta más alta (0,39; con 2: 0,35; con 4: 0,34)". */
+export function silhouetteNote(groups: MarketGroups): string {
+  const chosen = groups.siluetas.find((row) => row.k === groups.k);
+  const others = groups.siluetas
+    .filter((row) => row.k !== groups.k)
+    .map((row) => `con ${row.k}: ${number(row.silueta)}`)
+    .join('; ');
+  return `k = ${groups.k}, la silueta más alta (${number(chosen?.silueta ?? 0)}; ${others})`;
+}
+
+function GroupsFigure({ groups }: { groups: MarketGroups }) {
+  const xs = groups.productos.map((row) => row.subida_pct);
+  const ys = groups.productos.map((row) => row.bajada_pct);
+  const rise = `${shortMonth(groups.etapas.inicio)} → ${shortMonth(groups.etapas.pico)}`;
+  const fall = `${shortMonth(groups.etapas.pico)} → ${shortMonth(groups.etapas.fin)}`;
+  return (
+    <Figure
+      title="Tres formas de moverse frente al dólar"
+      subtitle={`Cambio de precio de cada alimento de mercado mientras el dólar paralelo subía (${rise}) y mientras bajaba (${fall}). El color es el grupo que encontró k-means.`}
+      source={`Cada alimento se describe con tres números: esos dos cambios y su volatilidad mes a mes. Se agrupan con k-means: ${silhouetteNote(groups)}. Con ${groups.productos.length} productos los grupos describen, no predicen.`}
+    >
+      <ScatterChart
+        points={groups.productos.map((row) => ({
+          id: row.codigo,
+          label: row.nombre,
+          x: row.subida_pct,
+          y: row.bajada_pct,
+          color: GROUP_COLORS[row.grupo % GROUP_COLORS.length],
+        }))}
+        xTicks={niceTicks(Math.min(...xs, 0), Math.max(...xs), TICK_STEP)}
+        yTicks={niceTicks(Math.min(...ys, 0), Math.max(...ys), TICK_STEP)}
+        xTitle={`Cambio mientras el dólar subía (${rise})`}
+        yTitle="Mientras bajaba"
+        formatTick={(value) => `${value}\u00a0%`}
+        ariaLabel="Alimentos de mercado según su cambio de precio en la subida y en la bajada del dólar paralelo, coloreados por grupo"
+      />
+      <ul className="groups">
+        {groups.grupos.map((group) => {
+          const names = groups.productos.filter((row) => row.grupo === group.numero).map((row) => row.nombre);
+          return (
+            <li key={group.numero} className="group">
+              <h3>
+                <span className="swatch" style={{ background: GROUP_COLORS[group.numero % GROUP_COLORS.length] }} />
+                {group.nombre}
+              </h3>
+              <p className="muted small">
+                Subida {percent(group.subida_pct)}, bajada {percent(group.bajada_pct)}, volatilidad {number(group.volatilidad)}
+              </p>
+              <p>{names.join(', ')}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </Figure>
+  );
+}
 
 function SuggestionLine({ row, doubtful }: { row: SuggestionRow; doubtful?: boolean }) {
   let className = 'reason';
@@ -54,9 +115,9 @@ export function Modelos({ data }: { data: DashboardData }) {
   return (
     <main className="page">
       <section className="intro">
-        <h1>Dos modelos para saber qué revisar</h1>
+        <h1>Modelos sobre los datos</h1>
         <p className="lead">
-          No cambian ningún precio. El primero busca productos que las reglas de la canasta podrían estar dejando fuera; el segundo, saltos de precio que no siguen al resto del mercado.
+          Ninguno cambia un precio. Uno busca productos que las reglas de la canasta podrían estar dejando fuera, otro agrupa los alimentos según cómo se movieron frente al dólar y otro marca saltos de precio que no siguen al resto.
         </p>
       </section>
 
@@ -104,6 +165,8 @@ export function Modelos({ data }: { data: DashboardData }) {
           </div>
         )}
       </Figure>
+
+      {data.grupos_mercado && <GroupsFigure groups={data.grupos_mercado} />}
 
       <Figure
         title="Saltos de precio en los mercados"
