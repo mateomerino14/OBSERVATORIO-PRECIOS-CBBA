@@ -1,0 +1,2561 @@
+{
+ "version": 1,
+ "generado_en": "2026-11-11T15:23:00+00:00",
+ "ciudad": "cochabamba",
+ "ultimo_dia": "2026-11-08",
+ "ultima_corrida": null,
+ "cobertura": {
+  "sucursales": 2,
+  "productos": 13007,
+  "dias": 1,
+  "primer_dia": "2026-11-08"
+ },
+ "canasta": {
+  "codigo": "defensoria_semanal",
+  "nombre": "Canasta básica de alimentos (Defensoría del Pueblo)",
+  "personas": 4,
+  "periodo": "semanal",
+  "items_total": 13,
+  "hoy": {
+   "fecha": "2026-11-08",
+   "tipico": 193.44,
+   "economico": 174.87,
+   "items": 8
+  },
+  "ciudad_por_dia": [
+   {
+    "fecha": "2026-11-08",
+    "tipico": 193.44,
+    "economico": 174.87,
+    "items": 8
+   }
+  ],
+  "por_sucursal": [
+   {
+    "fecha": "2026-11-08",
+    "sucursal": "HIPERMAXI BLANCO GALINDO",
+    "tipico": 193.65,
+    "economico": 176.7,
+    "items": 8
+   },
+   {
+    "fecha": "2026-11-08",
+    "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+    "tipico": 193.23,
+    "economico": 173.04,
+    "items": 8
+   }
+  ]
+ },
+ "canasta_mercado": {
+  "productos_comparables": [
+   "arroz",
+   "azucar",
+   "fideo",
+   "harina_trigo",
+   "huevos",
+   "leche_fluida",
+   "pollo_entero",
+   "pulpa_res"
+  ],
+  "por_mes": [
+   {
+    "mes": "2024-08-01",
+    "total": 139.97,
+    "comparable": 114.97
+   },
+   {
+    "mes": "2024-10-01",
+    "total": 190.4,
+    "comparable": 148.04
+   },
+   {
+    "mes": "2024-11-01",
+    "total": 162.98,
+    "comparable": 132.71
+   },
+   {
+    "mes": "2024-12-01",
+    "total": 168.16,
+    "comparable": 141.61
+   },
+   {
+    "mes": "2025-01-01",
+    "total": 171.59,
+    "comparable": 136.36
+   },
+   {
+    "mes": "2025-02-01",
+    "total": 170.05,
+    "comparable": 142.86
+   },
+   {
+    "mes": "2025-03-01",
+    "total": 194.96,
+    "comparable": 156.57
+   },
+   {
+    "mes": "2025-04-01",
+    "total": 218.52,
+    "comparable": 163.24
+   },
+   {
+    "mes": "2025-05-01",
+    "total": 205.58,
+    "comparable": 161.4
+   },
+   {
+    "mes": "2025-06-01",
+    "total": 216.63,
+    "comparable": 182.4
+   },
+   {
+    "mes": "2025-07-01",
+    "total": 218.21,
+    "comparable": 173.7
+   },
+   {
+    "mes": "2025-08-01",
+    "total": 232.33,
+    "comparable": 183.3
+   },
+   {
+    "mes": "2025-09-01",
+    "total": 222.92,
+    "comparable": 171.87
+   },
+   {
+    "mes": "2025-10-01",
+    "total": 224.44,
+    "comparable": 172.3
+   },
+   {
+    "mes": "2025-11-01",
+    "total": 238.29,
+    "comparable": 182.24
+   },
+   {
+    "mes": "2025-12-01",
+    "total": 247.91,
+    "comparable": 174.75
+   }
+  ]
+ },
+ "dolar": {
+  "oficial_hoy": {
+   "fecha": "2026-11-11",
+   "venta": 11.71
+  },
+  "fin_tipo_fijo": {
+   "fecha": "2026-06-26",
+   "venta": 6.96
+  },
+  "oficial_mensual": [
+   {
+    "mes": "2024-01-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-02-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-03-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-04-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-05-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-06-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-07-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-08-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-09-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-10-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-11-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2024-12-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-01-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-02-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-03-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-04-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-05-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-06-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-07-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-08-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-09-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-10-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-11-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2025-12-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-01-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-02-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-03-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-04-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-05-01",
+    "venta": 6.96
+   },
+   {
+    "mes": "2026-06-01",
+    "venta": 7.49
+   },
+   {
+    "mes": "2026-07-01",
+    "venta": 10.68
+   },
+   {
+    "mes": "2026-08-01",
+    "venta": 11.75
+   },
+   {
+    "mes": "2026-09-01",
+    "venta": 11.79
+   },
+   {
+    "mes": "2026-10-01",
+    "venta": 11.86
+   },
+   {
+    "mes": "2026-11-01",
+    "venta": 11.92
+   }
+  ],
+  "paralelo_mensual": [
+   {
+    "mes": "2024-08-01",
+    "venta": 11.22
+   },
+   {
+    "mes": "2024-09-01",
+    "venta": 10.47
+   },
+   {
+    "mes": "2024-10-01",
+    "venta": 10.64
+   },
+   {
+    "mes": "2024-11-01",
+    "venta": 10.74
+   },
+   {
+    "mes": "2024-12-01",
+    "venta": 11.12
+   },
+   {
+    "mes": "2025-01-01",
+    "venta": 11.25
+   },
+   {
+    "mes": "2025-02-01",
+    "venta": 11.38
+   },
+   {
+    "mes": "2025-03-01",
+    "venta": 12.42
+   },
+   {
+    "mes": "2025-04-01",
+    "venta": 15.25
+   },
+   {
+    "mes": "2025-05-01",
+    "venta": 16.39
+   },
+   {
+    "mes": "2025-06-01",
+    "venta": 14.96
+   },
+   {
+    "mes": "2025-07-01",
+    "venta": 13.96
+   },
+   {
+    "mes": "2025-08-01",
+    "venta": 12.29
+   },
+   {
+    "mes": "2025-09-01",
+    "venta": 12.62
+   },
+   {
+    "mes": "2025-10-01",
+    "venta": 11.47
+   },
+   {
+    "mes": "2025-11-01",
+    "venta": 10.14
+   },
+   {
+    "mes": "2025-12-01",
+    "venta": 9.66
+   }
+  ]
+ },
+ "super_vs_mercado": {
+  "periodo_mercado": [
+   "2025-10-01",
+   "2025-12-01"
+  ],
+  "productos": [
+   {
+    "codigo": "fideo",
+    "nombre": "Fideo corto",
+    "presentacion": "1 libra",
+    "mercado": 6.59,
+    "super_tipico": 8.62,
+    "super_minimo": 6.89,
+    "diferencia_pct": 30.9
+   },
+   {
+    "codigo": "huevos",
+    "nombre": "Huevos de gallina medianos",
+    "presentacion": "1 unidad",
+    "mercado": 1.09,
+    "super_tipico": 1.33,
+    "super_minimo": 1.06,
+    "diferencia_pct": 22.0
+   },
+   {
+    "codigo": "arroz",
+    "nombre": "Arroz de primera",
+    "presentacion": "1 libra",
+    "mercado": 6.9,
+    "super_tipico": 8.39,
+    "super_minimo": 5.51,
+    "diferencia_pct": 21.7
+   },
+   {
+    "codigo": "pulpa_res",
+    "nombre": "Carne de res pulpa especial",
+    "presentacion": "1 kg",
+    "mercado": 72.69,
+    "super_tipico": 85.0,
+    "super_minimo": 83.5,
+    "diferencia_pct": 16.9
+   },
+   {
+    "codigo": "leche_fluida",
+    "nombre": "Leche fluida entera natural",
+    "presentacion": "bolsa 946 ml",
+    "mercado": 8.69,
+    "super_tipico": 9.74,
+    "super_minimo": 9.14,
+    "diferencia_pct": 12.1
+   },
+   {
+    "codigo": "pollo_entero",
+    "nombre": "Carne de pollo entero",
+    "presentacion": "1 kg",
+    "mercado": 22.55,
+    "super_tipico": 22.5,
+    "super_minimo": 19.5,
+    "diferencia_pct": -0.2
+   },
+   {
+    "codigo": "harina_trigo",
+    "nombre": "Harina de trigo blanca",
+    "presentacion": "1 libra",
+    "mercado": 5.76,
+    "super_tipico": 5.47,
+    "super_minimo": 4.83,
+    "diferencia_pct": -4.9
+   },
+   {
+    "codigo": "azucar",
+    "nombre": "Azúcar granulada blanca",
+    "presentacion": "1 libra",
+    "mercado": 7.16,
+    "super_tipico": 3.93,
+    "super_minimo": 3.14,
+    "diferencia_pct": -45.1
+   }
+  ]
+ },
+ "subidas_mercado": {
+  "periodo": {
+   "desde": [
+    "2024-10-01",
+    "2024-11-01",
+    "2024-12-01"
+   ],
+   "hasta": [
+    "2025-10-01",
+    "2025-11-01",
+    "2025-12-01"
+   ]
+  },
+  "productos": [
+   {
+    "codigo": "tomate",
+    "nombre": "Tomate",
+    "variacion_pct": 113.0
+   },
+   {
+    "codigo": "cebolla",
+    "nombre": "Cebolla",
+    "variacion_pct": 112.7
+   },
+   {
+    "codigo": "platano",
+    "nombre": "Plátano",
+    "variacion_pct": 89.5
+   },
+   {
+    "codigo": "papaya",
+    "nombre": "Papaya",
+    "variacion_pct": 61.3
+   },
+   {
+    "codigo": "leche_polvo",
+    "nombre": "Leche en polvo",
+    "variacion_pct": 54.2
+   },
+   {
+    "codigo": "platano_cocinar",
+    "nombre": "Plátano para cocinar",
+    "variacion_pct": 50.8
+   },
+   {
+    "codigo": "pulpa_res",
+    "nombre": "Pulpa de res",
+    "variacion_pct": 49.4
+   },
+   {
+    "codigo": "zanahoria",
+    "nombre": "Zanahoria",
+    "variacion_pct": 48.0
+   },
+   {
+    "codigo": "aceite",
+    "nombre": "Aceite",
+    "variacion_pct": 47.7
+   },
+   {
+    "codigo": "res_molida",
+    "nombre": "Carne molida",
+    "variacion_pct": 47.2
+   },
+   {
+    "codigo": "manzana",
+    "nombre": "Manzana",
+    "variacion_pct": 41.9
+   },
+   {
+    "codigo": "leche_fluida",
+    "nombre": "Leche fluida",
+    "variacion_pct": 38.8
+   },
+   {
+    "codigo": "avena",
+    "nombre": "Avena",
+    "variacion_pct": 37.7
+   },
+   {
+    "codigo": "azucar",
+    "nombre": "Azúcar",
+    "variacion_pct": 26.1
+   },
+   {
+    "codigo": "margarina",
+    "nombre": "Margarina",
+    "variacion_pct": 25.2
+   },
+   {
+    "codigo": "pollo_entero",
+    "nombre": "Pollo entero",
+    "variacion_pct": 16.4
+   },
+   {
+    "codigo": "fideo",
+    "nombre": "Fideo",
+    "variacion_pct": 14.9
+   },
+   {
+    "codigo": "harina_trigo",
+    "nombre": "Harina de trigo",
+    "variacion_pct": 7.0
+   },
+   {
+    "codigo": "huevos",
+    "nombre": "Huevos",
+    "variacion_pct": 3.8
+   },
+   {
+    "codigo": "arroz",
+    "nombre": "Arroz",
+    "variacion_pct": -4.5
+   },
+   {
+    "codigo": "naranja",
+    "nombre": "Naranja",
+    "variacion_pct": -17.4
+   }
+  ]
+ },
+ "productos": [
+  {
+   "codigo": "papaya",
+   "nombre": "Papaya mediana",
+   "categoria": "frutas",
+   "cantidad_canasta": 1500.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": null,
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 4.11
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 7.09
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 5.42
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 5.73
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 6.38
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 4.36
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 7.89
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 5.75
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 5.93
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 5.33
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 7.33
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 6.67
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 5.96
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 7.81
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 11.27
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 10.33
+    }
+   ],
+   "diario": [],
+   "tienda": []
+  },
+  {
+   "codigo": "platano",
+   "nombre": "Plátano o banano mediano",
+   "categoria": "frutas",
+   "cantidad_canasta": 1800.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": null,
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 3.4
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 2.39
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 2.39
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 2.87
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 3.64
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 2.17
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 3.3
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 4.0
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 2.93
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 4.53
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 5.84
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 8.0
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 6.73
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 5.42
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 5.49
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 3.58
+    }
+   ],
+   "diario": [],
+   "tienda": []
+  },
+  {
+   "codigo": "cebolla",
+   "nombre": "Cebolla",
+   "categoria": "verduras",
+   "cantidad_canasta": 920.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": null,
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 3.21
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 8.42
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 5.8
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 4.35
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 4.04
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 4.35
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 5.9
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 13.75
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 8.73
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 7.68
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 9.22
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 8.91
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 21.36
+    }
+   ],
+   "diario": [],
+   "tienda": []
+  },
+  {
+   "codigo": "tomate",
+   "nombre": "Tomate",
+   "categoria": "verduras",
+   "cantidad_canasta": 920.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": null,
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 7.13
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 11.72
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 7.11
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 4.87
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 11.0
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 8.63
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 11.04
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 17.39
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 4.78
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 9.78
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 11.3
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 13.24
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 14.83
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 22.41
+    }
+   ],
+   "diario": [],
+   "tienda": []
+  },
+  {
+   "codigo": "zanahoria",
+   "nombre": "Zanahoria",
+   "categoria": "verduras",
+   "cantidad_canasta": 920.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": null,
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 3.49
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 9.68
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 6.48
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 4.68
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 5.74
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 5.22
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 5.46
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 11.75
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 3.99
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 6.49
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 7.79
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 8.07
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 11.91
+    }
+   ],
+   "diario": [],
+   "tienda": []
+  },
+  {
+   "codigo": "azucar",
+   "nombre": "Azúcar granulada blanca",
+   "categoria": "azucar",
+   "cantidad_canasta": 460.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 8.54,
+    "minimo": 6.83,
+    "productos": 12
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 7.22
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 17.74
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 11.37
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 7.91
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 8.96
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 8.93
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 19.83
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 21.0
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 8.26
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 10.65
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 13.04
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 27.39
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 8.7
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 10.63
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 8.91
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 27.13
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 8.5,
+     "minimo": 6.83
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 8.58,
+     "minimo": 7.0
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Azucar Unagro Blanca 3 kg",
+     "precio": 20.5,
+     "precio_unidad": 6.83,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/471660/azucar-unagro-blanca-3-kg"
+    },
+    {
+     "nombre": "Azucar Unagro Blanca 5 kg",
+     "precio": 34.9,
+     "precio_unidad": 6.98,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/174661/azucar-unagro-blanca-5-kg"
+    },
+    {
+     "nombre": "Azucar Unagro Blanca 1 kg",
+     "precio": 7.0,
+     "precio_unidad": 7.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/174670/azucar-unagro-blanca-1-kg"
+    },
+    {
+     "nombre": "Azucar Guabira Blanca 5 kg",
+     "precio": 42.5,
+     "precio_unidad": 8.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/493716/azucar-guabira-blanca-5-kg"
+    },
+    {
+     "nombre": "Azucar Aguai Blanca 5 kg",
+     "precio": 42.9,
+     "precio_unidad": 8.58,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/105775/azucar-aguai-blanca-5-kg"
+    },
+    {
+     "nombre": "Azucar Guabira Blanca 1 kg",
+     "precio": 8.7,
+     "precio_unidad": 8.7,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/493694/azucar-guabira-blanca-1-kg"
+    },
+    {
+     "nombre": "Azucar Aguai Blanca 1 kg",
+     "precio": 8.7,
+     "precio_unidad": 8.7,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/105771/azucar-aguai-blanca-1-kg"
+    }
+   ]
+  },
+  {
+   "codigo": "arroz",
+   "nombre": "Arroz de primera",
+   "categoria": "arroz",
+   "cantidad_canasta": 920.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 18.25,
+    "minimo": 11.98,
+    "productos": 30
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 12.2
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 17.8
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 14.89
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 14.43
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 13.78
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 13.65
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 13.78
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 17.39
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 17.39
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 17.83
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 16.3
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 15.22
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 14.85
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 14.09
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 15.7
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 15.22
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 18.38,
+     "minimo": 14.7
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 18.11,
+     "minimo": 11.98
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Arroz Grano de Oro Familiar 5 kg",
+     "precio": 59.9,
+     "precio_unidad": 11.98,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/030867/arroz-grano-de-oro-familiar-5-kg"
+    },
+    {
+     "nombre": "Arroz Grano de Oro 5 kg",
+     "precio": 61.9,
+     "precio_unidad": 12.38,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/200715/arroz-grano-de-oro-5-kg"
+    },
+    {
+     "nombre": "Arroz Norte Tradicional Tipo 2 Bolsa 5 kg",
+     "precio": 73.5,
+     "precio_unidad": 14.7,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312262/arroz-norte-tradicional-tipo-2-bolsa-5-kg"
+    },
+    {
+     "nombre": "Arroz Norte Largo Tipo 1 1 kg",
+     "precio": 16.0,
+     "precio_unidad": 16.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/014156/arroz-norte-largo-tipo-1-1-kg"
+    },
+    {
+     "nombre": "Arroz Norte Premium Tipo 1 Bolsa 5 kg",
+     "precio": 80.5,
+     "precio_unidad": 16.1,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/069163/arroz-norte-premium-tipo-1-bolsa-5-kg"
+    },
+    {
+     "nombre": "Arroz Familiar Caisy 1 kg",
+     "precio": 16.5,
+     "precio_unidad": 16.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/891816/arroz-familiar-caisy-1-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Especial 5 kg",
+     "precio": 89.9,
+     "precio_unidad": 17.98,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/792214/arroz-caisy-especial-5-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Favorito 5 kg",
+     "precio": 89.9,
+     "precio_unidad": 17.98,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540935/arroz-caisy-favorito-5-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Favorito 2 kg",
+     "precio": 36.5,
+     "precio_unidad": 18.25,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/306197/arroz-caisy-favorito-2-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Especial 1 kg",
+     "precio": 18.5,
+     "precio_unidad": 18.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/792209/arroz-caisy-especial-1-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Favorito 1 kg",
+     "precio": 18.5,
+     "precio_unidad": 18.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540927/arroz-caisy-favorito-1-kg"
+    },
+    {
+     "nombre": "Arroz Grano De Oro Caisy 1 kg",
+     "precio": 19.9,
+     "precio_unidad": 19.9,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540900/arroz-grano-de-oro-caisy-1-kg"
+    },
+    {
+     "nombre": "Arroz Caisy Grano de Oro 5 kg",
+     "precio": 99.9,
+     "precio_unidad": 19.98,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540919/arroz-caisy-grano-de-oro-5-kg"
+    },
+    {
+     "nombre": "Arroz Emocoes Tipo 1 1 kg",
+     "precio": 20.9,
+     "precio_unidad": 20.9,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/202273/arroz-emocoes-tipo-1-1-kg"
+    },
+    {
+     "nombre": "Arroz Grano de Oro Corriente Dorado 1 kg",
+     "precio": 21.0,
+     "precio_unidad": 21.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/030874/arroz-grano-de-oro-corriente-dorado-1-kg"
+    },
+    {
+     "nombre": "Arroz Emocoes Tipo 1 5 kg",
+     "precio": 109.9,
+     "precio_unidad": 21.98,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/202276/arroz-emocoes-tipo-1-5-kg"
+    }
+   ]
+  },
+  {
+   "codigo": "harina_trigo",
+   "nombre": "Harina de trigo blanca",
+   "categoria": "harina",
+   "cantidad_canasta": 920.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 11.9,
+    "minimo": 10.5,
+    "productos": 19
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 9.28
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 15.46
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 9.54
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 10.09
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 8.04
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 9.11
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 15.46
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 17.52
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 17.83
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 17.83
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 17.17
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 15.22
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 15.22
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 13.04
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 13.37
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 11.13
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 11.7,
+     "minimo": 10.5
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 11.9,
+     "minimo": 10.5
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Harina de Trigo Nevada 1 kg",
+     "precio": 10.5,
+     "precio_unidad": 10.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/126489/harina-de-trigo-nevada-1-kg"
+    },
+    {
+     "nombre": "Harina de Trigo Don gregorio 1 kg",
+     "precio": 10.5,
+     "precio_unidad": 10.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/025981/harina-de-trigo-don-gregorio-1-kg"
+    },
+    {
+     "nombre": "Harina La Suprema de Trigo 5 kg",
+     "precio": 54.0,
+     "precio_unidad": 10.8,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/658848/harina-la-suprema-de-trigo-5-kg"
+    },
+    {
+     "nombre": "Harina La Suprema de Trigo 2 kg",
+     "precio": 22.0,
+     "precio_unidad": 11.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/518187/harina-la-suprema-de-trigo-2-kg"
+    },
+    {
+     "nombre": "Harina La Suprema de Trigo 1 kg",
+     "precio": 11.5,
+     "precio_unidad": 11.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/617670/harina-la-suprema-de-trigo-1-kg"
+    },
+    {
+     "nombre": "Harina Princesa de Trigo 1 kg",
+     "precio": 11.9,
+     "precio_unidad": 11.9,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/304352/harina-princesa-de-trigo-1-kg"
+    },
+    {
+     "nombre": "Harina Famosa 000 1 Kg",
+     "precio": 12.0,
+     "precio_unidad": 12.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/570370/harina-famosa-000-1-kg"
+    },
+    {
+     "nombre": "Harina Princesa de Trigo 5 kg",
+     "precio": 63.9,
+     "precio_unidad": 12.78,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/693058/harina-princesa-de-trigo-5-kg"
+    },
+    {
+     "nombre": "Harina Princesa de Trigo 2 kg",
+     "precio": 29.0,
+     "precio_unidad": 14.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/693013/harina-princesa-de-trigo-2-kg"
+    },
+    {
+     "nombre": "Harina Famosa de Trigo 0000 1 kg",
+     "precio": 16.0,
+     "precio_unidad": 16.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/217791/harina-famosa-de-trigo-0000-1-kg"
+    }
+   ]
+  },
+  {
+   "codigo": "fideo",
+   "nombre": "Fideo corto",
+   "categoria": "fideo",
+   "cantidad_canasta": 460.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 18.75,
+    "minimo": 14.98,
+    "productos": 86
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 9.83
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 16.43
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 10.87
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 10.09
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 10.15
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 13.39
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 13.09
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 13.74
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 15.22
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 15.22
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 15.43
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 17.39
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 11.91
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 14.63
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 14.28
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 14.04
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 18.75,
+     "minimo": 14.98
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 18.75,
+     "minimo": 14.98
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Fideo La Suprema Surtido 5 kg",
+     "precio": 74.9,
+     "precio_unidad": 14.98,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/652154/fideo-la-suprema-surtido-5-kg"
+    },
+    {
+     "nombre": "Fideo Lazzaroni Cortado 1 kg",
+     "precio": 15.0,
+     "precio_unidad": 15.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/261963/fideo-lazzaroni-cortado-1-kg"
+    },
+    {
+     "nombre": "Fideo La Suprema Cortado Surtido 1 kg",
+     "precio": 15.0,
+     "precio_unidad": 15.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/652153/fideo-la-suprema-cortado-surtido-1-kg"
+    },
+    {
+     "nombre": "Fideo Lazzaroni Cortado Surtido 4 kg",
+     "precio": 62.5,
+     "precio_unidad": 15.62,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/136344/fideo-lazzaroni-cortado-surtido-4-kg"
+    },
+    {
+     "nombre": "Fideos Corta Spiga 1.36 kg",
+     "precio": 21.5,
+     "precio_unidad": 15.81,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553324/fideos-corta-spiga-1-36-kg"
+    },
+    {
+     "nombre": "Fideo Famosa Cortado 1 kg",
+     "precio": 16.0,
+     "precio_unidad": 16.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/853790/fideo-famosa-cortado-1-kg"
+    },
+    {
+     "nombre": "Fideo La Suprema Cortado 400 gr",
+     "precio": 6.5,
+     "precio_unidad": 16.25,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/652152/fideo-la-suprema-cortado-400-gr"
+    },
+    {
+     "nombre": "Fideo Famosa Cortado Surtido 4 kg",
+     "precio": 65.0,
+     "precio_unidad": 16.25,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/782896/fideo-famosa-cortado-surtido-4-kg"
+    },
+    {
+     "nombre": "Fideos Corta Spiga 400 gr",
+     "precio": 6.7,
+     "precio_unidad": 16.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553322/fideos-corta-spiga-400-gr"
+    },
+    {
+     "nombre": "Fideo Famosa Cortado Surtido 400 gr",
+     "precio": 6.8,
+     "precio_unidad": 17.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/096024/fideo-famosa-cortado-surtido-400-gr"
+    },
+    {
+     "nombre": "Fideo Famosa Rosca 27 400 gr",
+     "precio": 6.8,
+     "precio_unidad": 17.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/096075/fideo-famosa-rosca-27-400-gr"
+    },
+    {
+     "nombre": "Fideo Lazzaroni Cortado Surtido 400 gr",
+     "precio": 7.0,
+     "precio_unidad": 17.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/138614/fideo-lazzaroni-cortado-surtido-400-gr"
+    },
+    {
+     "nombre": "Fideo Gustoso Mod 35 Corbata 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/024086/fideo-gustoso-mod-35-corbata-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Caracol 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/101045/fideo-don-maximo-caracol-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Corbata Mediana 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100607/fideo-don-maximo-corbata-mediana-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Corbata Chica 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100263/fideo-don-maximo-corbata-chica-400-gr"
+    },
+    {
+     "nombre": "Fideo Gustoso Mod 16 Tubito 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/024088/fideo-gustoso-mod-16-tubito-400-gr"
+    },
+    {
+     "nombre": "Fideo Gustoso Tornillo 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/024083/fideo-gustoso-tornillo-400-gr"
+    },
+    {
+     "nombre": "FIDEO DON MAXIMO ARITO 400 GR",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553805/fideo-don-maximo-arito-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Codo 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/321393/fideo-don-maximo-codo-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Codito Fino 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100628/fideo-don-maximo-codito-fino-400-gr"
+    },
+    {
+     "nombre": "Fideo Gustoso Codito 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/024084/fideo-gustoso-codito-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Tirabuzon 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/321394/fideo-don-maximo-tirabuzon-400-gr"
+    },
+    {
+     "nombre": "FIDEO DON MAXIMO CARACOLITO 400 GR",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/553804/fideo-don-maximo-caracolito-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Macarron 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100264/fideo-don-maximo-macarron-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Tripita 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100629/fideo-don-maximo-tripita-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Canuto Chico 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/321391/fideo-don-maximo-canuto-chico-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Rigatoni 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/321392/fideo-don-maximo-rigatoni-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Maximo Codito 400 gr",
+     "precio": 7.5,
+     "precio_unidad": 18.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/100219/fideo-don-maximo-codito-400-gr"
+    },
+    {
+     "nombre": "Fideos Corta Spiga 2.27 kg",
+     "precio": 43.5,
+     "precio_unidad": 19.16,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553325/fideos-corta-spiga-2-27-kg"
+    },
+    {
+     "nombre": "Fideo Don Vittorio Rigatoni 400 gr",
+     "precio": 9.6,
+     "precio_unidad": 24.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/467685/fideo-don-vittorio-rigatoni-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Vittorio Espirales 400 gr",
+     "precio": 9.6,
+     "precio_unidad": 24.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/467693/fideo-don-vittorio-espirales-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Vittorio Codo 400 gr",
+     "precio": 9.6,
+     "precio_unidad": 24.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/516139/fideo-don-vittorio-codo-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Vittorio Corbata Chica 400 gr",
+     "precio": 9.6,
+     "precio_unidad": 24.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/467677/fideo-don-vittorio-corbata-chica-400-gr"
+    },
+    {
+     "nombre": "Fideo Don Vittorio Canuto Chico 400 gr",
+     "precio": 9.6,
+     "precio_unidad": 24.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/467642/fideo-don-vittorio-canuto-chico-400-gr"
+    },
+    {
+     "nombre": "Fideo Carozzi Corbatas 400 gr",
+     "precio": 13.5,
+     "precio_unidad": 33.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/069051/fideo-carozzi-corbatas-400-gr"
+    },
+    {
+     "nombre": "Fideo Carozzi Rigatoni 400 gr",
+     "precio": 13.5,
+     "precio_unidad": 33.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/069027/fideo-carozzi-rigatoni-400-gr"
+    },
+    {
+     "nombre": "Fideo Carozzi Espiral 400 gr",
+     "precio": 13.5,
+     "precio_unidad": 33.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/176508/fideo-carozzi-espiral-400-gr"
+    },
+    {
+     "nombre": "Fideos Lazzaroni Tricolor 400 gr",
+     "precio": 14.9,
+     "precio_unidad": 37.25,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/029044/fideos-lazzaroni-tricolor-400-gr"
+    },
+    {
+     "nombre": "Fideos Bisfru de Garbanzo 400 gr",
+     "precio": 18.5,
+     "precio_unidad": 46.25,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/030569/fideos-bisfru-de-garbanzo-400-gr"
+    },
+    {
+     "nombre": "Fideo Matarazzo Penne Rig Libre Gluten 500 gr",
+     "precio": 24.5,
+     "precio_unidad": 49.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/017373/fideo-matarazzo-penne-rig-libre-gluten-500-gr"
+    },
+    {
+     "nombre": "Fideo Carozzi Fusilli Tricolore 400 gr",
+     "precio": 29.5,
+     "precio_unidad": 73.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/149659/fideo-carozzi-fusilli-tricolore-400-gr"
+    },
+    {
+     "nombre": "Fideo Carozzi Corbata Tricolor 400 gr",
+     "precio": 29.5,
+     "precio_unidad": 73.75,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/652164/fideo-carozzi-corbata-tricolor-400-gr"
+    },
+    {
+     "nombre": "Fideo Borges Fusilli 500 gr",
+     "precio": 37.0,
+     "precio_unidad": 74.0,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312159/fideo-borges-fusilli-500-gr"
+    },
+    {
+     "nombre": "Fideo Borges Farfalle 500 gr",
+     "precio": 37.0,
+     "precio_unidad": 74.0,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312149/fideo-borges-farfalle-500-gr"
+    },
+    {
+     "nombre": "Fideo Borges Penne Rigate 500 gr",
+     "precio": 37.0,
+     "precio_unidad": 74.0,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312153/fideo-borges-penne-rigate-500-gr"
+    }
+   ]
+  },
+  {
+   "codigo": "pulpa_res",
+   "nombre": "Carne de res pulpa especial",
+   "categoria": "carne_res",
+   "cantidad_canasta": 1000.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 85.0,
+    "minimo": 83.5,
+    "productos": 8
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 41.27
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 46.4
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 48.55
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 50.99
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 53.99
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 54.8
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 56.49
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 58.0
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 60.3
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 67.3
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 65.8
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 68.0
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 68.83
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 69.66
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 73.57
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 74.83
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 85.0,
+     "minimo": 83.5
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 85.0,
+     "minimo": 83.5
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Peceto Especial kg",
+     "precio": 83.5,
+     "precio_unidad": 83.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835451/peceto-especial-kg"
+    },
+    {
+     "nombre": "Bollo Chico Especial 1 kg",
+     "precio": 85.0,
+     "precio_unidad": 85.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835212/bollo-chico-especial-1-kg"
+    },
+    {
+     "nombre": "Cuadrada Especial kg",
+     "precio": 85.0,
+     "precio_unidad": 85.0,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835435/cuadrada-especial-kg"
+    },
+    {
+     "nombre": "Bollo Grande Especial 1 kg",
+     "precio": 88.5,
+     "precio_unidad": 88.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835247/bollo-grande-especial-1-kg"
+    }
+   ]
+  },
+  {
+   "codigo": "pollo_entero",
+   "nombre": "Carne de pollo entero",
+   "categoria": "pollo",
+   "cantidad_canasta": 2000.0,
+   "unidad": "g",
+   "unidad_visible": "kg",
+   "hoy": {
+    "tipico": 22.5,
+    "minimo": 19.5,
+    "productos": 6
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 15.12
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 19.66
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 16.0
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 22.47
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 18.33
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 20.15
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 20.77
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 19.57
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 20.3
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 25.1
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 21.8
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 23.2
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 22.0
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 22.33
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 26.48
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 18.83
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 22.5,
+     "minimo": 19.5
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 22.5,
+     "minimo": 19.5
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Pollo Entero Pio Rico kg",
+     "precio": 19.5,
+     "precio_unidad": 19.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/641051/pollo-entero-pio-rico-kg"
+    },
+    {
+     "nombre": "Pollo Entero La Granja kg",
+     "precio": 22.5,
+     "precio_unidad": 22.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671226/pollo-entero-la-granja-kg"
+    },
+    {
+     "nombre": "Pollo Entero Especial La Granja kg",
+     "precio": 24.5,
+     "precio_unidad": 24.5,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671227/pollo-entero-especial-la-granja-kg"
+    }
+   ]
+  },
+  {
+   "codigo": "leche_fluida",
+   "nombre": "Leche fluida entera natural",
+   "categoria": "leche",
+   "cantidad_canasta": 946.0,
+   "unidad": "ml",
+   "unidad_visible": "litro",
+   "hoy": {
+    "tipico": 10.3,
+    "minimo": 9.67,
+    "productos": 11
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 6.51
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 6.34
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 6.92
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 6.6
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 7.55
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 7.14
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 7.4
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 7.4
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 7.72
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 8.67
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 9.41
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 9.51
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 8.46
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 9.51
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 8.46
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 9.6
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 10.73,
+     "minimo": 9.67
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 10.3,
+     "minimo": 9.67
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Leche Entera Eba Blanca 900 ml",
+     "precio": 8.7,
+     "precio_unidad": 9.67,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671680/leche-entera-eba-blanca-900-ml"
+    },
+    {
+     "nombre": "Leche Natural La Purita Fortumilk 900 ml",
+     "precio": 8.8,
+     "precio_unidad": 9.78,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/761457/leche-natural-la-purita-fortumilk-900-ml"
+    },
+    {
+     "nombre": "Leche Entera Delizia 946 ml",
+     "precio": 9.7,
+     "precio_unidad": 10.25,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/641572/leche-entera-delizia-946-ml"
+    },
+    {
+     "nombre": "Leche Past Ilva Natural 1 L",
+     "precio": 10.3,
+     "precio_unidad": 10.3,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/406021/leche-past-ilva-natural-1-l"
+    },
+    {
+     "nombre": "Leche Entera Pairumani 1 L",
+     "precio": 11.2,
+     "precio_unidad": 11.2,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/480183/leche-entera-pairumani-1-l"
+    },
+    {
+     "nombre": "Leche Entera Lolita Purita 800 ml",
+     "precio": 9.0,
+     "precio_unidad": 11.25,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/763514/leche-entera-lolita-purita-800-ml"
+    },
+    {
+     "nombre": "Leche Pil Natural 900 ml",
+     "precio": 10.5,
+     "precio_unidad": 11.67,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/786024/leche-pil-natural-900-ml"
+    }
+   ]
+  },
+  {
+   "codigo": "huevos",
+   "nombre": "Huevos de gallina medianos",
+   "categoria": "huevos",
+   "cantidad_canasta": 10.0,
+   "unidad": "u",
+   "unidad_visible": "unidad",
+   "hoy": {
+    "tipico": 1.33,
+    "minimo": 1.06,
+    "productos": 48
+   },
+   "mercado_mensual": [
+    {
+     "mes": "2024-08-01",
+     "precio": 0.97
+    },
+    {
+     "mes": "2024-10-01",
+     "precio": 1.0
+    },
+    {
+     "mes": "2024-11-01",
+     "precio": 1.29
+    },
+    {
+     "mes": "2024-12-01",
+     "precio": 0.86
+    },
+    {
+     "mes": "2025-01-01",
+     "precio": 0.97
+    },
+    {
+     "mes": "2025-02-01",
+     "precio": 0.98
+    },
+    {
+     "mes": "2025-03-01",
+     "precio": 0.95
+    },
+    {
+     "mes": "2025-04-01",
+     "precio": 1.1
+    },
+    {
+     "mes": "2025-05-01",
+     "precio": 1.0
+    },
+    {
+     "mes": "2025-06-01",
+     "precio": 1.2
+    },
+    {
+     "mes": "2025-07-01",
+     "precio": 1.15
+    },
+    {
+     "mes": "2025-08-01",
+     "precio": 1.13
+    },
+    {
+     "mes": "2025-09-01",
+     "precio": 1.39
+    },
+    {
+     "mes": "2025-10-01",
+     "precio": 1.24
+    },
+    {
+     "mes": "2025-11-01",
+     "precio": 1.03
+    },
+    {
+     "mes": "2025-12-01",
+     "precio": 1.0
+    }
+   ],
+   "diario": [
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI BLANCO GALINDO",
+     "tipico": 1.33,
+     "minimo": 1.18
+    },
+    {
+     "fecha": "2026-11-08",
+     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
+     "tipico": 1.33,
+     "minimo": 1.06
+    }
+   ],
+   "tienda": [
+    {
+     "nombre": "Huevo Nido de Oro Pequeño Maple de 30 un",
+     "precio": 31.8,
+     "precio_unidad": 1.06,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673807/huevo-nido-de-oro-pequeno-maple-de-30-un"
+    },
+    {
+     "nombre": "Huevo Nido de Oro Mediano Maple 30 un",
+     "precio": 32.9,
+     "precio_unidad": 1.1,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673806/huevo-nido-de-oro-mediano-maple-30-un"
+    },
+    {
+     "nombre": "Huevo Nido de Oro Grande Maple 30 un",
+     "precio": 34.7,
+     "precio_unidad": 1.16,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673805/huevo-nido-de-oro-grande-maple-30-un"
+    },
+    {
+     "nombre": "Huevo Sofia Maple Mediano 30 un",
+     "precio": 35.5,
+     "precio_unidad": 1.18,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/552256/huevo-sofia-maple-mediano-30-un"
+    },
+    {
+     "nombre": "MAPLE DE 30 HUEVOS LA GRANJA 30UNI",
+     "precio": 35.5,
+     "precio_unidad": 1.18,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/671544/maple-de-30-huevos-la-granja-30uni"
+    },
+    {
+     "nombre": "Huevo Sofia Maple Grande 30 un",
+     "precio": 37.0,
+     "precio_unidad": 1.23,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552257/huevo-sofia-maple-grande-30-un"
+    },
+    {
+     "nombre": "Huevos Mrm 15 un",
+     "precio": 19.0,
+     "precio_unidad": 1.27,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/642099/huevos-mrm-15-un"
+    },
+    {
+     "nombre": "Huevos Mrm 30 un",
+     "precio": 38.0,
+     "precio_unidad": 1.27,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/642105/huevos-mrm-30-un"
+    },
+    {
+     "nombre": "Huevos Nutrirolon 20 un",
+     "precio": 25.5,
+     "precio_unidad": 1.27,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692323/huevos-nutrirolon-20-un"
+    },
+    {
+     "nombre": "Huevo Sofia Mediano 12 un",
+     "precio": 15.5,
+     "precio_unidad": 1.29,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552258/huevo-sofia-mediano-12-un"
+    },
+    {
+     "nombre": "Huevos Mrm 10 un",
+     "precio": 13.0,
+     "precio_unidad": 1.3,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/642086/huevos-mrm-10-un"
+    },
+    {
+     "nombre": "Huevos Rolon Mediano 30 un",
+     "precio": 39.5,
+     "precio_unidad": 1.32,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692125/huevos-rolon-mediano-30-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 12 un",
+     "precio": 15.9,
+     "precio_unidad": 1.32,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692155/huevos-rolon-nutrirolon-12-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 20 un",
+     "precio": 26.5,
+     "precio_unidad": 1.32,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/480470/huevos-rolon-nutrirolon-20-un"
+    },
+    {
+     "nombre": "Huevo Nutrirolon Maple 30 un",
+     "precio": 39.9,
+     "precio_unidad": 1.33,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692222/huevo-nutrirolon-maple-30-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 10 un",
+     "precio": 13.3,
+     "precio_unidad": 1.33,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/480475/huevos-rolon-nutrirolon-10-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 15 un",
+     "precio": 20.0,
+     "precio_unidad": 1.33,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692158/huevos-rolon-nutrirolon-15-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 18 un",
+     "precio": 24.0,
+     "precio_unidad": 1.33,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692165/huevos-rolon-nutrirolon-18-un"
+    },
+    {
+     "nombre": "Huevos Frescos Mrm 20 un",
+     "precio": 27.0,
+     "precio_unidad": 1.35,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671054/huevos-frescos-mrm-20-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 6 un",
+     "precio": 8.2,
+     "precio_unidad": 1.37,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692145/huevos-rolon-nutrirolon-6-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 12 un",
+     "precio": 16.5,
+     "precio_unidad": 1.38,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692128/huevos-rolon-nutrirolon-12-un"
+    },
+    {
+     "nombre": "Huevos Rolon Primera 30 un",
+     "precio": 41.4,
+     "precio_unidad": 1.38,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/677238/huevos-rolon-primera-30-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 12 un",
+     "precio": 17.0,
+     "precio_unidad": 1.42,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692138/huevos-rolon-nutrirolon-12-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon 6 un",
+     "precio": 8.5,
+     "precio_unidad": 1.42,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/692135/huevos-rolon-nutrirolon-6-un"
+    },
+    {
+     "nombre": "Huevos Rolon Nutrirolon Poroplast 12 un",
+     "precio": 17.5,
+     "precio_unidad": 1.46,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/480474/huevos-rolon-nutrirolon-poroplast-12-un"
+    },
+    {
+     "nombre": "Huevos Mrm 6 un",
+     "precio": 9.0,
+     "precio_unidad": 1.5,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/642079/huevos-mrm-6-un"
+    },
+    {
+     "nombre": "Huevos Frescos Mrm 24 un",
+     "precio": 36.0,
+     "precio_unidad": 1.5,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671315/huevos-frescos-mrm-24-un"
+    },
+    {
+     "nombre": "Huevo Mrm 12 un",
+     "precio": 18.5,
+     "precio_unidad": 1.54,
+     "sucursales": 2,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/642089/huevo-mrm-12-un"
+    }
+   ]
+  }
+ ]
+}

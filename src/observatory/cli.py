@@ -1,4 +1,4 @@
-"""Línea de comandos: migrar | recolectar <fuente> | importar <fuente> <csv> | canasta."""
+"""Línea de comandos: migrar | recolectar | importar | canasta | exportar."""
 
 import argparse
 import logging
@@ -9,6 +9,7 @@ from observatory.basket import BasketDefinitionError, load_basket, sync_basket
 from observatory.collector import collect, collect_exchange_rates, today_in_bolivia
 from observatory.config import MissingSettingError, load_settings
 from observatory.db import connect, migrate
+from observatory.export import build_dashboard, write_dashboard
 from observatory.http_client import PoliteClient
 from observatory.sources import bcb, defensoria, hipermaxi, paralelo
 from observatory.storage import save_exchange_rates, save_market_prices
@@ -45,6 +46,11 @@ def build_parser() -> argparse.ArgumentParser:
     import_parser.add_argument("fuente", choices=["defensoria", "paralelo"])
     import_parser.add_argument("archivo", type=Path, help="CSV de la carpeta fuentes/")
     import_parser.add_argument("--ciudad", default=DEFAULT_CITY)
+
+    export_parser = commands.add_parser("exportar", help="Genera el JSON del dashboard")
+    export_parser.add_argument("--canasta", type=Path, required=True, help="TOML de la canasta")
+    export_parser.add_argument("--salida", type=Path, required=True, help="Archivo JSON a escribir")
+    export_parser.add_argument("--ciudad", default=DEFAULT_CITY)
 
     basket_parser = commands.add_parser("canasta", help="Carga o revisa una canasta")
     basket_parser.add_argument("accion", choices=["cargar", "revisar"])
@@ -118,6 +124,17 @@ def run_import(arguments: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def run_export(arguments: argparse.Namespace) -> int:
+    """Escribe el JSON que lee el sitio del dashboard."""
+    settings = load_settings()
+    basket = load_basket(arguments.canasta)
+    with connect(settings.database_url) as connection:
+        document = build_dashboard(connection, basket, arguments.ciudad)
+    path = write_dashboard(document, arguments.salida)
+    print(f"Dashboard exportado en {path} (último día: {document['ultimo_dia']})")
+    return EXIT_OK
+
+
 def run_migrate() -> int:
     """Aplica las migraciones pendientes."""
     settings = load_settings()
@@ -185,6 +202,8 @@ def main(argv: list[str] | None = None) -> int:
             return run_basket(arguments)
         if arguments.command == "importar":
             return run_import(arguments)
+        if arguments.command == "exportar":
+            return run_export(arguments)
         return run_collect(arguments)
     except (
         MissingSettingError,
