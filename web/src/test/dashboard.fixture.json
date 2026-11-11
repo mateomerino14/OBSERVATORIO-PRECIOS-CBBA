@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado_en": "2026-11-11T16:25:43+00:00",
+ "generado_en": "2026-11-11T16:48:44+00:00",
  "ciudad": "cochabamba",
  "ultimo_dia": "2026-11-08",
  "ultima_corrida": null,
@@ -42,7 +42,7 @@
    {
     "fecha": "2026-11-08",
     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
-    "tipico": 193.23,
+    "tipico": 193.2,
     "economico": 173.04,
     "items": 8,
     "items_sucursal": 8
@@ -1478,7 +1478,7 @@
    "hoy": {
     "tipico": 18.75,
     "minimo": 14.98,
-    "productos": 86
+    "productos": 83
    },
    "mercado_mensual": [
     {
@@ -1833,20 +1833,6 @@
      "precio_unidad": 37.25,
      "sucursales": 2,
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/029044/fideos-lazzaroni-tricolor-400-gr"
-    },
-    {
-     "nombre": "Fideos Bisfru de Garbanzo 400 gr",
-     "precio": 18.5,
-     "precio_unidad": 46.25,
-     "sucursales": 1,
-     "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/030569/fideos-bisfru-de-garbanzo-400-gr"
-    },
-    {
-     "nombre": "Fideo Matarazzo Penne Rig Libre Gluten 500 gr",
-     "precio": 24.5,
-     "precio_unidad": 49.0,
-     "sucursales": 2,
-     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/017373/fideo-matarazzo-penne-rig-libre-gluten-500-gr"
     },
     {
      "nombre": "Fideo Carozzi Fusilli Tricolore 400 gr",
@@ -2278,7 +2264,7 @@
    "hoy": {
     "tipico": 1.33,
     "minimo": 1.06,
-    "productos": 48
+    "productos": 51
    },
    "mercado_mensual": [
     {
@@ -2383,6 +2369,13 @@
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673805/huevo-nido-de-oro-grande-maple-30-un"
     },
     {
+     "nombre": "Pack Huevo de Oro 12 un",
+     "precio": 14.0,
+     "precio_unidad": 1.17,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673809/pack-huevo-de-oro-12-un"
+    },
+    {
      "nombre": "Huevo Sofia Maple Mediano 30 un",
      "precio": 35.5,
      "precio_unidad": 1.18,
@@ -2402,6 +2395,13 @@
      "precio_unidad": 1.23,
      "sucursales": 2,
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552257/huevo-sofia-maple-grande-30-un"
+    },
+    {
+     "nombre": "PACK 6 UNIDADES HUEVOS NIDO DE ORO",
+     "precio": 7.5,
+     "precio_unidad": 1.25,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/674469/pack-6-unidades-huevos-nido-de-oro"
     },
     {
      "nombre": "Huevos Mrm 15 un",
@@ -2495,6 +2495,13 @@
      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671054/huevos-frescos-mrm-20-un"
     },
     {
+     "nombre": "Pack Huevo de Oro 18 un",
+     "precio": 24.5,
+     "precio_unidad": 1.36,
+     "sucursales": 1,
+     "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673808/pack-huevo-de-oro-18-un"
+    },
+    {
      "nombre": "Huevos Rolon Nutrirolon 6 un",
      "precio": 8.2,
      "precio_unidad": 1.37,
@@ -2559,5 +2566,460 @@
     }
    ]
   }
- ]
+ ],
+ "sugerencias": {
+  "productos_catalogo": 13007,
+  "evaluacion": {
+   "casos": 122,
+   "encontrados": 99,
+   "top": 10,
+   "puesto_mediano": 2.0
+  },
+  "items": [
+   {
+    "codigo": "papaya",
+    "nombre": "Papaya mediana",
+    "aceptados": 0,
+    "umbral": 0.5,
+    "candidatos": [
+     {
+      "nombre": "Papa Lucana Mediana 65 gr",
+      "subcategoria": "Snack",
+      "similitud": 0.5,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/655774/papa-lucana-mediana-65-gr"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "platano",
+    "nombre": "Plátano o banano mediano",
+    "aceptados": 0,
+    "umbral": 0.5,
+    "candidatos": [],
+    "dudosos": []
+   },
+   {
+    "codigo": "cebolla",
+    "nombre": "Cebolla",
+    "aceptados": 0,
+    "umbral": 0.5,
+    "candidatos": [
+     {
+      "nombre": "Salsa Kral Cebolla Francesa 230 gr",
+      "subcategoria": "Verduras en Conserva",
+      "similitud": 0.52,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/304110/salsa-kral-cebolla-francesa-230-gr"
+     },
+     {
+      "nombre": "Mani La Botana Sabor Cebolla 100 gr",
+      "subcategoria": "Snack",
+      "similitud": 0.51,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/117073/mani-la-botana-sabor-cebolla-100-gr"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "tomate",
+    "nombre": "Tomate",
+    "aceptados": 0,
+    "umbral": 0.5,
+    "candidatos": [
+     {
+      "nombre": "Salsa de Tomate Kris 200 gr",
+      "subcategoria": "Salsas y Extracto de Tomate",
+      "similitud": 0.57,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/026001/salsa-de-tomate-kris-200-gr"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "zanahoria",
+    "nombre": "Zanahoria",
+    "aceptados": 0,
+    "umbral": 0.5,
+    "candidatos": [
+     {
+      "nombre": "Mermelada Br Papaya Zanahoria Chia 435 gr",
+      "subcategoria": "Mermel, Mieles",
+      "similitud": 0.55,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553217/mermelada-br-papaya-zanahoria-chia-435-gr"
+     },
+     {
+      "nombre": "Mermelada Papaya Zanahoria Chia BR 435 gr",
+      "subcategoria": "Mermel, Mieles",
+      "similitud": 0.55,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553216/mermelada-papaya-zanahoria-chia-br-435-gr"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "azucar",
+    "nombre": "Azúcar granulada blanca",
+    "aceptados": 7,
+    "umbral": 0.74,
+    "candidatos": [],
+    "dudosos": []
+   },
+   {
+    "codigo": "arroz",
+    "nombre": "Arroz de primera",
+    "aceptados": 16,
+    "umbral": 0.55,
+    "candidatos": [],
+    "dudosos": [
+     {
+      "nombre": "Arroz Grano de Oro Corriente Dorado 1 kg",
+      "subcategoria": "Básicos",
+      "similitud": 0.52,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/030874/arroz-grano-de-oro-corriente-dorado-1-kg"
+     },
+     {
+      "nombre": "Arroz Norte Tradicional Tipo 2 Bolsa 5 kg",
+      "subcategoria": "Básicos",
+      "similitud": 0.55,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312262/arroz-norte-tradicional-tipo-2-bolsa-5-kg"
+     }
+    ]
+   },
+   {
+    "codigo": "harina_trigo",
+    "nombre": "Harina de trigo blanca",
+    "aceptados": 10,
+    "umbral": 0.67,
+    "candidatos": [
+     {
+      "nombre": "HARINA DE TRIGO PRINCESA 11.34 KG",
+      "subcategoria": "Básicos",
+      "similitud": 0.88,
+      "motivo": "presentacion",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552876/harina-de-trigo-princesa-11-34-kg"
+     }
+    ],
+    "dudosos": [
+     {
+      "nombre": "Harina Famosa 000 1 Kg",
+      "subcategoria": "Básicos",
+      "similitud": 0.57,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/570370/harina-famosa-000-1-kg"
+     }
+    ]
+   },
+   {
+    "codigo": "fideo",
+    "nombre": "Fideo corto",
+    "aceptados": 44,
+    "umbral": 0.5,
+    "candidatos": [
+     {
+      "nombre": "Fideos Corta Spiga 11.34 kg",
+      "subcategoria": "Básicos",
+      "similitud": 0.57,
+      "motivo": "presentacion",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/553321/fideos-corta-spiga-11-34-kg"
+     },
+     {
+      "nombre": "Fideo Carozzi Alfabeto 250 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.56,
+      "motivo": "presentacion",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/069094/fideo-carozzi-alfabeto-250-gr"
+     },
+     {
+      "nombre": "Fideo Carozzi Ojos De Diuca 250 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.55,
+      "motivo": "presentacion",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540250/fideo-carozzi-ojos-de-diuca-250-gr"
+     },
+     {
+      "nombre": "Fideo Carozzi Granizo 250 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.55,
+      "motivo": "presentacion",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/540269/fideo-carozzi-granizo-250-gr"
+     },
+     {
+      "nombre": "Sopa Kris Pollo Fideo 65 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.54,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/393495/sopa-kris-pollo-fideo-65-gr"
+     }
+    ],
+    "dudosos": [
+     {
+      "nombre": "Fideo Borges Farfalle 500 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.47,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312149/fideo-borges-farfalle-500-gr"
+     },
+     {
+      "nombre": "Fideos Lazzaroni Tricolor 400 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.48,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/029044/fideos-lazzaroni-tricolor-400-gr"
+     },
+     {
+      "nombre": "Fideo Borges Penne Rigate 500 gr",
+      "subcategoria": "Básicos",
+      "similitud": 0.49,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/312153/fideo-borges-penne-rigate-500-gr"
+     }
+    ]
+   },
+   {
+    "codigo": "pulpa_res",
+    "nombre": "Carne de res pulpa especial",
+    "aceptados": 4,
+    "umbral": 0.63,
+    "candidatos": [
+     {
+      "nombre": "Picaña Especial kg",
+      "subcategoria": "Carne de Res",
+      "similitud": 0.75,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/414069/picana-especial-kg"
+     },
+     {
+      "nombre": "Cuadril Especial kg",
+      "subcategoria": "Carne de Res",
+      "similitud": 0.7,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835439/cuadril-especial-kg"
+     },
+     {
+      "nombre": "Costilla Especial kg",
+      "subcategoria": "Carne de Res",
+      "similitud": 0.7,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835896/costilla-especial-kg"
+     },
+     {
+      "nombre": "Punta de S Especial 1 kg",
+      "subcategoria": "Carne de Res",
+      "similitud": 0.69,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835404/punta-de-s-especial-1-kg"
+     },
+     {
+      "nombre": "Cuadril Especial al Vacio kg",
+      "subcategoria": "Carne de Res",
+      "similitud": 0.65,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/835695/cuadril-especial-al-vacio-kg"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "pollo_entero",
+    "nombre": "Carne de pollo entero",
+    "aceptados": 3,
+    "umbral": 0.65,
+    "candidatos": [
+     {
+      "nombre": "Pollo Trozado Entero La Granja con Piel kg",
+      "subcategoria": "Carne de Pollo",
+      "similitud": 0.7,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671228/pollo-trozado-entero-la-granja-con-piel-kg"
+     },
+     {
+      "nombre": "Alas de Pollo La Granja Entera kg",
+      "subcategoria": "Carne de Pollo",
+      "similitud": 0.7,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/671237/alas-de-pollo-la-granja-entera-kg"
+     }
+    ],
+    "dudosos": []
+   },
+   {
+    "codigo": "leche_fluida",
+    "nombre": "Leche fluida entera natural",
+    "aceptados": 7,
+    "umbral": 0.56,
+    "candidatos": [
+     {
+      "nombre": "Leche La Purita Frutilla 950 ml",
+      "subcategoria": "Leches",
+      "similitud": 0.57,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-blanco-galindo/producto/151142/leche-la-purita-frutilla-950-ml"
+     },
+     {
+      "nombre": "LECHE CON AVENA LA PURITA 110ML",
+      "subcategoria": "Leches",
+      "similitud": 0.57,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/674570/leche-con-avena-la-purita-110ml"
+     },
+     {
+      "nombre": "Leche La Purita con Avena 800 ml",
+      "subcategoria": "Leches",
+      "similitud": 0.57,
+      "motivo": "nombre",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/798564/leche-la-purita-con-avena-800-ml"
+     }
+    ],
+    "dudosos": [
+     {
+      "nombre": "Leche Past Ilva Natural 1 L",
+      "subcategoria": "Leches",
+      "similitud": 0.55,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/406021/leche-past-ilva-natural-1-l"
+     }
+    ]
+   },
+   {
+    "codigo": "huevos",
+    "nombre": "Huevos de gallina medianos",
+    "aceptados": 31,
+    "umbral": 0.57,
+    "candidatos": [],
+    "dudosos": [
+     {
+      "nombre": "Huevo Nido de Oro Pequeño Maple de 30 un",
+      "subcategoria": "Huevos",
+      "similitud": 0.55,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/673807/huevo-nido-de-oro-pequeno-maple-de-30-un"
+     },
+     {
+      "nombre": "Huevo Sofia Mediano 12 un",
+      "subcategoria": "Huevos",
+      "similitud": 0.55,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552258/huevo-sofia-mediano-12-un"
+     },
+     {
+      "nombre": "Huevo Sofia Maple Grande 30 un",
+      "subcategoria": "Huevos",
+      "similitud": 0.56,
+      "motivo": "aceptado",
+      "url": "https://hipermaxi.com/cochabamba/hipermaxi-juan-de-la-rosa/producto/552257/huevo-sofia-maple-grande-30-un"
+     }
+    ]
+   }
+  ]
+ },
+ "anomalias": {
+  "mercado": {
+   "umbral_z": 3.5,
+   "items": [
+    {
+     "codigo": "pulpa_res",
+     "nombre": "Pulpa de res",
+     "mes": "2024-11-01",
+     "cambio_pct": 4.6,
+     "cambio_comun_pct": -15.7,
+     "z": 7.7
+    },
+    {
+     "codigo": "leche_polvo",
+     "nombre": "Leche en polvo",
+     "mes": "2024-11-01",
+     "cambio_pct": 30.5,
+     "cambio_comun_pct": -15.7,
+     "z": 7.4
+    },
+    {
+     "codigo": "res_molida",
+     "nombre": "Carne molida",
+     "mes": "2025-03-01",
+     "cambio_pct": 47.9,
+     "cambio_comun_pct": 4.6,
+     "z": 6.7
+    },
+    {
+     "codigo": "res_molida",
+     "nombre": "Carne molida",
+     "mes": "2025-02-01",
+     "cambio_pct": -27.0,
+     "cambio_comun_pct": 0.4,
+     "z": -6.2
+    },
+    {
+     "codigo": "cebolla",
+     "nombre": "Cebolla",
+     "mes": "2025-12-01",
+     "cambio_pct": 139.9,
+     "cambio_comun_pct": 1.7,
+     "z": 4.7
+    },
+    {
+     "codigo": "cebolla",
+     "nombre": "Cebolla",
+     "mes": "2025-04-01",
+     "cambio_pct": 133.0,
+     "cambio_comun_pct": 5.0,
+     "z": 4.4
+    },
+    {
+     "codigo": "fideo",
+     "nombre": "Fideo",
+     "mes": "2025-09-01",
+     "cambio_pct": -31.5,
+     "cambio_comun_pct": -3.7,
+     "z": -4.2
+    },
+    {
+     "codigo": "arroz",
+     "nombre": "Arroz",
+     "mes": "2025-04-01",
+     "cambio_pct": 26.2,
+     "cambio_comun_pct": 5.0,
+     "z": 4.1
+    },
+    {
+     "codigo": "fideo",
+     "nombre": "Fideo",
+     "mes": "2025-02-01",
+     "cambio_pct": 31.9,
+     "cambio_comun_pct": 0.4,
+     "z": 3.7
+    },
+    {
+     "codigo": "aceite",
+     "nombre": "Aceite",
+     "mes": "2025-05-01",
+     "cambio_pct": 48.6,
+     "cambio_comun_pct": 1.7,
+     "z": 3.7
+    },
+    {
+     "codigo": "res_molida",
+     "nombre": "Carne molida",
+     "mes": "2024-11-01",
+     "cambio_pct": 1.7,
+     "cambio_comun_pct": -15.7,
+     "z": 3.6
+    }
+   ]
+  },
+  "super": {
+   "fecha": "2026-11-08",
+   "dias": 1,
+   "minimo_dias": 8,
+   "cambio_minimo_pct": 20.0,
+   "items": []
+  }
+ }
 }

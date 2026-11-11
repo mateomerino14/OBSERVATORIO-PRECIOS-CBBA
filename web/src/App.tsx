@@ -3,17 +3,19 @@
 import { useEffect, useState } from 'react';
 import { Header, type Route } from './components/Layout';
 import { Fuentes } from './pages/Fuentes';
+import { Modelos } from './pages/Modelos';
 import { Productos } from './pages/Productos';
 import { Resumen } from './pages/Resumen';
 import { SuperVsMercado } from './pages/SuperVsMercado';
 import type { DashboardData } from './types';
 
 const DATA_URL = `${import.meta.env.BASE_URL}data/dashboard.json`;
-const ROUTES: Route[] = ['resumen', 'super-vs-mercado', 'productos', 'fuentes'];
+const ROUTES: Route[] = ['resumen', 'super-vs-mercado', 'productos', 'modelos', 'fuentes'];
 const TITLES: Record<Route, string> = {
   resumen: 'Resumen',
   'super-vs-mercado': 'Súper vs. mercado',
   productos: 'Productos',
+  modelos: 'Modelos',
   fuentes: 'Fuentes y método',
 };
 
@@ -74,6 +76,7 @@ export function App() {
       {data && route === 'resumen' && <Resumen data={data} />}
       {data && route === 'super-vs-mercado' && <SuperVsMercado data={data} />}
       {data && route === 'productos' && <Productos data={data} />}
+      {data && route === 'modelos' && <Modelos data={data} />}
       {data && route === 'fuentes' && <Fuentes data={data} />}
     </div>
   );

@@ -45,6 +45,7 @@ describe('cálculos de pantallas', () => {
 
   it('resuelve la pantalla desde el hash', () => {
     expect(routeFromHash('#/productos')).toBe('productos');
+    expect(routeFromHash('#/modelos')).toBe('modelos');
     expect(routeFromHash('#/no-existe')).toBe('resumen');
     expect(routeFromHash('')).toBe('resumen');
   });

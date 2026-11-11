@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, type ReactNode } from 'react';
 
-export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'fuentes';
+export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'modelos' | 'fuentes';
 
 const LINKS: { route: Route; label: string }[] = [
   { route: 'resumen', label: 'Resumen' },
   { route: 'super-vs-mercado', label: 'Súper vs. mercado' },
   { route: 'productos', label: 'Productos' },
+  { route: 'modelos', label: 'Modelos' },
   { route: 'fuentes', label: 'Fuentes y método' },
 ];
 
@@ -25,8 +26,19 @@ export function Header({ current }: { current: Route }) {
 
   // En móvil la navegación se desliza: deja visible la pantalla actual.
   useEffect(() => {
-    const active = navRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
-    active?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    const center = () => {
+      const nav = navRef.current;
+      const active = nav?.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!nav || !active) {
+        return;
+      }
+      const navBox = nav.getBoundingClientRect();
+      const activeBox = active.getBoundingClientRect();
+      nav.scrollLeft += activeBox.left - navBox.left - (navBox.width - activeBox.width) / 2;
+    };
+    center();
+    // Con la fuente web cargada los enlaces son más anchos: se vuelve a centrar.
+    document.fonts?.ready.then(center);
   }, [current]);
 
   return (
