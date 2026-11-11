@@ -1,0 +1,38 @@
+name: Carga histórica
+
+# Carga los datos que no se recolectan a diario: el tipo de cambio oficial de años
+# anteriores y las series versionadas en fuentes/ (Defensoría y dólar paralelo).
+# Es idempotente: se puede volver a lanzar sin duplicar nada.
+on:
+  workflow_dispatch:
+    inputs:
+      anios_bcb:
+        description: "Años del tipo de cambio oficial del BCB (separados por espacio)"
+        required: true
+        default: "2024 2025 2026"
+
+jobs:
+  cargar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -e .
+      - name: Aplicar migraciones
+        run: observatorio migrar
+      - name: Tipo de cambio oficial del BCB
+        env:
+          ANIOS: ${{ inputs.anios_bcb }}
+        # Se separan los años a propósito: cada uno es un argumento.
+        run: observatorio recolectar bcb --anios $ANIOS
+      - name: Precios de mercado de la Defensoría
+        run: observatorio importar defensoria fuentes/defensoria/cochabamba.csv
+      - name: Dólar paralelo
+        run: observatorio importar paralelo fuentes/dolar_paralelo/cierres_mensuales.csv
