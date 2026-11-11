@@ -404,6 +404,20 @@ h2 {
   text-align: right;
 }
 
+.rank.branches li {
+  grid-template-columns: 160px minmax(0, 1fr) 96px 180px;
+}
+
+@media (max-width: 760px) {
+  .rank.branches li {
+    grid-template-columns: 120px minmax(0, 1fr) 88px;
+  }
+
+  .rank.branches li .small {
+    grid-column: 1 / -1;
+  }
+}
+
 .bar-track {
   display: block;
   height: 12px;

@@ -46,7 +46,8 @@ export interface BasketSummary {
   items_total: number;
   hoy: BasketDay | null;
   ciudad_por_dia: BasketDay[];
-  por_sucursal: (BasketDay & { sucursal: string })[];
+  /** Costo sobre los ítems que todas las sucursales tienen ese día. */
+  por_sucursal: (BasketDay & { sucursal: string; items_sucursal: number })[];
 }
 
 export interface MarketBasket {

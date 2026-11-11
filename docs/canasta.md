@@ -35,7 +35,8 @@ La definición está en [`canastas/defensoria_semanal.toml`](../canastas/defenso
 
 ## Decisiones y limitaciones
 
-- **Frutas y verduras.** La tienda en línea de Hipermaxi casi no publica frescos: en noviembre de 2026 no había papaya, plátano, cebolla, tomate ni zanahoria. Esos 5 productos quedan sin precio y la cobertura de la canasta es **8 de 13**. Las comparaciones con la Defensoría deben hacerse sobre los mismos 8 productos.
+- **Frutas y verduras.** No todas las sucursales publican frescos en línea. El 11 de noviembre de 2026, Circunvalación, Juan de la Rosa y Sacaba tenían papaya, cebolla, tomate y zanahoria (12 de 13 productos); Blanco Galindo y Panamericana, ninguno (8 de 13). El plátano (banano) no aparece en ninguna: solo hay plátano de freír, que es otro producto y se excluye.
+- **Costo de la ciudad y de cada sucursal.** El costo de la ciudad junta los productos de todas las sucursales, ítem por ítem, así que tiene precio para un producto aunque solo una sucursal lo venda. Entre sucursales se compara solo sobre los productos que tienen todas ese día; si no, una sucursal con más productos en línea parecería más cara.
 - **Pulpa de res.** Hipermaxi no usa ese nombre; se toman los cortes sin hueso equivalentes (cuadrada, bollo chico y grande, peceto especial), sin la carne al vacío, que es otro segmento de precio.
 - **Leche fluida.** Solo leche entera o natural en bolsa (800–1.000 ml); se excluyen cajas UHT, larga vida y leches con sabor.
 - **Bolsas al por mayor.** Se excluyen presentaciones mayores a 5 kg (harina y fideo de 11,34 kg), que bajarían artificialmente el precio por kilo.
