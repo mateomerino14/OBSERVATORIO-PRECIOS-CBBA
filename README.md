@@ -85,6 +85,10 @@ observatorio canasta revisar canastas/defensoria_semanal.toml   # qué producto 
 
 Detalle, supuestos y limitaciones en [`docs/canasta.md`](docs/canasta.md).
 
+## Carga histórica
+
+Los datos que no se recolectan a diario (tipo de cambio de años anteriores, precios de la Defensoría y dólar paralelo) se cargan con el flujo [`cargar-historico.yml`](.github/workflows/cargar-historico.yml), que se lanza a mano desde *Actions → Carga histórica → Run workflow*. Es idempotente.
+
 ## Documentación
 
 - [`reglas.md`](reglas.md): ramas, commits y estándares de código
