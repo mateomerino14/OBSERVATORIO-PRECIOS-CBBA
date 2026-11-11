@@ -19,6 +19,7 @@ from observatory.anomalies import (
     market_anomalies,
 )
 from observatory.basket import Basket, BasketItem
+from observatory.clusters import cluster_market
 from observatory.sources.defensoria import PRODUCT_NAMES
 from observatory.suggest import Suggestion, load_catalog, suggest
 
@@ -71,6 +72,53 @@ def build_dashboard(connection: psycopg.Connection, basket: Basket, city: str) -
         "productos": _products(connection, basket, market, today_prices, latest_day),
         "sugerencias": _suggestions(connection, basket),
         "anomalias": _anomalies(connection, city, latest_day),
+        "grupos_mercado": _market_groups(connection, city),
+    }
+
+
+def _market_groups(connection: psycopg.Connection, city: str) -> dict | None:
+    """Grupos de productos de mercado según cómo se movieron frente al dólar (k-means)."""
+    parallel = dict(
+        connection.execute(
+            "SELECT date_trunc('month', fecha)::date, venta FROM tipo_cambio WHERE fuente = %s",
+            (PARALLEL_RATE,),
+        ).fetchall()
+    )
+    result = cluster_market(load_market_prices(connection, MARKET_SOURCE, city), parallel)
+    if result is None:
+        return None
+    return {
+        "etapas": {
+            "inicio": _iso(result.phases.start),
+            "pico": _iso(result.phases.peak),
+            "fin": _iso(result.phases.end),
+        },
+        "k": result.k,
+        "siluetas": [
+            {"k": k, "silueta": _round(score, 3)} for k, score in result.silhouettes.items()
+        ],
+        "grupos": [
+            {
+                "numero": group.number,
+                "nombre": group.name,
+                "volatilidad": _round(group.volatility, 3),
+                "subida_pct": _round(group.rise * 100, 1),
+                "bajada_pct": _round(group.fall * 100, 1),
+                "productos": list(group.products),
+            }
+            for group in result.groups
+        ],
+        "productos": [
+            {
+                "codigo": profile.product,
+                "nombre": PRODUCT_NAMES[profile.product],
+                "grupo": result.labels[profile.product],
+                "volatilidad": _round(profile.volatility, 3),
+                "subida_pct": _round(profile.rise * 100, 1),
+                "bajada_pct": _round(profile.fall * 100, 1),
+            }
+            for profile in result.profiles
+        ],
     }
 
 
