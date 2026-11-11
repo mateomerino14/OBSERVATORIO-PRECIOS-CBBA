@@ -1,4 +1,4 @@
-"""Línea de comandos: observatorio migrar | recolectar <fuente> | canasta <acción> <archivo>."""
+"""Línea de comandos: migrar | recolectar <fuente> | importar <fuente> <csv> | canasta."""
 
 import argparse
 import logging
@@ -10,7 +10,8 @@ from observatory.collector import collect, collect_exchange_rates, today_in_boli
 from observatory.config import MissingSettingError, load_settings
 from observatory.db import connect, migrate
 from observatory.http_client import PoliteClient
-from observatory.sources import bcb, hipermaxi
+from observatory.sources import bcb, defensoria, hipermaxi, paralelo
+from observatory.storage import save_exchange_rates, save_market_prices
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -37,6 +38,13 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="+",
         help="BCB: años a cargar (por defecto, el año en curso)",
     )
+
+    import_parser = commands.add_parser(
+        "importar", help="Carga datos versionados en fuentes/ (Defensoría, dólar paralelo)"
+    )
+    import_parser.add_argument("fuente", choices=["defensoria", "paralelo"])
+    import_parser.add_argument("archivo", type=Path, help="CSV de la carpeta fuentes/")
+    import_parser.add_argument("--ciudad", default=DEFAULT_CITY)
 
     basket_parser = commands.add_parser("canasta", help="Carga o revisa una canasta")
     basket_parser.add_argument("accion", choices=["cargar", "revisar"])
@@ -91,6 +99,23 @@ def print_review(connection, basket_code: str) -> None:
             current = code
         unit_price = price / quantity
         print(f"  Bs {price:>7}  {unit_price:.4f} Bs/{unit}  {name}")
+
+
+def run_import(arguments: argparse.Namespace) -> int:
+    """Carga un CSV de fuentes/: precios de mercado o cierres del dólar paralelo."""
+    settings = load_settings()
+    if arguments.fuente == "paralelo":
+        rates = paralelo.read_csv(arguments.archivo)
+        with connect(settings.database_url) as connection:
+            saved = save_exchange_rates(connection, paralelo.SOURCE_CODE, rates)
+        print(f"{saved} cierres del dólar paralelo de {rates[0].day:%Y-%m} a {rates[-1].day:%Y-%m}")
+        return EXIT_OK
+    rows = defensoria.read_csv(arguments.archivo, arguments.ciudad)
+    with connect(settings.database_url) as connection:
+        saved = save_market_prices(connection, rows)
+    months = sorted({row["mes"] for row in rows})
+    print(f"{saved} precios de mercado de {months[0]:%Y-%m} a {months[-1]:%Y-%m}")
+    return EXIT_OK
 
 
 def run_migrate() -> int:
@@ -158,8 +183,16 @@ def main(argv: list[str] | None = None) -> int:
             return run_migrate()
         if arguments.command == "canasta":
             return run_basket(arguments)
+        if arguments.command == "importar":
+            return run_import(arguments)
         return run_collect(arguments)
-    except (MissingSettingError, InvalidYearsError, BasketDefinitionError) as error:
+    except (
+        MissingSettingError,
+        InvalidYearsError,
+        BasketDefinitionError,
+        defensoria.DefensoriaParseError,
+        paralelo.ParallelRateError,
+    ) as error:
         print(error, file=sys.stderr)
         return EXIT_CONFIG
 
