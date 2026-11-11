@@ -195,6 +195,7 @@ def suggest(
         raise ValueError("No hay productos de tienda con precio para comparar")
     vectors, item_vectors = vectorize(basket, products)
     units = np.array([product.unit for product in products])
+    ids = np.array([product.product_id for product in products])
     unmatched = np.array([product.item_code is None for product in products])
     reports = []
     ranks: list[int] = []
@@ -212,7 +213,8 @@ def suggest(
         threshold = item_threshold(loo)
         pool = np.flatnonzero((units == item.unit) & unmatched)
         candidates = []
-        for index in pool[np.argsort(-scores[pool])]:
+        # Mayor similitud primero; en un empate, el id menor, así el orden no cambia entre días.
+        for index in pool[np.lexsort((ids[pool], -scores[pool]))]:
             score = float(scores[index])
             if score < threshold or len(candidates) == top:
                 break
