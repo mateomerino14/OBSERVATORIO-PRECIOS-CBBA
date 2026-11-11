@@ -36,3 +36,24 @@ jobs:
         run: ruff check . && ruff format --check .
       - name: Pruebas
         run: pytest
+
+  sitio:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Tipos
+        run: npx tsc -b
+      - name: Pruebas
+        run: npm test
+      - name: Construir
+        run: npm run build

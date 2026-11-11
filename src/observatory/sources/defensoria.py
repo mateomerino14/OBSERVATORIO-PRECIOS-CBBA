@@ -61,6 +61,31 @@ PRODUCT_PATTERNS: dict[str, re.Pattern] = {
     "zanahoria": re.compile(r"zanahoria"),
 }
 
+# Nombre legible de cada producto, para mostrar.
+PRODUCT_NAMES: dict[str, str] = {
+    "platano_cocinar": "Plátano para cocinar",
+    "platano": "Plátano",
+    "leche_polvo": "Leche en polvo",
+    "leche_fluida": "Leche fluida",
+    "res_molida": "Carne molida",
+    "pulpa_res": "Pulpa de res",
+    "pollo_entero": "Pollo entero",
+    "margarina": "Margarina",
+    "arroz": "Arroz",
+    "azucar": "Azúcar",
+    "harina_trigo": "Harina de trigo",
+    "fideo": "Fideo",
+    "avena": "Avena",
+    "aceite": "Aceite",
+    "huevos": "Huevos",
+    "papaya": "Papaya",
+    "manzana": "Manzana",
+    "naranja": "Naranja",
+    "cebolla": "Cebolla",
+    "tomate": "Tomate",
+    "zanahoria": "Zanahoria",
+}
+
 # Presentación en la que la Defensoría cotiza cada producto, en unidad base.
 # 1 libra = 460 g. La cuartilla se toma como 6 libras (2.760 g): es el valor con el que los
 # precios extraídos reproducen el costo de canasta publicado (Bs 171 en enero y Bs 247 en

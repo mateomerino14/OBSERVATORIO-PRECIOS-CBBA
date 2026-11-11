@@ -28,7 +28,8 @@ Seguimiento diario de los precios de la canasta familiar en supermercados de Coc
 | Recolección | Python 3.12, httpx, selectolax (lexbor) |
 | Datos | PostgreSQL con migraciones versionadas |
 | Programación | GitHub Actions con cron diario |
-| Calidad | pytest (con PostgreSQL real), Ruff |
+| Dashboard | Vite, React, TypeScript, gráficos SVG propios; GitHub Pages |
+| Calidad | pytest (con PostgreSQL real), Ruff, Vitest y Testing Library |
 
 ## Desarrollo
 
@@ -84,6 +85,16 @@ observatorio canasta revisar canastas/defensoria_semanal.toml   # qué producto 
 ```
 
 Detalle, supuestos y limitaciones en [`docs/canasta.md`](docs/canasta.md).
+
+## Dashboard
+
+Sitio estático en [`web/`](web) (Vite, React y TypeScript) con cuatro pantallas: resumen, súper vs. mercado, productos y fuentes. No consulta la base: `observatorio exportar` genera un JSON con todo lo que muestra, y el flujo [`sitio.yml`](.github/workflows/sitio.yml) lo construye y publica en GitHub Pages después de cada recolección diaria.
+
+```bash
+observatorio exportar --canasta canastas/defensoria_semanal.toml --salida web/public/data/dashboard.json
+cd web && npm install && npm run dev   # http://localhost:5173
+npm test                               # pruebas del sitio
+```
 
 ## Carga histórica
 

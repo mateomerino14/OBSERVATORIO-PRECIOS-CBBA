@@ -21,6 +21,8 @@
 #   subcategorias  subcategorías de la tienda donde se busca
 #   contenido_min / contenido_max  presentación aceptada, en la unidad base
 #                  (deja fuera bolsas al por mayor y envases de muestra)
+#   peso_unidad    gramos de una pieza, para comparar con fuentes que cotizan
+#                  por unidad (la Defensoría cotiza papaya y plátano así)
 
 codigo = "defensoria_semanal"
 nombre = "Canasta básica de alimentos (Defensoría del Pueblo)"
@@ -35,6 +37,7 @@ nombre = "Papaya mediana"
 categoria = "frutas"
 unidad = "g"
 cantidad = 1500  # 1 unidad
+peso_unidad = 1500  # g por pieza, para comparar con precios por unidad
 subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
 incluir = ['^papaya\b']
 excluir = ['deshidrat', 'mermelada', 'jugo', 'nectar', 'trozos', 'picada']
@@ -45,6 +48,7 @@ nombre = "Plátano o banano mediano"
 categoria = "frutas"
 unidad = "g"
 cantidad = 1800  # 12 unidades
+peso_unidad = 150  # g por pieza
 subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
 incluir = ['^(platano|banano|banana)s?\b']
 excluir = ['postre', 'verde', 'cocinar', 'frit', 'chips?', 'harina', 'deshidrat', 'pure', 'colado', 'nectar', 'jugo']
