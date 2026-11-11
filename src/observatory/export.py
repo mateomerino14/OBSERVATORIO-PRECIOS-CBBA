@@ -20,6 +20,7 @@ from observatory.anomalies import (
 )
 from observatory.basket import Basket, BasketItem
 from observatory.clusters import cluster_market
+from observatory.months import MONTHS_IN_YEAR, shift_months
 from observatory.sources.defensoria import PRODUCT_NAMES
 from observatory.suggest import Suggestion, load_catalog, suggest
 
@@ -30,8 +31,12 @@ OFFICIAL_RATE = "bcb_oficial"
 PARALLEL_RATE = "paralelo"
 # Meses que se promedian para leer el mercado sin el ruido de un mes suelto.
 MARKET_WINDOW = 3
-MONTHS_IN_YEAR = 12
 STORE_PRODUCTS_LIMIT = 60
+PERCENT = 100
+PRICE_DECIMALS = 2
+PERCENT_DECIMALS = 1
+# Siluetas, volatilidades y cantidades se publican con más detalle que los precios.
+DETAIL_DECIMALS = 3
 # La unidad base se muestra por kilo o por litro; las unidades, por pieza.
 DISPLAY_FACTOR = {"g": Decimal(1000), "ml": Decimal(1000), "u": Decimal(1)}
 DISPLAY_UNIT = {"g": "kg", "ml": "litro", "u": "unidad"}
@@ -95,15 +100,16 @@ def _market_groups(connection: psycopg.Connection, city: str) -> dict | None:
         },
         "k": result.k,
         "siluetas": [
-            {"k": k, "silueta": _round(score, 3)} for k, score in result.silhouettes.items()
+            {"k": k, "silueta": _round(score, DETAIL_DECIMALS)}
+            for k, score in result.silhouettes.items()
         ],
         "grupos": [
             {
                 "numero": group.number,
                 "nombre": group.name,
-                "volatilidad": _round(group.volatility, 3),
-                "subida_pct": _round(group.rise * 100, 1),
-                "bajada_pct": _round(group.fall * 100, 1),
+                "volatilidad": _round(group.volatility, DETAIL_DECIMALS),
+                "subida_pct": _percent(group.rise),
+                "bajada_pct": _percent(group.fall),
                 "productos": list(group.products),
             }
             for group in result.groups
@@ -113,9 +119,9 @@ def _market_groups(connection: psycopg.Connection, city: str) -> dict | None:
                 "codigo": profile.product,
                 "nombre": PRODUCT_NAMES[profile.product],
                 "grupo": result.labels[profile.product],
-                "volatilidad": _round(profile.volatility, 3),
-                "subida_pct": _round(profile.rise * 100, 1),
-                "bajada_pct": _round(profile.fall * 100, 1),
+                "volatilidad": _round(profile.volatility, DETAIL_DECIMALS),
+                "subida_pct": _percent(profile.rise),
+                "bajada_pct": _percent(profile.fall),
             }
             for profile in result.profiles
         ],
@@ -136,7 +142,7 @@ def _anomalies(connection: psycopg.Connection, city: str, latest_day: date | Non
                 "precio": _round(anomaly.price),
                 "mediana_previa": _round(anomaly.previous_median),
                 "dias_previos": anomaly.previous_days,
-                "cambio_pct": _round(anomaly.change * 100, 1),
+                "cambio_pct": _percent(anomaly.change),
                 "oferta": anomaly.on_offer,
             }
             for anomaly in daily_anomalies(history, names, latest_day)
@@ -149,8 +155,8 @@ def _anomalies(connection: psycopg.Connection, city: str, latest_day: date | Non
                     "codigo": anomaly.product,
                     "nombre": PRODUCT_NAMES[anomaly.product],
                     "mes": _iso(anomaly.month),
-                    "cambio_pct": _round(anomaly.change * 100, 1),
-                    "cambio_comun_pct": _round(anomaly.common_change * 100, 1),
+                    "cambio_pct": _percent(anomaly.change),
+                    "cambio_comun_pct": _percent(anomaly.common_change),
                     "z": _round(anomaly.z, 1),
                 }
                 for anomaly in market
@@ -160,13 +166,14 @@ def _anomalies(connection: psycopg.Connection, city: str, latest_day: date | Non
             "fecha": _iso(latest_day),
             "dias": days,
             "minimo_dias": DAILY_MIN_DAYS + 1,
-            "cambio_minimo_pct": DAILY_CHANGE * 100,
+            "cambio_minimo_pct": DAILY_CHANGE * PERCENT,
             "items": store_rows,
         },
     }
 
 
 def _suggestion_row(suggestion: Suggestion) -> dict:
+    """Fila del JSON para una sugerencia o un emparejamiento dudoso."""
     product = suggestion.product
     return {
         "nombre": product.name,
@@ -292,8 +299,8 @@ def _basket_summary(
     latest_day: date | None,
     city_prices: dict[date, dict[str, dict[str, Decimal]]],
 ) -> dict:
-    """Costo diario de la canasta en la ciudad y, por sucursal, sobre los ítems que todas
-    las sucursales tienen ese día (si no, una sucursal con más ítems parecería más cara)."""
+    """Costo diario de la canasta en la ciudad y de cada sucursal sobre los ítems comunes."""
+    # Sin ítems comunes, una sucursal con más productos en línea parecería más cara.
     city = [
         {"fecha": _iso(day), **city_basket_cost(basket, prices)}
         for day, prices in sorted(city_prices.items())
@@ -370,8 +377,8 @@ def _market_unit_prices(
 def _city_canonical_prices(
     connection: psycopg.Connection,
 ) -> dict[date, dict[str, dict[str, Decimal]]]:
-    """Mediana y mínimo por unidad base de cada producto canónico, por día, juntando todas
-    las sucursales: así la ciudad tiene precio de un ítem aunque solo una sucursal lo venda."""
+    """Mediana y mínimo por unidad base de cada producto canónico, por día, en toda la ciudad."""
+    # Se juntan las sucursales: la ciudad tiene precio aunque solo una sucursal venda el ítem.
     rows = connection.execute(
         """
         SELECT o.fecha, pc.codigo, o.precio / p.contenido_cantidad
@@ -486,8 +493,7 @@ def _super_vs_market(
     today_prices: dict[str, dict[str, Decimal]],
     city: str,
 ) -> dict:
-    """Súper hoy frente al promedio de los últimos meses de mercado, en la presentación de la
-    Defensoría."""
+    """Súper hoy frente al promedio reciente de mercado, en la presentación de la Defensoría."""
     presentations = dict(
         (product, (Decimal(quantity), unit))
         for product, quantity, unit in connection.execute(
@@ -521,7 +527,7 @@ def _super_vs_market(
                 "mercado": _round(market_price),
                 "super_tipico": _round(typical),
                 "super_minimo": _round(today["minimo"] * size),
-                "diferencia_pct": _round((typical / market_price - 1) * 100, 1),
+                "diferencia_pct": _percent(typical / market_price - 1),
             }
         )
     rows.sort(key=lambda row: row["diferencia_pct"], reverse=True)
@@ -544,7 +550,7 @@ def _market_risers(connection: psycopg.Connection, city: str) -> dict:
     if not all_months:
         return {"periodo": None, "productos": []}
     recent = _recent_window(all_months)
-    previous = [_shift_months(month, -MONTHS_IN_YEAR) for month in recent]
+    previous = [shift_months(month, -MONTHS_IN_YEAR) for month in recent]
     result = []
     for product, series in prices.items():
         now = [series[month] for month in recent if month in series]
@@ -556,7 +562,7 @@ def _market_risers(connection: psycopg.Connection, city: str) -> dict:
             {
                 "codigo": product,
                 "nombre": PRODUCT_NAMES[product],
-                "variacion_pct": _round(change * 100, 1),
+                "variacion_pct": _percent(change),
             }
         )
     result.sort(key=lambda row: row["variacion_pct"], reverse=True)
@@ -617,7 +623,7 @@ def _products(
                 "codigo": item.code,
                 "nombre": item.name,
                 "categoria": item.category,
-                "cantidad_canasta": _round(item.quantity, 3),
+                "cantidad_canasta": _round(item.quantity, DETAIL_DECIMALS),
                 "unidad": item.unit,
                 "unidad_visible": DISPLAY_UNIT[item.unit],
                 "hoy": hoy,
@@ -654,17 +660,16 @@ def _recent_window(months: list[date]) -> list[date]:
     """Meses con datos dentro de los últimos MARKET_WINDOW meses calendario."""
     if not months:
         return []
-    start = _shift_months(months[-1], -(MARKET_WINDOW - 1))
+    start = shift_months(months[-1], -(MARKET_WINDOW - 1))
     return [month for month in months if month >= start]
 
 
-def _shift_months(month: date, delta: int) -> date:
-    """Primer día del mes desplazado delta meses."""
-    index = month.year * MONTHS_IN_YEAR + month.month - 1 + delta
-    return date(index // MONTHS_IN_YEAR, index % MONTHS_IN_YEAR + 1, 1)
+def _percent(ratio: Decimal | float) -> float:
+    """Razón como porcentaje redondeado: 0,253 -> 25,3."""
+    return round(float(ratio) * PERCENT, PERCENT_DECIMALS)
 
 
-def _round(value: Decimal | float | None, places: int = 2) -> float | None:
+def _round(value: Decimal | float | None, places: int = PRICE_DECIMALS) -> float | None:
     """Redondea para el JSON; None se mantiene."""
     if value is None:
         return None

@@ -11,6 +11,7 @@ from decimal import Decimal, InvalidOperation
 import httpx
 from selectolax.lexbor import LexborHTMLParser
 
+from observatory.http_client import PoliteClient
 from observatory.models import Branch, FetchedPage, PriceObservation
 
 CHAIN_CODE = "hipermaxi"
@@ -83,7 +84,7 @@ def unwrap(payload: object) -> list[dict]:
     return data
 
 
-def find_region_id(client, city: str) -> int:
+def find_region_id(client: PoliteClient, city: str) -> int:
     """Busca el id de región de una ciudad entre las que atiende Hipermaxi."""
     for region in unwrap(client.get_json(f"{API_BASE}/markets/ciudades")):
         if slugify(region["Nombre"]) == city:
@@ -91,7 +92,7 @@ def find_region_id(client, city: str) -> int:
     raise HipermaxiApiError(f"Hipermaxi no atiende la ciudad: {city}")
 
 
-def list_branches(client, city: str) -> list[HipermaxiBranch]:
+def list_branches(client: PoliteClient, city: str) -> list[HipermaxiBranch]:
     """Lista los supermercados de una ciudad, sin farmacias."""
     region_id = find_region_id(client, city)
     params = {"IdMarket": ALL_MARKETS, "IdTipoServicio": SUPERMARKET_SERVICE_TYPE}
@@ -132,7 +133,7 @@ def parse_category_tree(html: str) -> list[Category]:
     raise HipermaxiApiError("La página no trae el árbol de categorías")
 
 
-def fetch_category_tree(client, city: str, branch_code: str) -> list[Category]:
+def fetch_category_tree(client: PoliteClient, city: str, branch_code: str) -> list[Category]:
     """Descarga una página de categoría de la sucursal y lee de ella el árbol completo."""
     url = f"{WEB_BASE}/{city}/{branch_code}/categoria/{TREE_PAGE_CATEGORY}"
     return parse_category_tree(client.get_text(url))
@@ -183,7 +184,9 @@ def to_observation(
     )
 
 
-def iter_pages(client, city: str, rubros: frozenset[int] = CANASTA_RUBROS) -> Iterator[FetchedPage]:
+def iter_pages(
+    client: PoliteClient, city: str, rubros: frozenset[int] = CANASTA_RUBROS
+) -> Iterator[FetchedPage]:
     """Recorre todas las sucursales de la ciudad, subcategoría por subcategoría."""
     branches = list_branches(client, city)
     if not branches:

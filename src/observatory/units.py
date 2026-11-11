@@ -38,6 +38,7 @@ CONTENT_PATTERN = re.compile(
     rf"(?<![\w.,])(\d+(?:[.,]\d+)?)\s*({_UNITS_PATTERN})\.?(?![\w])",
     re.IGNORECASE,
 )
+GRAMS_PER_KILO = Decimal(1000)
 PER_KILO_PATTERN = re.compile(r"\bx\s*kg\b", re.IGNORECASE)
 
 
@@ -52,7 +53,7 @@ class Content:
 def parse_content(name: str) -> Content | None:
     """Extrae la presentación del nombre del producto; devuelve None si no la encuentra."""
     if PER_KILO_PATTERN.search(name):
-        return Content(Decimal(1000), "g")
+        return Content(GRAMS_PER_KILO, "g")
     matches = CONTENT_PATTERN.findall(name)
     if not matches:
         return None

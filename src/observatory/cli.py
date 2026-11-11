@@ -5,6 +5,8 @@ import logging
 import sys
 from pathlib import Path
 
+import psycopg
+
 from observatory.basket import BasketDefinitionError, load_basket, sync_basket
 from observatory.collector import collect, collect_exchange_rates, today_in_bolivia
 from observatory.config import MissingSettingError, load_settings
@@ -13,7 +15,7 @@ from observatory.export import build_dashboard, write_dashboard
 from observatory.http_client import PoliteClient
 from observatory.sources import bcb, defensoria, hipermaxi, paralelo
 from observatory.storage import save_exchange_rates, save_market_prices
-from observatory.suggest import load_catalog, suggest
+from observatory.suggest import SuggestionReport, load_catalog, suggest
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -105,7 +107,7 @@ def run_basket(arguments: argparse.Namespace) -> int:
     return EXIT_OK
 
 
-def print_suggestions(report) -> None:
+def print_suggestions(report: SuggestionReport) -> None:
     """Candidatos que las reglas no aceptan y aceptados que se parecen poco al resto."""
     evaluation = report.evaluation
     print(f"Catálogo: {report.catalog_size} productos con precio el último día")
@@ -123,7 +125,7 @@ def print_suggestions(report) -> None:
             print(f"  ? {doubt.score:.2f}  {doubt.product.name}  (aceptado, poco parecido)")
 
 
-def print_review(connection, basket_code: str) -> None:
+def print_review(connection: psycopg.Connection, basket_code: str) -> None:
     """Muestra, para la primera sucursal y el último día, qué producto quedó en cada ítem."""
     current = None
     for code, branch, name, price, quantity, unit in connection.execute(

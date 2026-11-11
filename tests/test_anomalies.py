@@ -8,7 +8,6 @@ from observatory.anomalies import (
     daily_anomalies,
     market_anomalies,
     monthly_log_changes,
-    next_month,
     robust_z,
 )
 
@@ -23,11 +22,6 @@ def steady(start: float, growth: float, wiggle: float = 0.0) -> dict[date, Decim
         series[month] = Decimal(str(round(price, 4)))
         price *= 1 + growth + wiggle * (-1) ** index
     return series
-
-
-def test_next_month_crosses_the_year() -> None:
-    assert next_month(date(2025, 12, 1)) == date(2026, 1, 1)
-    assert next_month(date(2025, 4, 1)) == date(2025, 5, 1)
 
 
 def test_robust_z_ignores_the_outlier_when_measuring_spread() -> None:

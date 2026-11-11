@@ -24,11 +24,8 @@ def month_end(month: str) -> date:
 
 
 def read_csv(path: Path) -> list[ExchangeRate]:
-    """Lee los cierres mensuales del paralelo; cada uno se fecha el último día de su mes.
-
-    La columna fecha_dato guarda cuándo se midió realmente el valor (en 2024 son valores
-    puntuales cercanos al cierre) y queda solo como procedencia.
-    """
+    """Lee los cierres mensuales del paralelo; cada uno se fecha el último día de su mes."""
+    # fecha_dato (cuándo se midió el valor) queda solo como procedencia en el CSV.
     with path.open(encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
         missing = CSV_COLUMNS - set(reader.fieldnames or [])

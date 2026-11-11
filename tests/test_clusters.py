@@ -10,7 +10,6 @@ from observatory.clusters import (
     cluster_market,
     dollar_phases,
     name_groups,
-    previous_month,
     window_average,
 )
 
@@ -56,11 +55,6 @@ def market() -> dict[str, dict[date, Decimal]]:
     for seed in range(4):
         prices[f"variable_{seed}"] = series(0.3, 0.35 + 0.03 * seed, 0.25, seed)
     return prices
-
-
-def test_previous_month_crosses_the_year() -> None:
-    assert previous_month(date(2025, 1, 1)) == date(2024, 12, 1)
-    assert previous_month(date(2025, 6, 1)) == date(2025, 5, 1)
 
 
 def test_window_average_centered_and_trailing() -> None:
