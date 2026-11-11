@@ -13,6 +13,9 @@ export interface DashboardData {
   super_vs_mercado: SuperVsMarket;
   subidas_mercado: MarketRisers;
   productos: Product[];
+  /** Modelo de similitud de texto; null si no hay productos con precio. */
+  sugerencias: Suggestions | null;
+  anomalias: Anomalies;
 }
 
 export interface LastRun {
@@ -104,4 +107,49 @@ export interface Product {
     sucursales: number;
     url: string;
   }[];
+}
+
+export type RejectionReason = 'nombre' | 'subcategoria' | 'presentacion' | 'aceptado';
+
+export interface SuggestionRow {
+  nombre: string;
+  subcategoria: string | null;
+  similitud: number;
+  motivo: RejectionReason;
+  url: string;
+}
+
+export interface Suggestions {
+  productos_catalogo: number;
+  evaluacion: { casos: number; encontrados: number; top: number; puesto_mediano: number | null };
+  items: {
+    codigo: string;
+    nombre: string;
+    aceptados: number;
+    umbral: number;
+    candidatos: SuggestionRow[];
+    dudosos: SuggestionRow[];
+  }[];
+}
+
+export interface Anomalies {
+  mercado: {
+    umbral_z: number;
+    items: { codigo: string; nombre: string; mes: string; cambio_pct: number; cambio_comun_pct: number; z: number }[];
+  };
+  super: {
+    fecha: string | null;
+    dias: number;
+    minimo_dias: number;
+    cambio_minimo_pct: number;
+    items: {
+      nombre: string;
+      sucursal: string;
+      precio: number;
+      mediana_previa: number;
+      dias_previos: number;
+      cambio_pct: number;
+      oferta: boolean;
+    }[];
+  };
 }

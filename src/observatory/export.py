@@ -9,8 +9,18 @@ from statistics import median
 
 import psycopg
 
+from observatory.anomalies import (
+    DAILY_CHANGE,
+    DAILY_MIN_DAYS,
+    Z_THRESHOLD,
+    daily_anomalies,
+    load_daily_history,
+    load_market_prices,
+    market_anomalies,
+)
 from observatory.basket import Basket, BasketItem
 from observatory.sources.defensoria import PRODUCT_NAMES
+from observatory.suggest import Suggestion, load_catalog, suggest
 
 SCHEMA_VERSION = 1
 CHAIN = "hipermaxi"
@@ -59,6 +69,95 @@ def build_dashboard(connection: psycopg.Connection, basket: Basket, city: str) -
         "super_vs_mercado": _super_vs_market(connection, basket, market, today_prices, city),
         "subidas_mercado": _market_risers(connection, city),
         "productos": _products(connection, basket, market, today_prices, latest_day),
+        "sugerencias": _suggestions(connection, basket),
+        "anomalias": _anomalies(connection, city, latest_day),
+    }
+
+
+def _anomalies(connection: psycopg.Connection, city: str, latest_day: date | None) -> dict:
+    """Saltos de precio propios de un producto: mensuales en mercado, diarios en el súper."""
+    market = market_anomalies(load_market_prices(connection, MARKET_SOURCE, city))
+    store_rows: list[dict] = []
+    days = 0
+    if latest_day is not None:
+        history, names, days = load_daily_history(connection, latest_day)
+        store_rows = [
+            {
+                "nombre": anomaly.name,
+                "sucursal": anomaly.branch,
+                "precio": _round(anomaly.price),
+                "mediana_previa": _round(anomaly.previous_median),
+                "dias_previos": anomaly.previous_days,
+                "cambio_pct": _round(anomaly.change * 100, 1),
+                "oferta": anomaly.on_offer,
+            }
+            for anomaly in daily_anomalies(history, names, latest_day)
+        ]
+    return {
+        "mercado": {
+            "umbral_z": Z_THRESHOLD,
+            "items": [
+                {
+                    "codigo": anomaly.product,
+                    "nombre": PRODUCT_NAMES[anomaly.product],
+                    "mes": _iso(anomaly.month),
+                    "cambio_pct": _round(anomaly.change * 100, 1),
+                    "cambio_comun_pct": _round(anomaly.common_change * 100, 1),
+                    "z": _round(anomaly.z, 1),
+                }
+                for anomaly in market
+            ],
+        },
+        "super": {
+            "fecha": _iso(latest_day),
+            "dias": days,
+            "minimo_dias": DAILY_MIN_DAYS + 1,
+            "cambio_minimo_pct": DAILY_CHANGE * 100,
+            "items": store_rows,
+        },
+    }
+
+
+def _suggestion_row(suggestion: Suggestion) -> dict:
+    product = suggestion.product
+    return {
+        "nombre": product.name,
+        "subcategoria": product.subcategory,
+        "similitud": round(suggestion.score, 2),
+        "motivo": suggestion.reason,
+        "url": product.url,
+    }
+
+
+def _suggestions(connection: psycopg.Connection, basket: Basket) -> dict | None:
+    """Sugerencias del modelo de similitud para revisar las reglas de la canasta."""
+    catalog = load_catalog(connection)
+    if not catalog:
+        return None
+    report = suggest(basket, catalog)
+    evaluation = report.evaluation
+    median_rank = None
+    if evaluation.median_rank is not None:
+        median_rank = float(evaluation.median_rank)
+    return {
+        "productos_catalogo": report.catalog_size,
+        "evaluacion": {
+            "casos": evaluation.cases,
+            "encontrados": evaluation.found_in_top,
+            "top": evaluation.top,
+            "puesto_mediano": median_rank,
+        },
+        "items": [
+            {
+                "codigo": item.code,
+                "nombre": item.name,
+                "aceptados": item.matched,
+                "umbral": round(item.threshold, 2),
+                "candidatos": [_suggestion_row(candidate) for candidate in item.candidates],
+                "dudosos": [_suggestion_row(doubt) for doubt in item.doubtful],
+            }
+            for item in report.items
+        ],
     }
 
 

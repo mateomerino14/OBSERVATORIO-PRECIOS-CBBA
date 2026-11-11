@@ -19,8 +19,11 @@ export function money(value: number | null | undefined, decimals = 2): string {
   if (value === null || value === undefined) {
     return '—';
   }
-  return `Bs ${number(value, decimals)}`;
+  return `Bs${NBSP}${number(value, decimals)}`;
 }
+
+/** Espacio que no se corta al final de una línea: "+22 %" nunca queda en dos renglones. */
+const NBSP = '\u00a0';
 
 /** Porcentaje con signo y signo menos tipográfico: "+22 %", "−45 %". */
 export function percent(value: number, decimals = 0): string {
@@ -28,12 +31,12 @@ export function percent(value: number, decimals = 0): string {
   const rounded = Math.round(value * factor) / factor;
   const text = number(Math.abs(rounded), decimals);
   if (rounded > 0) {
-    return `+${text} %`;
+    return `+${text}${NBSP}%`;
   }
   if (rounded < 0) {
-    return `−${text} %`;
+    return `−${text}${NBSP}%`;
   }
-  return `${text} %`;
+  return `${text}${NBSP}%`;
 }
 
 /** Mes corto desde una fecha ISO: "2025-05-01" -> "may 25". */

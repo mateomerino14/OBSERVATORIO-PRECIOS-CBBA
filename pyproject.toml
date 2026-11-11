@@ -10,6 +10,7 @@ dependencies = [
     "psycopg[binary]>=3.2",
     "pdfplumber>=0.11",
     "selectolax>=1.0",
+    "scikit-learn>=1.5",
 ]
 
 [project.optional-dependencies]

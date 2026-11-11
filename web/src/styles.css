@@ -136,6 +136,10 @@ h2 {
   gap: 4px;
 }
 
+.table .mono {
+  white-space: nowrap;
+}
+
 .nav-link {
   min-height: 44px;
   display: inline-flex;
@@ -206,8 +210,47 @@ h2 {
 
 .kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 16px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.findings ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 16px;
+}
+
+.finding {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.finding-value {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--price);
+}
+
+.finding h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.finding p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.5;
 }
 
 .kpi {
@@ -469,6 +512,59 @@ h2 {
   text-align: right;
 }
 
+/* Sugerencias del modelo */
+
+.suggestions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  gap: 20px 32px;
+}
+
+.suggestion-item h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.suggestion-item ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-item li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: 15px;
+}
+
+.suggestion-item li .score {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.reason {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.table .reason {
+  margin-left: 8px;
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.reason.doubt {
+  color: var(--price);
+}
+
 /* Tablas */
 
 .table-scroll {
@@ -640,5 +736,74 @@ h2 {
 
   .rank li {
     grid-template-columns: 110px minmax(0, 1fr) 56px;
+  }
+
+  /* Una sola fila de navegación que se desliza, en vez de dos renglones. */
+  .nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    min-width: 0;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+
+  .nav-link {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  /* Tablas apiladas: cada fila es una ficha con etiqueta y valor. */
+  .table.stack {
+    min-width: 0;
+  }
+
+  .table.stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .table.stack tbody tr {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 6px 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .table.stack tbody th,
+  .table.stack tbody td {
+    padding: 0;
+    border: 0;
+  }
+
+  .table.stack tbody th {
+    grid-column: 1 / -1;
+  }
+
+  .table.stack tbody td {
+    display: contents;
+  }
+
+  .table.stack tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 13px;
+    align-self: center;
+  }
+
+  .table.stack .num {
+    text-align: left;
+  }
+
+  .table.stack .stack-hide {
+    display: none;
+  }
+
+  .table.stack .diff-cell {
+    min-width: 0;
   }
 }

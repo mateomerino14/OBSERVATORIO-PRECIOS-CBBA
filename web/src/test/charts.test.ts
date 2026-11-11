@@ -45,12 +45,14 @@ describe('cálculos de pantallas', () => {
 
   it('resuelve la pantalla desde el hash', () => {
     expect(routeFromHash('#/productos')).toBe('productos');
+    expect(routeFromHash('#/modelos')).toBe('modelos');
     expect(routeFromHash('#/no-existe')).toBe('resumen');
     expect(routeFromHash('')).toBe('resumen');
   });
 
   it('acorta los nombres de sucursal', () => {
-    expect(branchLabel('HIPERMAXI JUAN DE LA ROSA')).toBe('Juan De La Rosa');
+    expect(branchLabel('HIPERMAXI JUAN DE LA ROSA')).toBe('Juan de la Rosa');
+    expect(branchLabel('HIPERMAXI CIRCUNVALACION')).toBe('Circunvalación');
     expect(branchLabel('Todas')).toBe('Todas');
   });
 
