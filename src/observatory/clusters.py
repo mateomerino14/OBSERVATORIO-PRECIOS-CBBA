@@ -22,7 +22,8 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 
-from observatory.anomalies import MAD_TO_SIGMA, monthly_log_changes, next_month
+from observatory.anomalies import MAD_TO_SIGMA, monthly_log_changes
+from observatory.months import DECEMBER, next_month, previous_month, shift_months
 
 K_OPTIONS = range(2, 7)
 RANDOM_STATE = 0
@@ -30,7 +31,9 @@ N_INIT = 50
 MIN_PRODUCTS = 8
 MIN_CHANGES = 6
 MIN_GROUP_SIZE = 2
-DECEMBER = 12
+MIN_PHASE_MONTHS = 3
+# Los nombres de los grupos se deducen de sus centros solo con tres grupos.
+NAMED_K = 3
 
 NAME_STABLE = "Estables"
 NAME_JUMPED = "Saltaron con la subida del dólar"
@@ -80,17 +83,10 @@ class Clustering:
     labels: dict[str, int]
 
 
-def previous_month(month: date) -> date:
-    """Primer día del mes anterior."""
-    if month.month == 1:
-        return date(month.year - 1, DECEMBER, 1)
-    return date(month.year, month.month - 1, 1)
-
-
 def dollar_phases(parallel: dict[date, Decimal], market_months: set[date]) -> DollarPhases | None:
     """Etapas del paralelo en los meses con datos de mercado: igual que los hallazgos del sitio."""
     months = sorted(month for month in parallel if month in market_months)
-    if len(months) < 3:
+    if len(months) < MIN_PHASE_MONTHS:
         return None
     peak = max(months, key=lambda month: parallel[month])
     end = months[-1]
@@ -109,7 +105,7 @@ def window_average(
     """Promedio del mes y sus vecinos con dato; con `trailing`, del mes y los dos anteriores."""
     window = (previous_month(month), month, next_month(month))
     if trailing:
-        window = (previous_month(previous_month(month)), previous_month(month), month)
+        window = (shift_months(month, -2), previous_month(month), month)
     values = [float(series[when]) for when in window if when in series]
     if not values:
         return None
@@ -151,13 +147,13 @@ def features(items: list[ProductProfile]) -> np.ndarray:
 
 
 def name_groups(centers: list[tuple[float, float, float]]) -> list[str]:
-    """Nombres por el centro de cada grupo (volatilidad, subida, bajada); solo para k = 3."""
-    if len(centers) != 3:
+    """Nombres por el centro de cada grupo (volatilidad, subida, bajada); solo con tres grupos."""
+    if len(centers) != NAMED_K:
         return [f"Grupo {number + 1}" for number in range(len(centers))]
-    names = [""] * 3
-    stable = min(range(3), key=lambda number: centers[number][0])
+    names = [""] * NAMED_K
+    stable = min(range(NAMED_K), key=lambda number: centers[number][0])
     names[stable] = NAME_STABLE
-    others = [number for number in range(3) if number != stable]
+    others = [number for number in range(NAMED_K) if number != stable]
     jumped = max(others, key=lambda number: centers[number][1])
     names[jumped] = NAME_JUMPED
     for number in others:

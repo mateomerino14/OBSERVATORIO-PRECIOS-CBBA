@@ -1,54 +1,21 @@
 // Pantalla 1: indicadores, canasta en mercado y súper, subidas y dólar.
 
+import { niceTicks } from '../components/ticks';
+import { INK, PRICE, DOLLAR } from '../colors';
 import { Bar, Figure, KpiCard, LegendItem } from '../components/Layout';
 import { LineChart, type Marker } from '../components/LineChart';
-import { longDate, money, monthOf, monthRange, number, percent, shortMonth } from '../format';
-import { branchLabel } from './Productos';
+import { branchLabel, longDate, money, monthOf, monthRange, number, percent, shortMonth } from '../format';
+import { emptyStretch, monthTicks } from '../series';
 import { buildFindings } from '../findings';
 import type { DashboardData } from '../types';
 
-const INK = '#1B1F24';
-const PRICE = '#B4500B';
-const DOLLAR = '#1F5FAD';
 const TOP_RISERS = 6;
+const BASKET_TICK_STEP = 25;
+// El eje de la canasta llega al menos hasta Bs 100.
+const BASKET_FLOOR = 100;
+const DOLLAR_TICKS = [6, 9, 12, 15, 18];
 
-/** Ticks del eje X: el primer mes, cada enero y julio, y el último. */
-export function monthTicks(months: string[]): { index: number; label: string }[] {
-  const ticks: { index: number; label: string }[] = [];
-  months.forEach((month, index) => {
-    const isEdge = index === 0 || index === months.length - 1;
-    const isAnchor = month.slice(5, 7) === '01' || month.slice(5, 7) === '07';
-    const nearEnd = months.length - 1 - index < 3;
-    if (isEdge || (isAnchor && !nearEnd && index > 2)) {
-      ticks.push({ index, label: shortMonth(month) });
-    }
-  });
-  return ticks;
-}
-
-/** Tramo de meses consecutivos sin ningún dato, para sombrearlo en el gráfico. */
-export function emptyStretch(values: (number | null)[]): { from: number; to: number } | null {
-  let best: { from: number; to: number } | null = null;
-  let start = -1;
-  values.forEach((value, index) => {
-    if (value === null && start < 0) {
-      start = index;
-    }
-    const closes = value !== null || index === values.length - 1;
-    if (start >= 0 && closes) {
-      let end = index - 1;
-      if (value === null) {
-        end = index;
-      }
-      if (best === null || end - start > best.to - best.from) {
-        best = { from: Math.max(start - 1, 0), to: Math.min(end + 1, values.length - 1) };
-      }
-      start = -1;
-    }
-  });
-  return best;
-}
-
+/** Pantalla de resumen: costo de la canasta, hallazgos y dólar. */
 export function Resumen({ data }: { data: DashboardData }) {
   const today = data.canasta.hoy;
   const official = data.dolar.oficial_hoy;
@@ -83,12 +50,9 @@ export function Resumen({ data }: { data: DashboardData }) {
   }
 
   const basketValues = [...marketValues.filter((value): value is number => value !== null), ...markers.map((marker) => marker.value)];
-  const basketMax = Math.ceil(Math.max(...basketValues, 100) / 25) * 25;
-  const basketMin = Math.floor(Math.min(...basketValues, basketMax) / 25) * 25;
-  const basketTicks = [];
-  for (let tick = basketMin; tick <= basketMax; tick += 25) {
-    basketTicks.push(tick);
-  }
+  const basketTicks = niceTicks(Math.min(...basketValues), Math.max(...basketValues, BASKET_FLOOR), BASKET_TICK_STEP);
+  const basketMin = basketTicks[0];
+  const basketMax = basketTicks[basketTicks.length - 1];
 
   const officialValues = months.map((month) => data.dolar.oficial_mensual.find((row) => row.mes === month)?.venta ?? null);
   const parallelValues = months.map((month) => data.dolar.paralelo_mensual.find((row) => row.mes === month)?.venta ?? null);
@@ -249,9 +213,9 @@ export function Resumen({ data }: { data: DashboardData }) {
             { id: 'oficial', color: DOLLAR, width: 3, values: officialValues },
             { id: 'paralelo', color: INK, dashed: true, values: parallelValues },
           ]}
-          yMin={6}
-          yMax={18}
-          yTicks={[6, 9, 12, 15, 18]}
+          yMin={DOLLAR_TICKS[0]}
+          yMax={DOLLAR_TICKS[DOLLAR_TICKS.length - 1]}
+          yTicks={DOLLAR_TICKS}
           xTicks={monthTicks(months)}
           verticalLines={verticalLines}
           ariaLabel="Dólar oficial y paralelo por mes"

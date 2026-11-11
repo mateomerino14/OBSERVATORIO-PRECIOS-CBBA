@@ -1,55 +1,17 @@
 // Pantalla 3: detalle de un producto de la canasta.
 
+import { INK, PRICE } from '../colors';
 import { useState } from 'react';
 import { Bar, EmptyState, Figure, KpiCard } from '../components/Layout';
 import { LineChart } from '../components/LineChart';
-import { money, number, shortDate, shortMonth } from '../format';
-import type { DashboardData, Product } from '../types';
+import { branchLabel, money, number, shortDate, shortMonth } from '../format';
+import { ALL_BRANCHES, dailySeries } from '../series';
+import type { DashboardData } from '../types';
 
-const INK = '#1B1F24';
-const PRICE = '#B4500B';
-const ALL_BRANCHES = 'Todas';
 const MIN_DAYS_FOR_LINE = 2;
 
-/** Nombre corto de una sucursal: "HIPERMAXI JUAN DE LA ROSA" -> "Juan De La Rosa". */
-const SMALL_WORDS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y']);
-const ACCENTS: Record<string, string> = { circunvalacion: 'circunvalación' };
 
-/** "HIPERMAXI JUAN DE LA ROSA" -> "Juan de la Rosa". */
-export function branchLabel(name: string): string {
-  return name
-    .replace(/^HIPERMAXI\s+/i, '')
-    .toLowerCase()
-    .split(/\s+/)
-    .map((word, index) => {
-      const fixed = ACCENTS[word] ?? word;
-      if (index > 0 && SMALL_WORDS.has(fixed)) {
-        return fixed;
-      }
-      return fixed.charAt(0).toUpperCase() + fixed.slice(1);
-    })
-    .join(' ');
-}
-
-/** Precio típico diario de un producto: de una sucursal o el promedio de todas. */
-export function dailySeries(product: Product, branch: string): { days: string[]; values: number[] } {
-  const byDay = new Map<string, number[]>();
-  product.diario.forEach((row) => {
-    if (branch !== ALL_BRANCHES && row.sucursal !== branch) {
-      return;
-    }
-    const list = byDay.get(row.fecha) ?? [];
-    list.push(row.tipico);
-    byDay.set(row.fecha, list);
-  });
-  const days = [...byDay.keys()].sort();
-  const values = days.map((day) => {
-    const list = byDay.get(day) ?? [];
-    return list.reduce((sum, value) => sum + value, 0) / list.length;
-  });
-  return { days, values };
-}
-
+/** Pantalla de un producto de la canasta: historia y productos de tienda. */
 export function Productos({ data }: { data: DashboardData }) {
   // Se abre en el primer producto que el súper vende; si ninguno, en el primero.
   const firstPriced = data.productos.find((item) => item.hoy !== null) ?? data.productos[0];

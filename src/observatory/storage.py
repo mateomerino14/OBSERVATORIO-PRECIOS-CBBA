@@ -82,13 +82,6 @@ def get_chain_id(connection: psycopg.Connection, chain_code: str) -> int:
     return row[0]
 
 
-def save_observation(
-    connection: psycopg.Connection, observation: PriceObservation, observed_on: date
-) -> None:
-    """Guarda una sola observación (atajo de save_observations)."""
-    save_observations(connection, [observation], observed_on)
-
-
 def save_observations(
     connection: psycopg.Connection, observations: list[PriceObservation], observed_on: date
 ) -> int:

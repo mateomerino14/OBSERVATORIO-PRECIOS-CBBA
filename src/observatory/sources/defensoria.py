@@ -9,6 +9,8 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+from observatory.months import previous_month
+
 SOURCE_CODE = "defensoria"
 MONTHS = {
     "enero": 1,
@@ -35,6 +37,7 @@ HEADER_WORDS = re.compile(
 # esto, la fila probablemente se leyó mal.
 VARIATION_TOLERANCE = Decimal("1.5")
 CENT = Decimal("0.01")
+PERCENT = 100
 
 # Producto de la Defensoría -> expresión que lo reconoce en la descripción (sin tildes).
 PRODUCT_PATTERNS: dict[str, re.Pattern] = {
@@ -142,8 +145,8 @@ def normalize(text: str) -> str:
 
 
 def identify_product(text: str) -> str | None:
-    """Producto cuyo nombre aparece más a la derecha del texto (los nombres partidos en dos
-    líneas dejan restos del producto anterior al inicio)."""
+    """Producto cuyo nombre aparece más a la derecha del texto."""
+    # Los nombres partidos en dos líneas dejan restos del producto anterior al inicio.
     normalized = normalize(text)
     best = None
     best_position = -1
@@ -225,10 +228,9 @@ def _row_prices(
         # Sin encabezado claro: los dos últimos valores son el mes anterior y el del informe.
         if len(values) < 2:
             return []
-        months = [_previous_month(report).month, report.month]
+        months = [previous_month(report).month, report.month]
         values = values[-2:]
-    # Algunos informes publican la variación contra el mes anterior y otros contra el
-    # primer mes de la tabla; vale cualquiera de las dos.
+    # La variación publicada puede ser contra el mes anterior o contra el primero de la tabla.
     verified = _variation_matches(values[-2], values[-1], variation) or _variation_matches(
         values[0], values[-1], variation
     )
@@ -258,15 +260,8 @@ def _variation_matches(previous: Decimal, current: Decimal, published: Decimal) 
     """Compara la variación porcentual publicada con la calculada a partir de los precios."""
     if previous <= 0:
         return False
-    computed = (current / previous - 1) * 100
+    computed = (current / previous - 1) * PERCENT
     return abs(computed - published) <= VARIATION_TOLERANCE
-
-
-def _previous_month(day: date) -> date:
-    """Primer día del mes anterior."""
-    if day.month == 1:
-        return date(day.year - 1, 12, 1)
-    return date(day.year, day.month - 1, 1)
 
 
 CSV_COLUMNS = {

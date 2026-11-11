@@ -14,6 +14,7 @@ El modelo:
   producto aceptado con el prototipo armado sin él (dejando uno fuera).
 """
 
+import math
 import re
 import statistics
 from dataclasses import dataclass
@@ -37,6 +38,7 @@ MIN_MATCHED_FOR_THRESHOLD = 3
 MIN_MATCHED_FOR_DOUBTS = 5
 DOUBTS = 3
 EVALUATION_TOP = 10
+DEFAULT_TOP = 5
 # Con pocos productos (pruebas, catálogos chicos) no se descartan n-gramas raros.
 MIN_DF_CATALOG = 50
 
@@ -144,13 +146,14 @@ def vectorize(basket: Basket, products: list[CatalogProduct]) -> tuple[csr_matri
     name_matrix = TfidfVectorizer(
         analyzer="char_wb", ngram_range=NGRAMS, sublinear_tf=True, min_df=min_df
     ).fit_transform(names)
-    blocks = [name_matrix * NAME_WEIGHT**0.5]
+    # Se pondera por la raíz para que el peso valga sobre el producto escalar.
+    blocks = [name_matrix * math.sqrt(NAME_WEIGHT)]
     # Sin subcategorías (catálogos de prueba) se compara solo por nombre.
     if any(subcategories):
         subcategory_matrix = TfidfVectorizer(
             analyzer="word", token_pattern=r"[a-z]+"
         ).fit_transform(subcategories)
-        blocks.append(subcategory_matrix * SUBCATEGORY_WEIGHT**0.5)
+        blocks.append(subcategory_matrix * math.sqrt(SUBCATEGORY_WEIGHT))
     matrix = l2_normalize(hstack(blocks).tocsr())
     return matrix[: len(products)], matrix[len(products) :]
 
@@ -184,7 +187,9 @@ def item_threshold(loo_scores: np.ndarray) -> float:
     return max(float(np.quantile(loo_scores, THRESHOLD_QUANTILE)), MIN_THRESHOLD)
 
 
-def suggest(basket: Basket, products: list[CatalogProduct], top: int = 5) -> SuggestionReport:
+def suggest(
+    basket: Basket, products: list[CatalogProduct], top: int = DEFAULT_TOP
+) -> SuggestionReport:
     """Candidatos y emparejamientos dudosos por ítem, más la evaluación del modelo."""
     if not products:
         raise ValueError("No hay productos de tienda con precio para comparar")

@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { routeFromHash } from '../App';
-import { segments, xPosition, yPosition } from '../components/LineChart';
-import { branchLabel, dailySeries } from '../pages/Productos';
-import { emptyStretch, monthTicks } from '../pages/Resumen';
-import { toIndex } from '../pages/SuperVsMercado';
+import { routeFromHash } from '../routes';
+import { fitTicks, segments, xPosition, yPosition } from '../components/lineGeometry';
+import { branchLabel } from '../format';
+import { dailySeries, emptyStretch, monthTicks, toIndex } from '../series';
 import type { Product } from '../types';
 
 describe('gráfico de líneas', () => {
@@ -70,8 +69,7 @@ describe('cálculos de pantallas', () => {
 });
 
 describe('etiquetas del eje', () => {
-  it('descarta las que se enciman y conserva la última', async () => {
-    const { fitTicks } = await import('../components/LineChart');
+  it('descarta las que se enciman y conserva la última', () => {
     const ticks = [{ index: 0 }, { index: 1 }, { index: 5 }, { index: 9 }, { index: 10 }];
     expect(fitTicks(ticks, (index) => index * 20).map((tick) => tick.index)).toEqual([0, 5, 10]);
   });

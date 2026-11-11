@@ -36,7 +36,7 @@ export interface Coverage {
   primer_dia: string | null;
 }
 
-export interface BasketDay {
+interface BasketDay {
   fecha: string;
   tipico: number;
   economico: number;
@@ -60,7 +60,7 @@ export interface MarketBasket {
   por_mes: { mes: string; total: number | null; comparable: number | null }[];
 }
 
-export interface MonthlyRate {
+interface MonthlyRate {
   mes: string;
   venta: number;
 }
@@ -72,7 +72,7 @@ export interface ExchangeRates {
   paralelo_mensual: MonthlyRate[];
 }
 
-export interface SuperVsMarketRow {
+interface SuperVsMarketRow {
   codigo: string;
   nombre: string;
   presentacion: string;

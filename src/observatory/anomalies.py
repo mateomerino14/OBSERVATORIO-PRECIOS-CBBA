@@ -23,6 +23,8 @@ from decimal import Decimal
 
 import psycopg
 
+from observatory.months import next_month
+
 Z_THRESHOLD = 3.5
 MAD_TO_SIGMA = 1.4826
 MIN_CHANGES = 6
@@ -57,13 +59,6 @@ class DailyAnomaly:
     previous_days: int
     change: float
     on_offer: bool
-
-
-def next_month(month: date) -> date:
-    """Primer día del mes siguiente."""
-    if month.month == 12:
-        return date(month.year + 1, 1, 1)
-    return date(month.year, month.month + 1, 1)
 
 
 def robust_z(values: list[float]) -> list[float]:
