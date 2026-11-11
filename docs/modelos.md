@@ -16,12 +16,13 @@ Dos modelos ayudan a revisar los datos. Ninguno cambia un precio ni una regla po
 6. Para cada candidato se explica qué regla lo deja fuera: el nombre, la subcategoría o la presentación. Lo que una regla **excluye a propósito** (arroz integral, salsa de tomate) no se vuelve a sugerir.
 7. También se listan los **aceptados poco parecidos al resto**, que pueden ser errores de la regla.
 
-**Evaluación.** Se toma cada producto que las reglas aceptan, se arma el prototipo sin él y se cuenta en qué puesto queda entre todos los productos sin emparejar de su unidad. El sitio muestra qué proporción queda entre los 10 primeros: con el catálogo de dos sucursales, 99 de 122 (81 %), con puesto mediano 2.
+**Evaluación.** Se toma cada producto que las reglas aceptan, se arma el prototipo sin él y se cuenta en qué puesto queda entre todos los productos sin emparejar de su unidad. El sitio muestra qué proporción queda entre los 10 primeros: el 11 de noviembre de 2026, con 14.288 productos de las 5 sucursales, 121 de 141 (86 %), con puesto mediano 2.
 
 **Qué encontró.** En noviembre de 2026, el modelo señaló:
 
 - Tres packs de huevos ("Pack Huevo de Oro 12 un") que la regla dejaba fuera porque el nombre no empieza con "huevo". Ahora entran.
 - Dos pastas especiales aceptadas como fideo corto: "Penne Libre Gluten" y "Fideos de Garbanzo". Su precio no es comparable con el fideo común. Ahora se excluyen junto con las de lenteja y quinua.
+- Ya con los datos de producción: "Fetuccini" escrito con una sola t, que la exclusión de pastas largas no cubría, y fideos instantáneos "Yakissoba".
 
 También sugiere cortes "especiales" de res para la pulpa (picaña, cuadril) porque el nombre se parece. Son otro producto y se descartan: por eso las sugerencias se revisan a mano.
 

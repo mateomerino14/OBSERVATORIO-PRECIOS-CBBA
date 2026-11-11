@@ -121,6 +121,12 @@ def test_matches_applies_all_rules(minimal_basket, product: StoreProduct, expect
         ),
         ("fideo", store_product("Fideo Don Vittorio Corto 400 gr", content=Decimal(400)), True),
         ("fideo", store_product("Fideos Bisfru de Garbanzo 400 gr", content=Decimal(400)), False),
+        ("fideo", store_product("Fideo Ferrari Fetuccini 400 gr", content=Decimal(400)), False),
+        (
+            "fideo",
+            store_product("Fideo Nissin Yakissoba Pronto 500 gr", content=Decimal(500)),
+            False,
+        ),
         (
             "fideo",
             store_product("Fideo Matarazzo Penne Rig Libre Gluten 500 gr", content=Decimal(500)),
