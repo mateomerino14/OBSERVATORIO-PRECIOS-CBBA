@@ -129,7 +129,9 @@ subcategorias = ["Básicos"]
 contenido_min = 400
 contenido_max = 5000
 incluir = ['^fideos?\b']
-excluir = ['spag', 'tallar', '\blarg', 'lasagn', 'cabell', 'lingu', 'fettuc', 'tagliat', 'tangliat', 'huevo', 'integral', 'sin gluten', 'instant', 'ramen', 'arroz', 'canelon', 'nido', 'sopa']
+# Pastas especiales (sin gluten, de legumbres o quinua) no son el fideo de la canasta;
+# las detectó `observatorio canasta sugerir` como aceptadas pero poco parecidas al resto.
+excluir = ['spag', 'tallar', '\blarg', 'lasagn', 'cabell', 'lingu', 'fettuc', 'tagliat', 'tangliat', 'huevo', 'integral', 'gluten', 'garbanzo', 'lenteja', 'quinua', 'instant', 'ramen', 'arroz', 'canelon', 'nido', 'sopa']
 
 [[producto]]
 codigo = "pulpa_res"
@@ -172,5 +174,6 @@ categoria = "huevos"
 unidad = "u"
 cantidad = 10
 subcategorias = ["Huevos"]
-incluir = ['^huevos?\b', '\bhuevos?\b.*\bmaple\b', '^maple de 30 huevos\b']
+# Los packs ("Pack Huevo de Oro 12 un") los encontró el modelo de sugerencias.
+incluir = ['^huevos?\b', '\bhuevos?\b.*\bmaple\b', '^maple de 30 huevos\b', '^pack\b.*\bhuevos?\b']
 excluir = ['codorniz', 'clara', 'omega', 'liquid', 'pasteur', 'vitaminad', 'cristal', 'granel']
