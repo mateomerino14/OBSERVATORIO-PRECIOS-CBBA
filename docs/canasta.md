@@ -8,10 +8,12 @@ La definición está en [`canastas/defensoria_semanal.toml`](../canastas/defenso
 
 1. **Emparejamiento.** Cada producto de la canasta (producto canónico) tiene reglas: expresiones que el nombre debe contener o no, subcategorías de la tienda y límites de presentación. `observatorio canasta cargar` aplica las reglas a todos los productos de tienda y guarda el resultado en `emparejamiento`. Los emparejamientos hechos a mano (`metodo = 'manual'`) se respetan.
 2. **Precio por unidad base.** Para cada producto canónico, sucursal y día, la vista `precio_canonico_diario` calcula el precio por gramo, mililitro o unidad de todos los productos emparejados y disponibles: la **mediana** (precio típico) y el **mínimo** (lo más barato).
-3. **Costo de la canasta.** La vista `costo_canasta_diario` multiplica cada cantidad por ese precio y suma:
-   - `costo_tipico`: con la mediana de cada producto.
-   - `costo_economico`: comprando siempre lo más barato.
-   - `items_con_precio / items_total`: cuántos productos de la canasta tuvieron precio ese día.
+3. **Costo de la canasta.** La exportación (`observatorio exportar`) multiplica cada cantidad por el precio por unidad y suma:
+   - **típico**: con la mediana de cada producto;
+   - **económico**: comprando siempre lo más barato;
+   - **cobertura**: cuántos de los 13 productos tuvieron precio ese día.
+
+   El costo de la ciudad junta los productos de todas las sucursales; el de cada sucursal se calcula solo sobre los productos que tienen todas (ver *Costo de la ciudad y de cada sucursal*, abajo).
 
 ## Cantidades
 

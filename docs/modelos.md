@@ -16,7 +16,7 @@ Tres modelos ayudan a leer los datos. Ninguno cambia un precio ni una regla por 
 6. Para cada candidato se explica qué regla lo deja fuera: el nombre, la subcategoría o la presentación. Lo que una regla **excluye a propósito** (arroz integral, salsa de tomate) no se vuelve a sugerir.
 7. También se listan los **aceptados poco parecidos al resto**, que pueden ser errores de la regla.
 
-**Evaluación.** Se toma cada producto que las reglas aceptan, se arma el prototipo sin él y se cuenta en qué puesto queda entre todos los productos sin emparejar de su unidad. El sitio muestra qué proporción queda entre los 10 primeros: el 11 de noviembre de 2026, con 14.288 productos de las 5 sucursales, 121 de 141 (86 %), con puesto mediano 2.
+**Evaluación.** Se toma cada producto que las reglas aceptan, se arma el prototipo sin él y se cuenta en qué puesto queda entre todos los productos sin emparejar de su unidad. El sitio muestra qué proporción queda entre los 10 primeros: el 11 de noviembre de 2026, con 14.288 productos de las 5 sucursales y las reglas ya corregidas, 118 de 135 (87 %), con puesto mediano 2.
 
 **Qué encontró.** En noviembre de 2026, el modelo señaló:
 
