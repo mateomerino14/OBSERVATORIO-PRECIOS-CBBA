@@ -36,6 +36,8 @@ class BasketItem:
     subcategories: frozenset[str]
     min_content: Decimal | None
     max_content: Decimal | None
+    # Gramos de una unidad, para productos que otras fuentes cotizan por pieza (papaya).
+    unit_weight: Decimal | None = None
 
 
 @dataclass(frozen=True)
@@ -180,6 +182,7 @@ def _parse_item(raw: dict) -> BasketItem:
         subcategories=frozenset(raw.get("subcategorias", [])),
         min_content=_optional_decimal(raw.get("contenido_min")),
         max_content=_optional_decimal(raw.get("contenido_max")),
+        unit_weight=_optional_decimal(raw.get("peso_unidad")),
     )
 
 
