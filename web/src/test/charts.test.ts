@@ -50,7 +50,8 @@ describe('cálculos de pantallas', () => {
   });
 
   it('acorta los nombres de sucursal', () => {
-    expect(branchLabel('HIPERMAXI JUAN DE LA ROSA')).toBe('Juan De La Rosa');
+    expect(branchLabel('HIPERMAXI JUAN DE LA ROSA')).toBe('Juan de la Rosa');
+    expect(branchLabel('HIPERMAXI CIRCUNVALACION')).toBe('Circunvalación');
     expect(branchLabel('Todas')).toBe('Todas');
   });
 

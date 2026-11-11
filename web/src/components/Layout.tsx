@@ -1,6 +1,6 @@
 // Piezas de diseño compartidas: encabezado, tarjetas de indicador, figuras y barras.
 
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 export type Route = 'resumen' | 'super-vs-mercado' | 'productos' | 'fuentes';
 
@@ -21,6 +21,14 @@ function currentFlag(route: Route, current: Route): 'page' | undefined {
 
 /** Encabezado con el nombre del proyecto y la navegación entre pantallas. */
 export function Header({ current }: { current: Route }) {
+  const navRef = useRef<HTMLElement>(null);
+
+  // En móvil la navegación se desliza: deja visible la pantalla actual.
+  useEffect(() => {
+    const active = navRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
+    active?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+  }, [current]);
+
   return (
     <header className="site-header">
       <div className="site-header-inner">
@@ -28,7 +36,7 @@ export function Header({ current }: { current: Route }) {
           <span className="brand-name">Observatorio de Precios</span>
           <span className="brand-city">COCHABAMBA</span>
         </a>
-        <nav aria-label="Secciones" className="nav">
+        <nav aria-label="Secciones" className="nav" ref={navRef}>
           {LINKS.map((link) => (
             <a
               key={link.route}
