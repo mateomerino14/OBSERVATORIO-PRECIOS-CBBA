@@ -196,3 +196,16 @@ def replace_code(item: CatalogProduct, code: str | None) -> CatalogProduct:
     return CatalogProduct(
         item.product_id, item.name, item.subcategory, item.content, item.unit, item.url, code
     )
+
+
+def test_tied_candidates_keep_a_stable_order(basket) -> None:
+    twins = [
+        product(31, "Pack Huevo Sofia Mediano 12 un", "Huevos", "u", None, "12"),
+        product(30, "Pack Huevo Sofia Mediano 12 un", "Huevos", "u", None, "12"),
+    ]
+    products = [item for item in catalog() if item.product_id != 7]
+    forward = suggest(basket, [*products, *twins]).items[0]
+    backward = suggest(basket, [*products, *reversed(twins)]).items[0]
+    ids = [candidate.product.product_id for candidate in forward.candidates]
+    assert ids[:2] == [30, 31]
+    assert ids == [candidate.product.product_id for candidate in backward.candidates]
