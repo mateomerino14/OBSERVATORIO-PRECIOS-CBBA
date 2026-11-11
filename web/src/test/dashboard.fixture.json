@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado_en": "2026-11-11T15:23:00+00:00",
+ "generado_en": "2026-11-11T16:25:43+00:00",
  "ciudad": "cochabamba",
  "ultimo_dia": "2026-11-08",
  "ultima_corrida": null,
@@ -18,15 +18,15 @@
   "items_total": 13,
   "hoy": {
    "fecha": "2026-11-08",
-   "tipico": 193.44,
-   "economico": 174.87,
+   "tipico": 193.34,
+   "economico": 172.96,
    "items": 8
   },
   "ciudad_por_dia": [
    {
     "fecha": "2026-11-08",
-    "tipico": 193.44,
-    "economico": 174.87,
+    "tipico": 193.34,
+    "economico": 172.96,
     "items": 8
    }
   ],
@@ -36,14 +36,16 @@
     "sucursal": "HIPERMAXI BLANCO GALINDO",
     "tipico": 193.65,
     "economico": 176.7,
-    "items": 8
+    "items": 8,
+    "items_sucursal": 8
    },
    {
     "fecha": "2026-11-08",
     "sucursal": "HIPERMAXI JUAN DE LA ROSA",
     "tipico": 193.23,
     "economico": 173.04,
-    "items": 8
+    "items": 8,
+    "items_sucursal": 8
    }
   ]
  },

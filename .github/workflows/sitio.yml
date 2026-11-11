@@ -34,6 +34,8 @@ jobs:
           cache: pip
       - name: Instalar el exportador
         run: pip install -e .
+      - name: Emparejar la canasta con las reglas vigentes
+        run: observatorio canasta cargar canastas/defensoria_semanal.toml
       - name: Exportar los datos del dashboard
         run: observatorio exportar --canasta canastas/defensoria_semanal.toml --salida web/public/data/dashboard.json
       - uses: actions/setup-node@v4

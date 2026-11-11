@@ -168,3 +168,36 @@ def test_build_dashboard_on_empty_database(db: psycopg.Connection, basket) -> No
     assert document["canasta"]["hoy"] is None
     assert document["super_vs_mercado"]["productos"] == []
     assert document["subidas_mercado"]["productos"] == []
+
+
+@pytest.mark.db
+def test_branches_with_different_coverage_compare_on_common_items(
+    db: psycopg.Connection, basket
+) -> None:
+    rice = [observation(branch, "1", "Arroz Caisy 1 kg", "16.00") for branch in BRANCHES]
+    for item in rice:
+        save_observations(db, [item], TODAY)
+    papaya = PriceObservation(
+        **{
+            **observation(BRANCHES[1], "2", "Papaya kg", "13.90").__dict__,
+            "sold_by_weight": True,
+            "subcategory": "Frutas",
+        }
+    )
+    save_observations(db, [papaya], TODAY)
+    sync_basket(db, basket)
+
+    document = build_dashboard(db, basket, "cochabamba")
+
+    # La ciudad suma arroz y papaya, aunque solo una sucursal venda papaya.
+    assert document["canasta"]["hoy"] == {
+        "fecha": "2026-11-11",
+        "tipico": pytest.approx(14.72 + 20.85),
+        "economico": pytest.approx(14.72 + 20.85),
+        "items": 2,
+    }
+    # Entre sucursales se compara solo el arroz, que tienen las dos.
+    branches = {row["sucursal"]: row for row in document["canasta"]["por_sucursal"]}
+    assert [row["tipico"] for row in branches.values()] == [pytest.approx(14.72)] * 2
+    assert branches["HIPERMAXI SACABA"]["items_sucursal"] == 2
+    assert branches["HIPERMAXI BLANCO GALINDO"]["items"] == 1

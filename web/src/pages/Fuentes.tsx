@@ -125,7 +125,7 @@ export function Fuentes({ data }: { data: DashboardData }) {
           <h2>Supuestos y límites</h2>
           <ul className="prose-list">
             <li>1 libra = 460 g. 1 cuartilla = 6 libras: con ese valor se reproduce el costo oficial de la canasta de la Defensoría.</li>
-            <li>Hipermaxi casi no vende frescos en línea: faltan papaya, plátano, cebolla, tomate y zanahoria.</li>
+            <li>No todas las sucursales publican frutas y verduras en línea, y el plátano (banano) no aparece en ninguna. El costo de la ciudad junta los productos de todas las sucursales; entre sucursales se comparan solo los productos comunes.</li>
             <li>El sondeo de la Defensoría es ruidoso de un mes a otro: se leen tendencias, no meses sueltos.</li>
             <li>El paralelo es aproximado: cada fuente lo mide distinto.</li>
           </ul>
