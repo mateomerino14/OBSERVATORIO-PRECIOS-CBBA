@@ -60,6 +60,11 @@ def store_product(name: str, **changes: object) -> StoreProduct:
     return StoreProduct(**values)
 
 
+def eggs(name: str, count: int) -> StoreProduct:
+    """Producto de la subcategoría Huevos vendido por unidad."""
+    return store_product(name, subcategory="Huevos", content=Decimal(count), unit="u")
+
+
 def write_basket(tmp_path: Path, text: str) -> Path:
     path = tmp_path / "canasta.toml"
     path.write_text(text, encoding="utf-8")
@@ -119,6 +124,11 @@ def test_matches_applies_all_rules(minimal_basket, product: StoreProduct, expect
             ),
             False,
         ),
+        ("huevos", eggs("Huevo Sofia Mediano 12 un", 12), True),
+        ("huevos", eggs("Huevos La Granja 30 un", 30), True),
+        ("huevos", eggs("Huevo Nido de Oro Pequeño Maple de 30 un", 30), False),
+        ("huevos", eggs("Huevos Sofia Grande 15 un", 15), False),
+        ("huevos", eggs("Huevo Sofia Marron Extra Grande 20 un", 20), False),
         ("fideo", store_product("Fideo Don Vittorio Corto 400 gr", content=Decimal(400)), True),
         ("fideo", store_product("Fideos Bisfru de Garbanzo 400 gr", content=Decimal(400)), False),
         ("fideo", store_product("Fideo Ferrari Fetuccini 400 gr", content=Decimal(400)), False),

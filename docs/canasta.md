@@ -39,5 +39,6 @@ La definición está en [`canastas/defensoria_semanal.toml`](../canastas/defenso
 - **Costo de la ciudad y de cada sucursal.** El costo de la ciudad junta los productos de todas las sucursales, ítem por ítem, así que tiene precio para un producto aunque solo una sucursal lo venda. Entre sucursales se compara solo sobre los productos que tienen todas ese día; si no, una sucursal con más productos en línea parecería más cara.
 - **Pulpa de res.** Hipermaxi no usa ese nombre; se toman los cortes sin hueso equivalentes (cuadrada, bollo chico y grande, peceto especial), sin la carne al vacío, que es otro segmento de precio.
 - **Leche fluida.** Solo leche entera o natural en bolsa (800–1.000 ml); se excluyen cajas UHT, larga vida y leches con sabor.
+- **Huevos medianos.** La Defensoría cotiza huevo mediano por unidad. Se excluyen los que dicen otro tamaño en el nombre (pequeño, grande, extra grande): el pequeño, el más barato, fijaba el costo económico con un huevo más chico. Los que no dicen tamaño son el huevo común del súper y se mantienen. También entran los packs.
 - **Bolsas al por mayor.** Se excluyen presentaciones mayores a 5 kg (harina y fideo de 11,34 kg), que bajarían artificialmente el precio por kilo.
 - **Productos agotados.** No cuentan para el precio del día.
