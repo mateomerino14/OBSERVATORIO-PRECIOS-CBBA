@@ -44,7 +44,8 @@ def build_dashboard(connection: psycopg.Connection, basket: Basket, city: str) -
     """Arma el documento completo que lee el sitio."""
     latest_day = _latest_day(connection)
     market = _market_unit_prices(connection, city, basket)
-    today_prices = _today_canonical_prices(connection, latest_day)
+    city_prices = _city_canonical_prices(connection)
+    today_prices = city_prices.get(latest_day, {})
     return {
         "version": SCHEMA_VERSION,
         "generado_en": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -52,7 +53,7 @@ def build_dashboard(connection: psycopg.Connection, basket: Basket, city: str) -
         "ultimo_dia": _iso(latest_day),
         "ultima_corrida": _last_run(connection),
         "cobertura": _coverage(connection, latest_day),
-        "canasta": _basket_summary(connection, basket, latest_day),
+        "canasta": _basket_summary(connection, basket, latest_day, city_prices),
         "canasta_mercado": _market_basket(basket, market, today_prices),
         "dolar": _exchange_rates(connection),
         "super_vs_mercado": _super_vs_market(connection, basket, market, today_prices, city),
@@ -139,41 +140,46 @@ def _coverage(connection: psycopg.Connection, latest_day: date | None) -> dict:
 
 
 def _basket_summary(
-    connection: psycopg.Connection, basket: Basket, latest_day: date | None
+    connection: psycopg.Connection,
+    basket: Basket,
+    latest_day: date | None,
+    city_prices: dict[date, dict[str, dict[str, Decimal]]],
 ) -> dict:
-    """Costo diario de la canasta por sucursal y su promedio en la ciudad."""
+    """Costo diario de la canasta en la ciudad y, por sucursal, sobre los ítems que todas
+    las sucursales tienen ese día (si no, una sucursal con más ítems parecería más cara)."""
+    city = [
+        {"fecha": _iso(day), **city_basket_cost(basket, prices)}
+        for day, prices in sorted(city_prices.items())
+    ]
     rows = connection.execute(
         """
-        SELECT c.fecha, s.nombre, c.costo_tipico, c.costo_economico, c.items_con_precio
-        FROM costo_canasta_diario c
-        JOIN sucursal s ON s.id = c.sucursal_id
-        WHERE c.canasta = %s
-        ORDER BY c.fecha, s.nombre
-        """,
-        (basket.code,),
+        SELECT p.fecha, s.nombre, pc.codigo, p.precio_unitario_mediana, p.precio_unitario_minimo
+        FROM precio_canonico_diario p
+        JOIN producto_canonico pc ON pc.id = p.producto_canonico_id
+        JOIN sucursal s ON s.id = p.sucursal_id
+        """
     ).fetchall()
-    by_branch = [
-        {
-            "fecha": _iso(day),
-            "sucursal": branch,
-            "tipico": typical,
-            "economico": economic,
-            "items": items,
-        }
-        for day, branch, typical, economic, items in rows
-    ]
-    by_day: dict[date, list] = defaultdict(list)
-    for day, _, typical, economic, items in rows:
-        by_day[day].append((typical, economic, items))
-    city = [
-        {
-            "fecha": _iso(day),
-            "tipico": _round(sum(value[0] for value in values) / len(values)),
-            "economico": _round(sum(value[1] for value in values) / len(values)),
-            "items": min(value[2] for value in values),
-        }
-        for day, values in sorted(by_day.items())
-    ]
+    quantities = {item.code: item.quantity for item in basket.items}
+    by_day: dict[date, dict[str, dict[str, tuple[Decimal, Decimal]]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+    for day, branch, code, typical, minimum in rows:
+        if code in quantities:
+            by_day[day][branch][code] = (Decimal(typical), Decimal(minimum))
+    by_branch = []
+    for day, branches in sorted(by_day.items()):
+        common = set.intersection(*(set(codes) for codes in branches.values()))
+        for branch, codes in sorted(branches.items()):
+            by_branch.append(
+                {
+                    "fecha": _iso(day),
+                    "sucursal": branch,
+                    "tipico": _round(sum(quantities[c] * codes[c][0] for c in common)),
+                    "economico": _round(sum(quantities[c] * codes[c][1] for c in common)),
+                    "items": len(common),
+                    "items_sucursal": len(codes),
+                }
+            )
     today = None
     if city and latest_day is not None and city[-1]["fecha"] == _iso(latest_day):
         today = city[-1]
@@ -214,29 +220,50 @@ def _market_unit_prices(
     return dict(months)
 
 
-def _today_canonical_prices(
-    connection: psycopg.Connection, latest_day: date | None
-) -> dict[str, dict[str, Decimal]]:
-    """Mediana y mínimo por unidad base de cada producto canónico, en toda la ciudad."""
+def _city_canonical_prices(
+    connection: psycopg.Connection,
+) -> dict[date, dict[str, dict[str, Decimal]]]:
+    """Mediana y mínimo por unidad base de cada producto canónico, por día, juntando todas
+    las sucursales: así la ciudad tiene precio de un ítem aunque solo una sucursal lo venda."""
     rows = connection.execute(
         """
-        SELECT pc.codigo, o.precio / p.contenido_cantidad
+        SELECT o.fecha, pc.codigo, o.precio / p.contenido_cantidad
         FROM observacion_precio o
         JOIN producto p ON p.id = o.producto_id
         JOIN emparejamiento e ON e.producto_id = p.id
         JOIN producto_canonico pc ON pc.id = e.producto_canonico_id
-        WHERE o.fecha = %s AND o.disponible
-          AND p.contenido_cantidad > 0 AND p.contenido_unidad = pc.unidad
-        """,
-        (latest_day,),
+        WHERE o.disponible AND p.contenido_cantidad > 0 AND p.contenido_unidad = pc.unidad
+        """
     ).fetchall()
-    values: dict[str, list[Decimal]] = defaultdict(list)
-    for code, unit_price in rows:
-        values[code].append(Decimal(unit_price))
+    values: dict[date, dict[str, list[Decimal]]] = defaultdict(lambda: defaultdict(list))
+    for day, code, unit_price in rows:
+        values[day][code].append(Decimal(unit_price))
     return {
-        code: {"tipico": Decimal(median(prices)), "minimo": min(prices), "productos": len(prices)}
-        for code, prices in values.items()
+        day: {
+            code: {
+                "tipico": Decimal(median(prices)),
+                "minimo": min(prices),
+                "productos": len(prices),
+            }
+            for code, prices in by_code.items()
+        }
+        for day, by_code in values.items()
     }
+
+
+def city_basket_cost(basket: Basket, prices: dict[str, dict[str, Decimal]]) -> dict:
+    """Costo de la canasta con precios de ciudad; los ítems sin precio no suman y se cuentan."""
+    typical = Decimal(0)
+    economic = Decimal(0)
+    items = 0
+    for item in basket.items:
+        price = prices.get(item.code)
+        if price is None:
+            continue
+        typical += item.quantity * price["tipico"]
+        economic += item.quantity * price["minimo"]
+        items += 1
+    return {"tipico": _round(typical), "economico": _round(economic), "items": items}
 
 
 def _market_basket(

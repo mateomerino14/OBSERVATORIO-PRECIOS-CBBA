@@ -10,10 +10,10 @@
 #   - Productos que la Defensoría cuenta por unidad y el supermercado vende por kilo:
 #     papaya mediana = 1.500 g; plátano mediano = 150 g.
 #
-# Cobertura: la tienda en línea de Hipermaxi casi no publica frutas y verduras frescas.
-# Sus reglas se limitan a las subcategorías de frescos para no tomar conservas ni
-# deshidratados; mientras no haya productos, esos ítems quedan sin precio y la vista
-# costo_canasta_diario lo informa en items_con_precio / items_total.
+# Cobertura: no todas las sucursales publican frutas y verduras frescas en línea (en
+# noviembre de 2026, 3 de 5). Sus reglas se limitan a las subcategorías de frescos para no
+# tomar conservas ni deshidratados; donde no hay productos, esos ítems quedan sin precio y
+# la vista costo_canasta_diario lo informa en items_con_precio / items_total.
 #
 # Reglas de emparejamiento de cada producto (se comparan sin tildes y en minúsculas):
 #   incluir        al menos una expresión debe coincidir con el nombre
@@ -51,7 +51,7 @@ cantidad = 1800  # 12 unidades
 peso_unidad = 150  # g por pieza
 subcategorias = ["Frutas", "Verduras", "Temporada", "Ofertas Especiales", "Hortalizas Delifresh"]
 incluir = ['^(platano|banano|banana)s?\b']
-excluir = ['postre', 'verde', 'cocinar', 'frit', 'chips?', 'harina', 'deshidrat', 'pure', 'colado', 'nectar', 'jugo']
+excluir = ['postre', 'verde', 'cocinar', 'freir', 'frit', 'chips?', 'harina', 'deshidrat', 'pure', 'colado', 'nectar', 'jugo']
 
 [[producto]]
 codigo = "cebolla"
