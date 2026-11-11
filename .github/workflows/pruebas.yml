@@ -51,6 +51,8 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - name: Instalar dependencias
         run: npm ci
+      - name: Lint
+        run: npm run lint -- --deny-warnings
       - name: Tipos
         run: npx tsc -b
       - name: Pruebas
