@@ -176,6 +176,7 @@ def test_build_dashboard_on_empty_database(db: psycopg.Connection, basket) -> No
     assert document["super_vs_mercado"]["productos"] == []
     assert document["subidas_mercado"]["productos"] == []
     assert document["sugerencias"] is None
+    assert document["grupos_mercado"] is None
     assert document["anomalias"]["super"] == {
         "fecha": None,
         "dias": 0,

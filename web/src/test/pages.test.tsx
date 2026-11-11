@@ -64,14 +64,24 @@ describe('pantallas con datos reales', () => {
 
   it('modelos muestra la evaluación, sugerencias con su motivo y saltos de mercado', () => {
     render(<Modelos data={data} />);
-    expect(screen.getByText('81 %')).toBeInTheDocument();
-    expect(screen.getByText(/99 de 122/)).toBeInTheDocument();
+    expect(screen.getByText('83 %')).toBeInTheDocument();
+    expect(screen.getByText(/99 de 119/)).toBeInTheDocument();
     const fideo = screen.getByRole('heading', { name: /Fideo corto/ }).closest('section')!;
     expect(within(fideo).getAllByText('presentación fuera de rango').length).toBeGreaterThan(0);
     expect(within(fideo).getAllByText('aceptado, poco parecido al resto').length).toBeGreaterThan(0);
     const rows = screen.getAllByRole('row').slice(1);
     expect(within(rows[0]).getByRole('rowheader')).toHaveTextContent('Pulpa de res');
     expect(screen.getByText('Se activa con 8 días de precios')).toBeInTheDocument();
+  });
+
+  it('modelos muestra los grupos de k-means con su elección de k', () => {
+    render(<Modelos data={data} />);
+    expect(screen.getByRole('img', { name: /coloreados por grupo/ })).toBeInTheDocument();
+    const stable = screen.getByRole('heading', { name: 'Estables' }).closest('li')!;
+    expect(within(stable).getByText(/Arroz/)).toBeInTheDocument();
+    const jumped = screen.getByRole('heading', { name: 'Saltaron con la subida del dólar' }).closest('li')!;
+    expect(within(jumped).getByText('Cebolla, Harina de trigo')).toBeInTheDocument();
+    expect(screen.getByText(/k = 3, la silueta más alta \(0,39; con 2: 0,35/)).toBeInTheDocument();
   });
 
   it('modelos lista saltos del súper cuando hay historial', () => {

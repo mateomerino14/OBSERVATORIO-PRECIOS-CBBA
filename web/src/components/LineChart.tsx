@@ -70,7 +70,7 @@ export function fitTicks<T extends { index: number }>(ticks: T[], position: (ind
 }
 
 /** Ancho en píxeles del contenedor, actualizado cuando cambia de tamaño. */
-function useContainerWidth(): [React.RefObject<HTMLDivElement | null>, number] {
+export function useContainerWidth(): [React.RefObject<HTMLDivElement | null>, number] {
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(DEFAULT_WIDTH);
   useEffect(() => {

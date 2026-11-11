@@ -41,9 +41,10 @@ flowchart LR
 
 ## Modelos
 
-Dos modelos señalan qué revisar, sin cambiar nada por su cuenta ([detalle](docs/modelos.md)):
+Tres modelos ayudan a leer los datos, sin cambiar nada por su cuenta ([detalle](docs/modelos.md)):
 
 - **Sugerencias de emparejamiento (TF-IDF de n-gramas de caracteres).** Busca productos parecidos a los que la canasta ya acepta y explica qué regla los deja fuera. Encontró packs de huevos que faltaban y pastas sin gluten que no debían contar como fideo.
+- **Grupos frente al dólar (k-means).** Agrupa los alimentos por cómo se movieron en la subida y en la bajada del dólar. Los básicos industriales devolvieron parte de la subida; los frescos siguieron subiendo.
 - **Precios anómalos (z-score modificado).** Marca los meses en que un producto se movió muy distinto al resto de la canasta, descontando la inflación y el dólar que mueven a todos. Separa saltos reales (cebolla +140 % en un mes) de probables errores del sondeo.
 
 <img src="docs/img/movil.png" alt="Pantalla súper vs. mercado en el celular" width="300" align="right">
@@ -55,7 +56,7 @@ Dos modelos señalan qué revisar, sin cambiar nada por su cuenta ([detalle](doc
 | Resumen | ¿Cuánto cuesta la canasta hoy y qué pasó con el dólar? |
 | Súper vs. mercado | ¿Es más caro el supermercado, producto por producto? |
 | Productos | ¿Qué productos de la tienda cuentan para cada ítem y a cuánto? |
-| Modelos | ¿Qué se les escapa a las reglas y qué precios saltaron? |
+| Modelos | ¿Qué se les escapa a las reglas, qué alimentos se movieron igual y qué precios saltaron? |
 | Fuentes y método | ¿De dónde sale cada número y con qué supuestos? |
 
 ## Fuentes
@@ -75,7 +76,7 @@ Dos modelos señalan qué revisar, sin cambiar nada por su cuenta ([detalle](doc
 |---|---|
 | Recolección | Python 3.12, httpx, selectolax (lexbor), pdfplumber |
 | Datos | PostgreSQL (Supabase) con migraciones versionadas y RLS |
-| Modelos | scikit-learn (TF-IDF), NumPy |
+| Modelos | scikit-learn (TF-IDF, k-means, silueta), NumPy |
 | Programación | GitHub Actions con cron diario |
 | Sitio | Vite, React, TypeScript, gráficos SVG propios; GitHub Pages |
 | Calidad | pytest (con PostgreSQL real), Ruff, Vitest y Testing Library |
