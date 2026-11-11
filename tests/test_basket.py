@@ -192,7 +192,7 @@ def observation(code: str, name: str, price: str, subcategory: str = "Básicos")
 
 
 @pytest.mark.db
-def test_sync_basket_matches_products_and_computes_daily_cost(
+def test_sync_basket_matches_products_and_computes_unit_prices(
     db: psycopg.Connection, minimal_basket
 ) -> None:
     save_observations(
@@ -210,13 +210,17 @@ def test_sync_basket_matches_products_and_computes_daily_cost(
     counts = sync_basket(db, minimal_basket)
 
     assert counts == {"arroz": 3, "grano": 2}
-    cost = db.execute(
-        "SELECT costo_tipico, costo_economico, items_con_precio, items_total "
-        "FROM costo_canasta_diario WHERE canasta = 'prueba'"
-    ).fetchone()
-    # arroz: 1000 g, mediana 0,016 Bs/g y mínimo 0,014 Bs/g
-    # grano: 500 g, integral 0,025 y quinua 0,030 Bs/g -> mediana 0,0275, mínimo 0,025
-    assert cost == (Decimal("29.75"), Decimal("26.50"), 2, 2)
+    prices = db.execute(
+        "SELECT pc.codigo, p.productos, round(p.precio_unitario_mediana::numeric, 4), "
+        "round(p.precio_unitario_minimo::numeric, 4) "
+        "FROM precio_canonico_diario p "
+        "JOIN producto_canonico pc ON pc.id = p.producto_canonico_id ORDER BY pc.codigo"
+    ).fetchall()
+    # arroz: 0,016, 0,014 y 0,020 Bs/g; grano: integral 0,025 y quinua 0,030 Bs/g.
+    assert prices == [
+        ("arroz", 3, Decimal("0.0160"), Decimal("0.0140")),
+        ("grano", 2, Decimal("0.0275"), Decimal("0.0250")),
+    ]
 
 
 @pytest.mark.db
@@ -252,4 +256,4 @@ def test_unavailable_products_do_not_count_in_cost(db: psycopg.Connection, minim
 
     sync_basket(db, minimal_basket)
 
-    assert db.execute("SELECT count(*) FROM costo_canasta_diario").fetchone()[0] == 0
+    assert db.execute("SELECT count(*) FROM precio_canonico_diario").fetchone()[0] == 0
